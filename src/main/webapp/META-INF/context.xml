@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+	<Resource name="jdbc/pool_cnx"
+		driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+		type="javax.sql.DataSource"
+		url="jdbc:sqlserver://localhost:1433;databaseName=GitTest;trustServerCertificate=true"
+		username="sa" 
+		password="adminADMIN@12345678" 
+		maxTotal="100"
+		maxWaitMillis="10000" />
+</Context>
