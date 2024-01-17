@@ -32,9 +32,9 @@ public class jdbcTest extends HttpServlet {
 		// TODO Auto-generated method stub
 		UtilisateurManager manager = new UtilisateurManager();
 		
-		Adresse adresse = new Adresse("rue","nantes","4000");
+		//Adresse adresse = new Adresse("rue","nantes","4000");
 		
-		Utilisateur user = new Utilisateur("awl213", "herciu22", "alin22","coolemail@gw2il.com","1234567890",adresse, 10, false,"s2tronPasswor2d");
+		//Utilisateur user = new Utilisateur("awl213", "herciu22", "alin22","coolemail@gw2il.com","1234567890",adresse, 10, false,"s2tronPasswor2d");
 		
 		//manager.ajouterUser(user);
 		manager.deleteUser(10);
