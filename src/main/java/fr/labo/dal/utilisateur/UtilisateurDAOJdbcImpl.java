@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+import fr.labo.bo.Adresse;
 import fr.labo.bo.Utilisateur;
 import fr.labo.dal.ConnectionProvider;
 
@@ -28,12 +29,12 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 			pstmt.setString(8, user.getAdresse().getVille());
 			pstmt.setString(9, user.getMotDePasse());
 			pstmt.setInt(10, user.getCredit());
-			pstmt.setBoolean(11, user.isAdmin());
+			pstmt.setBoolean(11, user.getAdministrateur());
 			
 			pstmt.executeUpdate();
 			ResultSet rs = pstmt.getGeneratedKeys();
 			if (rs.next()) {
-				user.setnoUtilisateur(rs.getInt(1));
+				user.setNoUtilisateur(rs.getInt(1));
 			}
 			rs.close();
 			pstmt.close();
@@ -70,10 +71,8 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 			
 			ResultSet rs = pstmt.executeQuery();
 			if(rs.next()) {
-				user = new Utilisateur();
 				
-				user.setPseudo(rs.getString("pseudo"));
-				user.setNom(rs.getString("nom"));
+				user = createUserFromRs(rs);
 				
 			}
 			rs.close();
@@ -81,21 +80,65 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 			cnx.close();
 			
 		} catch (SQLException e) {
-			System.out.println("Erreur d'insertion de l'utilisateur" + e.getMessage());
+			System.out.println("Erreur selectByPseudoEtPassword" + e.getMessage());
 		}
 		return user;
 	}
 
 	@Override
 	public Utilisateur selectById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		Utilisateur user = null;
+		String selectById = "SELECT * FROM UTILISATEURS WHERE no_utilisateur = ?";
+		try {
+			
+			Connection cnx = ConnectionProvider.getConnection();
+			PreparedStatement pstmt = cnx.prepareStatement(selectById);
+			
+			pstmt.setInt(1, id);
+			ResultSet rs = pstmt.executeQuery();
+			if(rs.next()) {
+				
+				user = createUserFromRs(rs);
+				
+			}
+			rs.close();
+			pstmt.close();
+			cnx.close();
+			
+		} catch (SQLException e) {
+			System.out.println("Erreur selectById" + e.getMessage());
+		}
+		return user;
 	}
 
 	@Override
 	public List<Utilisateur> selectAll() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	//fonction qui prend un rs et renvoie un objet utilisateur basé sur cet result set
+	private Utilisateur createUserFromRs(ResultSet rs) {
+		Utilisateur user = new Utilisateur();
+		
+		try {
+			user.setNoUtilisateur(rs.getInt("no_utilisateur"));
+			user.setPseudo(rs.getString("pseudo"));
+			user.setNom(rs.getString("nom"));
+			user.setPrenom(rs.getString("prenom"));
+			user.setEmail(rs.getString("email"));
+			user.setTelephone(rs.getString(rs.getString("telephone")));
+			
+			Adresse adressee = new Adresse(rs.getString("rue"), rs.getString("ville"), rs.getString("code_postal"));
+			user.setAdresse(adressee);
+			user.setMotDePasse(rs.getString("mot_de_passe"));
+			user.setCredit(rs.getInt("credit"));
+			user.setAdmnistrateur(rs.getBoolean("administrateur"));
+		} catch (Exception e) {
+			System.out.println("Erreur createUserFromRs" + e.getMessage());
+		}
+	
+		return user;
 	}
 
 }
