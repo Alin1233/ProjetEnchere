@@ -137,7 +137,7 @@ public class Utilisateur implements Serializable {
         }
         return true;
 	}
-
+		
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
