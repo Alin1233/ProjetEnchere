@@ -76,6 +76,9 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 				user.setNom(rs.getString("nom"));
 				
 			}
+			rs.close();
+			pstmt.close();
+			cnx.close();
 			
 		} catch (SQLException e) {
 			System.out.println("Erreur d'insertion de l'utilisateur" + e.getMessage());
