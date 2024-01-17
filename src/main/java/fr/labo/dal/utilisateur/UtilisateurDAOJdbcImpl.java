@@ -161,7 +161,8 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 			user.setNom(rs.getString("nom"));
 			user.setPrenom(rs.getString("prenom"));
 			user.setEmail(rs.getString("email"));
-			user.setTelephone(rs.getString(rs.getString("telephone")));
+			user.setTelephone(rs.getString("telephone"));
+
 			
 			Adresse adressee = new Adresse(rs.getString("rue"), rs.getString("ville"), rs.getString("code_postal"));
 			user.setAdresse(adressee);
@@ -169,7 +170,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 			user.setCredit(rs.getInt("credit"));
 			user.setAdmnistrateur(rs.getBoolean("administrateur"));
 		} catch (Exception e) {
-			System.out.println("Erreur createUserFromRs" + e.getMessage());
+			System.out.println("Erreur createUserFromRs " + e.getMessage());
 		}
 	
 		return user;
