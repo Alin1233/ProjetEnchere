@@ -15,8 +15,8 @@ public class Utilisateur implements Serializable {
     private String email;
     private String telephone;
     private Adresse adresse;
-    private int credit;
-    private boolean administrateur;
+    private int credit = 0;
+    private boolean administrateur = false;
     private String motDePasse;
 
     private static Set<String> usedPseudos = new HashSet<>();
