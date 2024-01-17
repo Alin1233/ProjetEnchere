@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import fr.labo.bo.Adresse;
@@ -113,8 +114,23 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 
 	@Override
 	public List<Utilisateur> selectAll() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		List<Utilisateur> userList = new ArrayList<Utilisateur>();
+		String selectAll = "SELECT * FROM UTILISATEURS";
+		
+		try {
+			Connection cnx = ConnectionProvider.getConnection();
+			PreparedStatement pstmt = cnx.prepareStatement(selectAll);
+			
+			ResultSet rs = pstmt.executeQuery();
+			while(rs.next()) {
+				userList.add(createUserFromRs(rs));
+			}
+		} catch (SQLException e) {
+			// TODO: handle exception
+		}
+		
+		return userList;
 	}
 	
 	//fonction qui prend un rs et renvoie un objet utilisateur basé sur cet result set
