@@ -15,8 +15,8 @@ public class Utilisateur implements Serializable {
     private String email;
     private String telephone;
     private Adresse adresse;
-    private int credit;
-    private boolean administrateur;
+    private int credit = 0;
+    private boolean administrateur = false;
     private String motDePasse;
 
     private static Set<String> usedPseudos = new HashSet<>();
@@ -123,7 +123,21 @@ public class Utilisateur implements Serializable {
 		this.motDePasse = motDePasse;
 	}
 	
-
+	public boolean pseudoUnique(String pseudo) {
+        if (usedPseudos.contains(pseudo)) {
+            throw new IllegalArgumentException("Le pseudo est déjà utilisé");
+        }
+		return true;
+		
+	}
+	
+	public boolean emailUnique(String email) {
+        if (usedEmails.contains(email)) {
+            throw new IllegalArgumentException("L'Email est déjà utilisé");
+        }
+        return true;
+	}
+		
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
