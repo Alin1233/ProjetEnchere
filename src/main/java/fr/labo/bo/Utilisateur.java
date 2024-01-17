@@ -122,6 +122,22 @@ public class Utilisateur implements Serializable {
 	public void setMotDePasse(String motDePasse) {
 		this.motDePasse = motDePasse;
 	}
+	
+	public boolean pseudoUnique(String pseudo) {
+        if (usedPseudos.contains(pseudo)) {
+            throw new IllegalArgumentException("Le pseudo est déjà utilisé");
+        }
+		return true;
+		
+	}
+	
+	public boolean emailUnique(String email) {
+        if (usedEmails.contains(email)) {
+            throw new IllegalArgumentException("L'Email est déjà utilisé");
+        }
+        return true;
+		
+	}
 
 	@Override
 	public String toString() {
