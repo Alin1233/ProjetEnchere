@@ -1,5 +1,7 @@
 package fr.labo.dal.utilisateur;
 
+import fr.labo.bo.Utilisateur;
+
 public interface UtilisateurDAO {
 	
 	//crée l'utilisateur dans la db
