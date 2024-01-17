@@ -24,11 +24,10 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 			pstmt.setString(5, user.getTelephone());
 			pstmt.setString(6, user.getAdresse().getRue());
 			pstmt.setString(7, user.getAdresse().getCodePostal());
-			pstmt.setString(8, user.getAdresse().getCodePostal());
-			pstmt.setString(9, user.getAdresse().getVille());
-			pstmt.setString(10, user.getMotDePasse());
-			pstmt.setInt(11, user.getCredit());
-			pstmt.setBoolean(12, user.isAdmin());
+			pstmt.setString(8, user.getAdresse().getVille());
+			pstmt.setString(9, user.getMotDePasse());
+			pstmt.setInt(10, user.getCredit());
+			pstmt.setBoolean(11, user.isAdmin());
 			
 			pstmt.executeUpdate();
 			ResultSet rs = pstmt.getGeneratedKeys();
@@ -40,7 +39,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 			cnx.close();
 			
 		} catch (SQLException e) {
-			// TODO: handle exception
+			 System.out.println("Erreur d'insertion de l'utilisateur" + e.getMessage());
 		}
 	}
 
