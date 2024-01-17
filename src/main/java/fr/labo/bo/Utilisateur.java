@@ -1,47 +1,52 @@
 package fr.labo.bo;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Utilisateur {
+public class Utilisateur implements Serializable {
 
-    private static int nextNoUtilisateur = 1;
+
 
     private int noUtilisateur;
-    private String pseudo;
+	private String pseudo;
     private String nom;
     private String prenom;
     private String email;
     private String telephone;
     private Adresse adresse;
     private int credit;
-    private boolean isAdmin;
+    private boolean administrateur;
     private String motDePasse;
 
     private static Set<String> usedPseudos = new HashSet<>();
     private static Set<String> usedEmails = new HashSet<>();
 
-    
-    public Utilisateur()
-    {   	
-    }
-    
-    public Utilisateur(String pseudo, String nom, String prenom, String email, String telephone, Adresse adresse, boolean isAdmin, String motDePasse) {
-        this.noUtilisateur = nextNoUtilisateur++;
-        setPseudo(pseudo);
-        this.nom = nom;
-        this.prenom = prenom;
-        setEmail(email);
-        setTelephone(telephone);
-        this.adresse = adresse;
-        this.credit = 0;
-        this.isAdmin = isAdmin;
-        this.motDePasse = motDePasse;
-    }
+  public Utilisateur(){
+  }
 
-    public int getNoUtilisateur() {
+	public Utilisateur(String pseudo, String nom, String prenom, String email, String telephone, Adresse adresse,
+			int credit, boolean administrateur, String motDePasse) {
+		super();
+		this.pseudo = pseudo;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.email = email;
+		this.telephone = telephone;
+		this.adresse = adresse;
+		this.credit = credit;
+		this.administrateur = administrateur;
+		this.motDePasse = motDePasse;
+	}
+
+	public int getNoUtilisateur() {
         return noUtilisateur;
     }
+	
+
+	public void setNoUtilisateur(int noUtilisateur) {
+		this.noUtilisateur = noUtilisateur;
+	}
 
     public String getPseudo() {
         return pseudo;
@@ -102,12 +107,12 @@ public class Utilisateur {
         this.credit = credit;
     }
 
-    public boolean isAdmin() {
-        return isAdmin;
+    public boolean getAdministrateur() {
+        return administrateur;
     }
 
-    public void setAdmin(boolean admin) {
-        isAdmin = admin;
+    public void setAdmnistrateur(boolean admin) {
+        administrateur = admin;
     }
 
 	public String getMotDePasse() {
@@ -122,7 +127,7 @@ public class Utilisateur {
 	public String toString() {
 		return "User [noUtilisateur=" + noUtilisateur + ", pseudo=" + pseudo + ", nom=" + nom + ", prenom=" + prenom
 				+ ", email=" + email + ", telephone=" + telephone + ", adresse=" + adresse + ", credit=" + credit
-				+ ", isAdmin=" + isAdmin + ", motDePasse=" + motDePasse + "]";
+				+ ", administrateur=" + administrateur + ", motDePasse=" + motDePasse + "]";
 	}
     
 }
