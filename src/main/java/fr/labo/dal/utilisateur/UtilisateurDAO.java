@@ -1,5 +1,7 @@
 package fr.labo.dal.utilisateur;
 
+import java.util.List;
+
 import fr.labo.bo.Utilisateur;
 
 public interface UtilisateurDAO {
@@ -10,6 +12,11 @@ public interface UtilisateurDAO {
 	public void update(Utilisateur user);
 	//supprime l'utilisateur dans la db
 	public void delete(Utilisateur user);
+	
 	//retourne un utilisateur si le pseudo et le mot de passe sont trouvés dans la db
 	public Utilisateur selectByPseudoEtPassword(String pseudo, String motDePasse); 
+	
+	public Utilisateur selectById(int id);
+	
+	public List<Utilisateur> selectAll();
 }
