@@ -21,6 +21,11 @@ public class Utilisateur {
     private static Set<String> usedPseudos = new HashSet<>();
     private static Set<String> usedEmails = new HashSet<>();
 
+    
+    public Utilisateur()
+    {   	
+    }
+    
     public Utilisateur(String pseudo, String nom, String prenom, String email, String telephone, Adresse adresse, boolean isAdmin, String motDePasse) {
         this.noUtilisateur = nextNoUtilisateur++;
         setPseudo(pseudo);
