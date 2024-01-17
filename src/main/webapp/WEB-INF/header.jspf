@@ -1,5 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>	
 <header>
+
+<!-- Html généré si aucune session utilisateur est en cours -->
 	<c:if test="${empty user }">
 	    <nav >
 	        <div class="container-fluid  d-flex bg-warning p-2">
@@ -10,6 +12,7 @@
 	      </nav>
      </c:if>
      
+<!-- Html généré si une session utilisateur est en cours -->
      <c:if test="${!empty user }">
      	<nav >
 		  <div class="container-fluid  d-flex bg-warning p-2">

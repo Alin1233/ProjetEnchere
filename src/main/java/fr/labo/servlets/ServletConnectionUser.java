@@ -33,6 +33,7 @@ public class ServletConnectionUser extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		//--------------------------------------------------------------------------//
 		//Créaetion d'un liste d'utilisateur pour test
 		User user1 = new User("a","a");
 		User user2 = new User("b","b");
@@ -41,16 +42,17 @@ public class ServletConnectionUser extends HttpServlet {
 		listeUser.add(user1);
 		listeUser.add(user2);
 
+		//--------------------------------------------------------------------------//
+		
+		
 		// Récupération des identifiants et mot de passe de l'utilisateur
 		String idUser = request.getParameter("idUser");
 		String passwordUser = request.getParameter("passwordUser");
 		User utilisateurExistant = null;
 		HttpSession session =  request.getSession(false);
 		
-		//--------------------A modifier----------------------------//
 
-	
-		//A modifier avec condition : si useur existe
+		///////A modifier pour être cohérent avec le projet///////
 		for (User user : listeUser) {
 			
 			if(idUser.equals(user.getIdUser()) && passwordUser.equals(user.getPasswordUser())) {
@@ -60,6 +62,10 @@ public class ServletConnectionUser extends HttpServlet {
 				
 			}
 		}
+		
+		//////////////////////////////////////////////////////////
+		
+		
 		if(utilisateurExistant != null) {
 				session =  request.getSession(true);
 				session.setAttribute("user", utilisateurExistant);
@@ -70,17 +76,7 @@ public class ServletConnectionUser extends HttpServlet {
 			request.setAttribute("erreur", "l'utilisateur ou mot de passe n'est pas valide");
 			doGet(request, response);
 			
-		}
-		
-		
-		
-		//Si useur n'existe pas
-		
-		
-		//----------------------------------------------------------//
-		
-		
-		
+		}		
 		
 	}
 }
