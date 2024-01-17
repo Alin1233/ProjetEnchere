@@ -122,6 +122,11 @@ public class Utilisateur implements Serializable {
 	public void setMotDePasse(String motDePasse) {
 		this.motDePasse = motDePasse;
 	}
+	
+
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
 
 	@Override
 	public String toString() {
