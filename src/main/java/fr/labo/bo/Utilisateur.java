@@ -42,7 +42,7 @@ public class Utilisateur implements Serializable {
 	public int getNoUtilisateur() {
         return noUtilisateur;
     }
-	
+
 
 	public void setNoUtilisateur(int noUtilisateur) {
 		this.noUtilisateur = noUtilisateur;
@@ -94,7 +94,7 @@ public class Utilisateur implements Serializable {
     public Adresse getAdresse() {
         return adresse;
     }
-    
+
     public void setAdresse(Adresse adresse) {
         this.adresse = adresse;
     }
@@ -122,26 +122,26 @@ public class Utilisateur implements Serializable {
 	public void setMotDePasse(String motDePasse) {
 		this.motDePasse = motDePasse;
 	}
-	
+
 	public boolean pseudoUnique(String pseudo) {
         if (usedPseudos.contains(pseudo)) {
             throw new IllegalArgumentException("Le pseudo est déjà utilisé");
         }
 		return true;
-		
+
 	}
-	
+
 	public boolean emailUnique(String email) {
         if (usedEmails.contains(email)) {
             throw new IllegalArgumentException("L'Email est déjà utilisé");
         }
         return true;
 	}
-		
+
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
-	
+
 
 	public void setPrenom(String prenom) {
 		this.prenom = prenom;
@@ -153,5 +153,5 @@ public class Utilisateur implements Serializable {
 				+ ", email=" + email + ", telephone=" + telephone + ", adresse=" + adresse + ", credit=" + credit
 				+ ", administrateur=" + administrateur + ", motDePasse=" + motDePasse + "]";
 	}
-    
+
 }

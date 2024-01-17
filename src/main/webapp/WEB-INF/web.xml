@@ -9,4 +9,24 @@
     <welcome-file>default.jsp</welcome-file>
     <welcome-file>default.htm</welcome-file>
   </welcome-file-list>
+  <servlet>
+    <description></description>
+    <display-name>Sadasadsa</display-name>
+    <servlet-name>Sadasadsa</servlet-name>
+    <servlet-class>fr.labo.servlets.Sadasadsa</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Sadasadsa</servlet-name>
+    <url-pattern>/Sadasadsa</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>saas</display-name>
+    <servlet-name>saas</servlet-name>
+    <servlet-class>fr.labo.servlets.saas</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>saas</servlet-name>
+    <url-pattern>/saas</url-pattern>
+  </servlet-mapping>
 </web-app>
