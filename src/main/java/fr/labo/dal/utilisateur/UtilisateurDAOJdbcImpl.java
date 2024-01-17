@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 import fr.labo.bo.Utilisateur;
 import fr.labo.dal.ConnectionProvider;
@@ -57,6 +58,39 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 
 	@Override
 	public Utilisateur selectByPseudoEtPassword(String pseudo, String motDePasse) {
+		
+		Utilisateur user = null;
+		String selectByQuery = "SELECT * FROM UTILISATEURS WHERE pseudo = ? AND mot_de_passe = ?";
+		try {
+			Connection cnx = ConnectionProvider.getConnection();
+			PreparedStatement pstmt = cnx.prepareStatement(selectByQuery);
+			
+			pstmt.setString(1, pseudo);
+			pstmt.setString(2, motDePasse);
+			
+			ResultSet rs = pstmt.executeQuery();
+			if(rs.next()) {
+				user = new Utilisateur();
+				
+				user.setPseudo(rs.getString("pseudo"));
+				user.setNom(rs.getString("nom"));
+				
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("Erreur d'insertion de l'utilisateur" + e.getMessage());
+		}
+		return user;
+	}
+
+	@Override
+	public Utilisateur selectById(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Utilisateur> selectAll() {
 		// TODO Auto-generated method stub
 		return null;
 	}
