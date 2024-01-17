@@ -127,6 +127,11 @@ public class Utilisateur implements Serializable {
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
+	
+
+	public void setPrenom(String prenom) {
+		this.prenom = prenom;
+	}
 
 	@Override
 	public String toString() {
