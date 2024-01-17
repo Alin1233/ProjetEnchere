@@ -53,8 +53,21 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 	}
 
 	@Override
-	public void delete(Utilisateur user) {
-		// TODO Auto-generated method stub
+	public void delete(int id) {
+		String deleteQuery = "DELETE FROM UTILISATEURS WHERE id = ?";
+		try {
+			Connection cnx = ConnectionProvider.getConnection();
+			PreparedStatement pstmt = cnx.prepareStatement(deleteQuery);
+			
+			pstmt.setInt(1, id);
+			pstmt.executeUpdate();
+			
+			pstmt.close();
+			cnx.close();
+			
+		} catch (SQLException e) {
+			 System.out.println("Erreur supprimer de l'utilisateur" + e.getMessage());
+		}
 		
 	}
 
