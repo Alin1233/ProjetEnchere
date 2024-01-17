@@ -20,17 +20,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 			Connection cnx = ConnectionProvider.getConnection();
 			PreparedStatement pstmt = cnx.prepareStatement(userInsertQuery,PreparedStatement.RETURN_GENERATED_KEYS);
 			
-			pstmt.setString(1, user.getPseudo());
-			pstmt.setString(2, user.getNom());
-			pstmt.setString(3, user.getPrenom());
-			pstmt.setString(4, user.getEmail());
-			pstmt.setString(5, user.getTelephone());
-			pstmt.setString(6, user.getAdresse().getRue());
-			pstmt.setString(7, user.getAdresse().getCodePostal());
-			pstmt.setString(8, user.getAdresse().getVille());
-			pstmt.setString(9, user.getMotDePasse());
-			pstmt.setInt(10, user.getCredit());
-			pstmt.setBoolean(11, user.getAdministrateur());
+			pstmt = setPreparedStatementParameters(pstmt, user);
 			
 			pstmt.executeUpdate();
 			ResultSet rs = pstmt.getGeneratedKeys();
@@ -48,8 +38,23 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 
 	@Override
 	public void update(Utilisateur user) {
-		// TODO Auto-generated method stub
+		String userUpdateQuery = "UPDATE UTILISATEURS SET pseudo = ?, nom = ?, prenom = ?, email = ?, telephone = ?, rue = ?, code_postal = ?, ville = ?, mot_de_passe = ?, credit = ?, administrateur = ? WHERE no_utilisateur = ?";
 		
+		try {
+			Connection cnx = ConnectionProvider.getConnection();
+			PreparedStatement pstmt = cnx.prepareStatement(userUpdateQuery);
+			
+			pstmt = setPreparedStatementParameters(pstmt, user);
+			//id
+			pstmt.setInt(12, user.getNoUtilisateur());
+			
+			pstmt.executeUpdate();
+			pstmt.close();
+			cnx.close();
+			
+		} catch (SQLException e) {
+			System.out.println("Erreur mise à jour de l'utilisateur" + e.getMessage());
+		}
 	}
 
 	@Override
@@ -168,6 +173,22 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 		}
 	
 		return user;
+	}
+	//fonction qui permet de mettre à jour PreparedStatement sans avoir à copier-coller tous les getters de user
+	private PreparedStatement setPreparedStatementParameters(PreparedStatement pstmt, Utilisateur user) throws SQLException {
+		pstmt.setString(1, user.getPseudo());
+	    pstmt.setString(2, user.getNom());
+	    pstmt.setString(3, user.getPrenom());
+	    pstmt.setString(4, user.getEmail());
+	    pstmt.setString(5, user.getTelephone());
+	    pstmt.setString(6, user.getAdresse().getRue());
+	    pstmt.setString(7, user.getAdresse().getCodePostal());
+	    pstmt.setString(8, user.getAdresse().getVille());
+	    pstmt.setString(9, user.getMotDePasse());
+	    pstmt.setInt(10, user.getCredit());
+	    pstmt.setBoolean(11, user.getAdministrateur());
+	    
+		return pstmt;
 	}
 
 }
