@@ -1,10 +1,9 @@
 package fr.labo.servlets;
 
-import fr.labo.bo.Adresse;
 import fr.labo.bo.Utilisateur;
-
+import fr.labo.dal.DAOFactory;
+import fr.labo.dal.utilisateur.UtilisateurDAO;
 import java.io.IOException;
-
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -12,7 +11,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 
-@WebServlet("/ServletCreationCompte")
+@WebServlet("/ServletCreationCompte")//Mettre le lien de la JSP
 public class ServletCreationCompte extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -30,9 +29,8 @@ public class ServletCreationCompte extends HttpServlet {
 		String email = request.getParameter("email");
 		String telephone = request.getParameter("telephone");
 		String adresse = request.getParameter("adresse");
-		int credit = 0;
-		boolean administrateur = false;
 		String motDePasse = request.getParameter("motDePasse");
+		String confirmationMp = request.getParameter("confirmationMp");
 		
 		//Verification que tous les champs sont required, sinon renvoi vers la page creation compte (VERIF DANS LE JSP AVEC BALISE HTML REQUIRED)
 		
@@ -47,16 +45,18 @@ public class ServletCreationCompte extends HttpServlet {
 
 		// Logique verification
 		if (pseudoUnique == true && emailUnique ==  true) {
-		    // Continuer creation compte (Insert within DB)
-			UtilisateurDAO utilisateurDAO = new UtilisateurDAO;
-			UtilisateurDAO.insert(utilisateur);
+			if (motDePasse == confirmationMp) {
+				// Continuer creation compte (Insert within DB)
+				UtilisateurDAO utilisateurDAO = DAOFactory.getUtilisateurDAO();
+				utilisateurDAO.insert(utilisateur);	
+			}else {
+			response.getWriter().println("Le mot de passe et le mot de passe de confirmation ne correspondent pas.");
+			}
 		} else {
 		    //Message erreur et retour page creation compte
-			
+			response.getWriter().println("Le pseudo ou le mail est déjà utilisé.");	
 		}
 
-
-		
 		}
 		
 	}
