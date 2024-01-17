@@ -1,9 +1,10 @@
 package fr.labo.bo;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Utilisateur {
+public class Utilisateur implements Serializable {
 
 
 

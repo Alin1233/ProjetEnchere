@@ -1,6 +1,8 @@
 package fr.labo.bo;
 
-public class Adresse {
+import java.io.Serializable;
+
+public class Adresse implements Serializable {
 
     private String rue;
     private String ville;
