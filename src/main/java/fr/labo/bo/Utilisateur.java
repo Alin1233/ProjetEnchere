@@ -136,7 +136,15 @@ public class Utilisateur implements Serializable {
             throw new IllegalArgumentException("L'Email est déjà utilisé");
         }
         return true;
-		
+	}
+
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+	
+
+	public void setPrenom(String prenom) {
+		this.prenom = prenom;
 	}
 
 	@Override
