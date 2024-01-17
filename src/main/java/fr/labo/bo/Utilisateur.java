@@ -6,8 +6,9 @@ import java.util.Set;
 public class Utilisateur {
 
 
+
     private int noUtilisateur;
-    private String pseudo;
+	private String pseudo;
     private String nom;
     private String prenom;
     private String email;
@@ -40,6 +41,11 @@ public class Utilisateur {
 	public int getNoUtilisateur() {
         return noUtilisateur;
     }
+	
+
+	public void setNoUtilisateur(int noUtilisateur) {
+		this.noUtilisateur = noUtilisateur;
+	}
 
     public String getPseudo() {
         return pseudo;
