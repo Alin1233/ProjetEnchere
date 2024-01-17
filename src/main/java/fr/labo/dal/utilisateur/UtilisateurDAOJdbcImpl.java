@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,10 +19,10 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 		String userInsertQuery = "INSERT INTO UTILISATEURS (pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		try {
 			Connection cnx = ConnectionProvider.getConnection();
-			PreparedStatement pstmt = cnx.prepareStatement(userInsertQuery,PreparedStatement.RETURN_GENERATED_KEYS);
-			
+			PreparedStatement pstmt = cnx.prepareStatement(userInsertQuery,Statement.RETURN_GENERATED_KEYS);
+
 			pstmt = setPreparedStatementParameters(pstmt, user);
-			
+
 			pstmt.executeUpdate();
 			ResultSet rs = pstmt.getGeneratedKeys();
 			if (rs.next()) {
@@ -30,7 +31,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 			rs.close();
 			pstmt.close();
 			cnx.close();
-			
+
 		} catch (SQLException e) {
 			 System.out.println("Erreur d'insertion de l'utilisateur" + e.getMessage());
 		}
@@ -39,19 +40,19 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 	@Override
 	public void update(Utilisateur user) {
 		String userUpdateQuery = "UPDATE UTILISATEURS SET pseudo = ?, nom = ?, prenom = ?, email = ?, telephone = ?, rue = ?, code_postal = ?, ville = ?, mot_de_passe = ?, credit = ?, administrateur = ? WHERE no_utilisateur = ?";
-		
+
 		try {
 			Connection cnx = ConnectionProvider.getConnection();
 			PreparedStatement pstmt = cnx.prepareStatement(userUpdateQuery);
-			
+
 			pstmt = setPreparedStatementParameters(pstmt, user);
 			//id
 			pstmt.setInt(12, user.getNoUtilisateur());
-			
+
 			pstmt.executeUpdate();
 			pstmt.close();
 			cnx.close();
-			
+
 		} catch (SQLException e) {
 			System.out.println("Erreur mise à jour de l'utilisateur" + e.getMessage());
 		}
@@ -63,41 +64,41 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 		try {
 			Connection cnx = ConnectionProvider.getConnection();
 			PreparedStatement pstmt = cnx.prepareStatement(deleteQuery);
-			
+
 			pstmt.setInt(1, id);
 			pstmt.executeUpdate();
-			
+
 			pstmt.close();
 			cnx.close();
-			
+
 		} catch (SQLException e) {
 			 System.out.println("Erreur supprimer de l'utilisateur" + e.getMessage());
 		}
-		
+
 	}
 
 	@Override
 	public Utilisateur selectByPseudoEtPassword(String pseudo, String motDePasse) {
-		
+
 		Utilisateur user = null;
 		String selectByQuery = "SELECT * FROM UTILISATEURS WHERE pseudo = ? AND mot_de_passe = ?";
 		try {
 			Connection cnx = ConnectionProvider.getConnection();
 			PreparedStatement pstmt = cnx.prepareStatement(selectByQuery);
-			
+
 			pstmt.setString(1, pseudo);
 			pstmt.setString(2, motDePasse);
-			
+
 			ResultSet rs = pstmt.executeQuery();
 			if(rs.next()) {
-				
+
 				user = createUserFromRs(rs);
-				
+
 			}
 			rs.close();
 			pstmt.close();
 			cnx.close();
-			
+
 		} catch (SQLException e) {
 			System.out.println("Erreur selectByPseudoEtPassword" + e.getMessage());
 		}
@@ -109,21 +110,21 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 		Utilisateur user = null;
 		String selectById = "SELECT * FROM UTILISATEURS WHERE no_utilisateur = ?";
 		try {
-			
+
 			Connection cnx = ConnectionProvider.getConnection();
 			PreparedStatement pstmt = cnx.prepareStatement(selectById);
-			
+
 			pstmt.setInt(1, id);
 			ResultSet rs = pstmt.executeQuery();
 			if(rs.next()) {
-				
+
 				user = createUserFromRs(rs);
-				
+
 			}
 			rs.close();
 			pstmt.close();
 			cnx.close();
-			
+
 		} catch (SQLException e) {
 			System.out.println("Erreur selectById" + e.getMessage());
 		}
@@ -132,14 +133,14 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 
 	@Override
 	public List<Utilisateur> selectAll() {
-		
-		List<Utilisateur> userList = new ArrayList<Utilisateur>();
+
+		List<Utilisateur> userList = new ArrayList<>();
 		String selectAll = "SELECT * FROM UTILISATEURS";
-		
+
 		try {
 			Connection cnx = ConnectionProvider.getConnection();
 			PreparedStatement pstmt = cnx.prepareStatement(selectAll);
-			
+
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()) {
 				userList.add(createUserFromRs(rs));
@@ -147,14 +148,14 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 		} catch (SQLException e) {
 			// TODO: handle exception
 		}
-		
+
 		return userList;
 	}
-	
+
 	//fonction qui prend un rs et renvoie un objet utilisateur basé sur cet result set
 	private Utilisateur createUserFromRs(ResultSet rs) {
 		Utilisateur user = new Utilisateur();
-		
+
 		try {
 			user.setNoUtilisateur(rs.getInt("no_utilisateur"));
 			user.setPseudo(rs.getString("pseudo"));
@@ -163,7 +164,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 			user.setEmail(rs.getString("email"));
 			user.setTelephone(rs.getString("telephone"));
 
-			
+
 			Adresse adressee = new Adresse(rs.getString("rue"), rs.getString("ville"), rs.getString("code_postal"));
 			user.setAdresse(adressee);
 			user.setMotDePasse(rs.getString("mot_de_passe"));
@@ -172,7 +173,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 		} catch (Exception e) {
 			System.out.println("Erreur createUserFromRs " + e.getMessage());
 		}
-	
+
 		return user;
 	}
 	//fonction qui permet de mettre à jour PreparedStatement sans avoir à copier-coller tous les getters de user
@@ -188,7 +189,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 	    pstmt.setString(9, user.getMotDePasse());
 	    pstmt.setInt(10, user.getCredit());
 	    pstmt.setBoolean(11, user.getAdministrateur());
-	    
+
 		return pstmt;
 	}
 
