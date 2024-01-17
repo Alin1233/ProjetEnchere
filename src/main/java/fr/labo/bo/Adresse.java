@@ -5,7 +5,12 @@ public class Adresse {
     private String rue;
     private String ville;
     private String codePostal;
-	/**
+	
+    public Adresse() 
+    {
+    }
+    
+    /**
 	 * @param rue
 	 * @param ville
 	 * @param codePostal
