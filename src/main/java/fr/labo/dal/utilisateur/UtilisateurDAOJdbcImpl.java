@@ -20,17 +20,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 			Connection cnx = ConnectionProvider.getConnection();
 			PreparedStatement pstmt = cnx.prepareStatement(userInsertQuery,PreparedStatement.RETURN_GENERATED_KEYS);
 			
-			pstmt.setString(1, user.getPseudo());
-			pstmt.setString(2, user.getNom());
-			pstmt.setString(3, user.getPrenom());
-			pstmt.setString(4, user.getEmail());
-			pstmt.setString(5, user.getTelephone());
-			pstmt.setString(6, user.getAdresse().getRue());
-			pstmt.setString(7, user.getAdresse().getCodePostal());
-			pstmt.setString(8, user.getAdresse().getVille());
-			pstmt.setString(9, user.getMotDePasse());
-			pstmt.setInt(10, user.getCredit());
-			pstmt.setBoolean(11, user.getAdministrateur());
+			pstmt = setPreparedStatementParameters(pstmt, user);
 			
 			pstmt.executeUpdate();
 			ResultSet rs = pstmt.getGeneratedKeys();
@@ -48,13 +38,41 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 
 	@Override
 	public void update(Utilisateur user) {
-		// TODO Auto-generated method stub
+		String userUpdateQuery = "UPDATE UTILISATEURS SET pseudo = ?, nom = ?, prenom = ?, email = ?, telephone = ?, rue = ?, code_postal = ?, ville = ?, mot_de_passe = ?, credit = ?, administrateur = ? WHERE no_utilisateur = ?";
 		
+		try {
+			Connection cnx = ConnectionProvider.getConnection();
+			PreparedStatement pstmt = cnx.prepareStatement(userUpdateQuery);
+			
+			pstmt = setPreparedStatementParameters(pstmt, user);
+			//id
+			pstmt.setInt(12, user.getNoUtilisateur());
+			
+			pstmt.executeUpdate();
+			pstmt.close();
+			cnx.close();
+			
+		} catch (SQLException e) {
+			System.out.println("Erreur mise à jour de l'utilisateur" + e.getMessage());
+		}
 	}
 
 	@Override
-	public void delete(Utilisateur user) {
-		// TODO Auto-generated method stub
+	public void delete(int id) {
+		String deleteQuery = "DELETE FROM UTILISATEURS WHERE id = ?";
+		try {
+			Connection cnx = ConnectionProvider.getConnection();
+			PreparedStatement pstmt = cnx.prepareStatement(deleteQuery);
+			
+			pstmt.setInt(1, id);
+			pstmt.executeUpdate();
+			
+			pstmt.close();
+			cnx.close();
+			
+		} catch (SQLException e) {
+			 System.out.println("Erreur supprimer de l'utilisateur" + e.getMessage());
+		}
 		
 	}
 
@@ -143,7 +161,8 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 			user.setNom(rs.getString("nom"));
 			user.setPrenom(rs.getString("prenom"));
 			user.setEmail(rs.getString("email"));
-			user.setTelephone(rs.getString(rs.getString("telephone")));
+			user.setTelephone(rs.getString("telephone"));
+
 			
 			Adresse adressee = new Adresse(rs.getString("rue"), rs.getString("ville"), rs.getString("code_postal"));
 			user.setAdresse(adressee);
@@ -151,10 +170,26 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 			user.setCredit(rs.getInt("credit"));
 			user.setAdmnistrateur(rs.getBoolean("administrateur"));
 		} catch (Exception e) {
-			System.out.println("Erreur createUserFromRs" + e.getMessage());
+			System.out.println("Erreur createUserFromRs " + e.getMessage());
 		}
 	
 		return user;
+	}
+	//fonction qui permet de mettre à jour PreparedStatement sans avoir à copier-coller tous les getters de user
+	private PreparedStatement setPreparedStatementParameters(PreparedStatement pstmt, Utilisateur user) throws SQLException {
+		pstmt.setString(1, user.getPseudo());
+	    pstmt.setString(2, user.getNom());
+	    pstmt.setString(3, user.getPrenom());
+	    pstmt.setString(4, user.getEmail());
+	    pstmt.setString(5, user.getTelephone());
+	    pstmt.setString(6, user.getAdresse().getRue());
+	    pstmt.setString(7, user.getAdresse().getCodePostal());
+	    pstmt.setString(8, user.getAdresse().getVille());
+	    pstmt.setString(9, user.getMotDePasse());
+	    pstmt.setInt(10, user.getCredit());
+	    pstmt.setBoolean(11, user.getAdministrateur());
+	    
+		return pstmt;
 	}
 
 }
