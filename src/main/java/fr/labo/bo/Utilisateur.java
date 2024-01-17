@@ -20,6 +20,8 @@ public class Utilisateur {
     private static Set<String> usedPseudos = new HashSet<>();
     private static Set<String> usedEmails = new HashSet<>();
 
+  public Utilisateur(){
+  }
 
 	public Utilisateur(String pseudo, String nom, String prenom, String email, String telephone, Adresse adresse,
 			int credit, boolean administrateur, String motDePasse) {
