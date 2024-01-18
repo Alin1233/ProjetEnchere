@@ -38,6 +38,6 @@ public class User implements Serializable {
 		this.idUser = idUser;
 		this.passwordUser = passwordUser;
 	}
-	
-	
+
+
 }

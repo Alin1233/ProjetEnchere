@@ -8,18 +8,18 @@ import fr.labo.dal.utilisateur.UtilisateurDAO;
 
 public class UtilisateurManager {
 	private UtilisateurDAO utilisateurDAO;
-	
+
 	public UtilisateurManager() {
 		this.utilisateurDAO = DAOFactory.getUtilisateurDAO();
 	}
-	
+
 	//ajouter à la db
 	public void ajouterUser(Utilisateur user) {
 		utilisateurDAO.insert(user);
 	}
-	
+
 	/*
-	fonction qui vérifie si l'utilisateur qui tente de se connecter existe dans la db 
+	fonction qui vérifie si l'utilisateur qui tente de se connecter existe dans la db
 	s'il existe retournera true sinon false
 	utile pour le login
 	*/
@@ -28,7 +28,7 @@ public class UtilisateurManager {
 			return false;
 		}else {
 			return true;
-		}	
+		}
 	}
 	//supprimer de la db
 	public void deleteUser(int id) {
@@ -40,7 +40,7 @@ public class UtilisateurManager {
 	}
 	//renvoie un utilisateur, vérifie par l'id
 	public Utilisateur getUser(int id) {
-		return utilisateurDAO.selectById(id);	
+		return utilisateurDAO.selectById(id);
 	}
 	//renvoie tous les utilisateurs de la db
 	public List<Utilisateur> getAll(){
