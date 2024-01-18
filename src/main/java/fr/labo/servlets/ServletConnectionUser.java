@@ -23,7 +23,7 @@ public class ServletConnectionUser extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/connectionUser.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/connectionUser.jsp");
 		rd.forward(request, response);
     
     }
