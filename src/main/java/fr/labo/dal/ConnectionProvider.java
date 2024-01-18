@@ -9,11 +9,11 @@ import javax.sql.DataSource;
 
 
 public abstract class ConnectionProvider {
- 
+
 	private static DataSource dataSource;
-	
+
 	// Bloc statique qui sera exécuté lors du chargement de la classe
-	static 
+	static
 	{
 		Context context;
 		try {
@@ -26,7 +26,7 @@ public abstract class ConnectionProvider {
 			e.printStackTrace();
 		}
 	}
-	
+
 	// Méthode statique pour obtenir une connexion à partir de la source de données
 	public static Connection getConnection() throws SQLException {
 		return ConnectionProvider.dataSource.getConnection();

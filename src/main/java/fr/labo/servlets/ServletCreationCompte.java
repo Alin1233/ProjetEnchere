@@ -1,9 +1,10 @@
 package fr.labo.servlets;
 
+import java.io.IOException;
+
 import fr.labo.bo.Utilisateur;
 import fr.labo.dal.DAOFactory;
 import fr.labo.dal.utilisateur.UtilisateurDAO;
-import java.io.IOException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -18,11 +19,12 @@ public class ServletCreationCompte extends HttpServlet {
     public ServletCreationCompte() {
     }
 
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
-		
-		
-		//Recuperer les infos pseudo et email afin de verifier leur unicité; 
+
+
+		//Recuperer les infos pseudo et email afin de verifier leur unicité;
 		String pseudo = request.getParameter("pseudo");
 		String nom = request.getParameter("nom");
 		String prenom = request.getParameter("prenom");
@@ -31,9 +33,9 @@ public class ServletCreationCompte extends HttpServlet {
 		String adresse = request.getParameter("adresse");
 		String motDePasse = request.getParameter("motDePasse");
 		String confirmationMp = request.getParameter("confirmationMp");
-		
+
 		//Verification que tous les champs sont required, sinon renvoi vers la page creation compte (VERIF DANS LE JSP AVEC BALISE HTML REQUIRED)
-		
+
 		//Verifier unicité, si absent = poursuite de la creation de compte, si present, alors erreur et retour page accueil
 		//Creation object Utilisateur
 		//pseudo, nom, prenom, email, telephone, adresse, credit, administrateur, motDePasse
@@ -44,19 +46,19 @@ public class ServletCreationCompte extends HttpServlet {
 		boolean emailUnique = utilisateur.emailUnique(email);
 
 		// Logique verification
-		if (pseudoUnique == true && emailUnique ==  true) {
+		if (pseudoUnique && emailUnique) {
 			if (motDePasse == confirmationMp) {
 				// Continuer creation compte (Insert within DB)
 				UtilisateurDAO utilisateurDAO = DAOFactory.getUtilisateurDAO();
-				utilisateurDAO.insert(utilisateur);	
+				utilisateurDAO.insert(utilisateur);
 			}else {
 			response.getWriter().println("Le mot de passe et le mot de passe de confirmation ne correspondent pas.");
 			}
 		} else {
 		    //Message erreur et retour page creation compte
-			response.getWriter().println("Le pseudo ou le mail est déjà utilisé.");	
+			response.getWriter().println("Le pseudo ou le mail est déjà utilisé.");
 		}
 
 		}
-		
+
 	}

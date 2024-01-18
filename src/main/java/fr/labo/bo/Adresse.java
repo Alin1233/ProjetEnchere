@@ -7,11 +7,11 @@ public class Adresse implements Serializable {
     private String rue;
     private String ville;
     private String codePostal;
-	
-    public Adresse() 
+
+    public Adresse()
     {
     }
-    
+
     /**
 	 * @param rue
 	 * @param ville
