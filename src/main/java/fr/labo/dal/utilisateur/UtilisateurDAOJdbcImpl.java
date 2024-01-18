@@ -151,6 +151,39 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 
 		return userList;
 	}
+	@Override
+	public String checkPseudoEtEmail(String pseudo, String email) {
+		
+		String queryPseudo = "SELECT * FROM users WHERE username = ?";
+        String queryEmail = "SELECT * FROM users WHERE email = ?";
+        
+        String toReturn = "bon";
+        
+        try {
+        	
+        	Connection cnx = ConnectionProvider.getConnection();
+			PreparedStatement pstmtPseudo = cnx.prepareStatement(queryPseudo);
+			PreparedStatement pstmtEmail= cnx.prepareStatement(queryEmail);
+			
+			pstmtPseudo.setString(1,pseudo);
+			pstmtEmail.setString(1,email);
+			
+			ResultSet rsPseudo = pstmtPseudo.executeQuery();
+			ResultSet rsEmail = pstmtEmail.executeQuery();
+			
+			if(rsPseudo.next()) {
+				toReturn = "pseudo-pris";
+			}else if(rsEmail.next()) {
+				toReturn = "email-pris";
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("Erreur checkPseudoEtEmail " + e.getMessage());
+		}
+		
+		
+		return toReturn;
+	}
 
 	//fonction qui prend un rs et renvoie un objet utilisateur basé sur cet result set
 	private Utilisateur createUserFromRs(ResultSet rs) {
@@ -192,5 +225,6 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 
 		return pstmt;
 	}
+
 
 }
