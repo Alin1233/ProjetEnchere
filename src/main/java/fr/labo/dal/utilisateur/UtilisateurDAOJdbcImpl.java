@@ -60,7 +60,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 
 	@Override
 	public void delete(int id) {
-		String deleteQuery = "DELETE FROM UTILISATEURS WHERE id = ?";
+		String deleteQuery = "DELETE FROM UTILISATEURS WHERE no_utilisateur = ?";
 		try {
 			Connection cnx = ConnectionProvider.getConnection();
 			PreparedStatement pstmt = cnx.prepareStatement(deleteQuery);
@@ -72,7 +72,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 			cnx.close();
 
 		} catch (SQLException e) {
-			 System.out.println("Erreur supprimer de l'utilisateur" + e.getMessage());
+			 System.out.println("Erreur supprimer de l'utilisateur " + e.getMessage());
 		}
 
 	}
@@ -154,8 +154,8 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 	@Override
 	public String checkPseudoEtEmail(String pseudo, String email) {
 		
-		String queryPseudo = "SELECT * FROM users WHERE username = ?";
-        String queryEmail = "SELECT * FROM users WHERE email = ?";
+		String queryPseudo = "SELECT * FROM UTILISATEURS WHERE pseudo = ?";
+        String queryEmail = "SELECT * FROM UTILISATEURS WHERE email = ?";
         
         String toReturn = "bon";
         
