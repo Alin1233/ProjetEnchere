@@ -46,5 +46,12 @@ public class UtilisateurManager {
 	public List<Utilisateur> getAll(){
 		return utilisateurDAO.selectAll();
 	}
+	/* si l'email est pris, renvoie "email-pris"
+	 * si le pseudo est pris, renvoie "pseudo-pris"
+	 * else renvoie "bon"
+	*/
+	public String checkPseudoEtEmail(String pseudo, String email) {
+		return utilisateurDAO.checkPseudoEtEmail(pseudo, email);
+	}
 
 }
