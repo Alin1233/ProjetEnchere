@@ -19,8 +19,7 @@ public class Utilisateur implements Serializable {
     private boolean administrateur = false;
     private String motDePasse;
 
-    private static Set<String> usedPseudos = new HashSet<>();
-    private static Set<String> usedEmails = new HashSet<>();
+    
 
   public Utilisateur(){
   }
@@ -53,11 +52,9 @@ public class Utilisateur implements Serializable {
     }
 
     public void setPseudo(String pseudo) {
-        if (usedPseudos.contains(pseudo)) {
-            throw new IllegalArgumentException("Le pseudo est déjà utilisé");
-        }
+        
         this.pseudo = pseudo;
-        usedPseudos.add(pseudo);
+        
     }
 
     public String getNom() {
@@ -73,11 +70,9 @@ public class Utilisateur implements Serializable {
     }
 
     public void setEmail(String email) {
-        if (usedEmails.contains(email)) {
-            throw new IllegalArgumentException("L'Email est déjà utilisé");
-        }
+        
         this.email = email;
-        usedEmails.add(email);
+        
     }
 
     public String getTelephone() {
@@ -85,9 +80,7 @@ public class Utilisateur implements Serializable {
     }
 
     public void setTelephone(String telephone) {
-        if (telephone.length() != 10 || !telephone.matches("\\d+")) {
-            throw new IllegalArgumentException("Le numéro de téléphone doit comporter 10 chiffres");
-        }
+        
         this.telephone = telephone;
     }
 
@@ -123,20 +116,7 @@ public class Utilisateur implements Serializable {
 		this.motDePasse = motDePasse;
 	}
 
-	public boolean pseudoUnique(String pseudo) {
-        if (usedPseudos.contains(pseudo)) {
-            throw new IllegalArgumentException("Le pseudo est déjà utilisé");
-        }
-		return true;
-
-	}
-
-	public boolean emailUnique(String email) {
-        if (usedEmails.contains(email)) {
-            throw new IllegalArgumentException("L'Email est déjà utilisé");
-        }
-        return true;
-	}
+	
 
 	public void setNom(String nom) {
 		this.nom = nom;
