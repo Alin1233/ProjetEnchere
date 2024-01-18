@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.labo.bo.User;
+
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 
@@ -25,16 +25,16 @@ public class ServletAccesIndexJsp extends HttpServlet {
 		//////A modifier avec la liste des categorie/////
 		//////Utilisation de l'objet User pour le test///
 		
-		User user1 = new User("nom-a","libelle-a");
-		User user2 = new User("nom-b","libelle-b");
-
-		List<User> categorieListe = new ArrayList<>();
-		categorieListe.add(user1);
-		categorieListe.add(user2);
-		
-		////////////////////////////////////////////////
-		
-		request.setAttribute("categorieListe", categorieListe);
+//		User user1 = new User("nom-a","libelle-a");
+//		User user2 = new User("nom-b","libelle-b");
+//
+//		List<User> categorieListe = new ArrayList<>();
+//		categorieListe.add(user1);
+//		categorieListe.add(user2);
+//		
+//		////////////////////////////////////////////////
+//		
+//		request.setAttribute("categorieListe", categorieListe);
 		
 		
 		

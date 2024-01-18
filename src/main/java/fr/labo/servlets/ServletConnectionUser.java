@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.labo.bo.User;
+import fr.labo.bll.UtilisateurManager;
+import fr.labo.bo.Adresse;
+import fr.labo.bo.Utilisateur;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -33,41 +35,32 @@ public class ServletConnectionUser extends HttpServlet {
 	 */
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Utilisateur utilisateurExistant = null;
+		HttpSession session =  request.getSession(false);
 
 		//------------------Créaetion d'un liste d'utilisateur pour test----------------------//
-		User user1 = new User("a","a");
-		User user2 = new User("b","b");
+		UtilisateurManager utilisateurManager = new UtilisateurManager();
+		
+		Adresse adresse = new Adresse("rueAdresse", "villeAdresse", "CPAdresse");
+		Utilisateur user = new Utilisateur("Bagou", "coronas", "Louis-Philippe", "emailLouis-p", "0102030405", adresse, 5000, true, "Pa$$w0rd");
+		
+		utilisateurManager.ajouterUser(user);
 
-		List<User> listeUser = new ArrayList<>();
-		listeUser.add(user1);
-		listeUser.add(user2);
 
 		//------------------------------------------------------------------------------------//
 		
 		
 		// Récupération des identifiants et mot de passe de l'utilisateur
-		String idUser = request.getParameter("idUser");
+		String pseudoUser = request.getParameter("pseudoUser");
 		String passwordUser = request.getParameter("passwordUser");
-		User utilisateurExistant = null;
-		HttpSession session =  request.getSession(false);
 		
 		
-		
-
-		//--------------------A modifier avec condition : si useur existe----------------------------//
-		//--------------------Utiliser la méthode correspondante------------------------------------//
-	
-		for (User user : listeUser) {
-
-			if(idUser.equals(user.getIdUser()) && passwordUser.equals(user.getPasswordUser())) {
-
-				utilisateurExistant = user;
-
-			}
-		}
-		
-		//-------------------------------------------------------------------------------------------//
-		
+		//Remplacer méthode getUserById par getUserByPseudo(ou nom)
+		if(utilisateurManager.verifierPseudoEtPassword(pseudoUser, passwordUser)) {
+			utilisateurExistant = utilisateurManager.getUser(1);
+			
+		};
+			
 		
 		if(utilisateurExistant != null) {
 				session =  request.getSession(true);
