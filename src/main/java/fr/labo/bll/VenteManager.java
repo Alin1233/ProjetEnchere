@@ -1,5 +1,12 @@
 package fr.labo.bll;
 
-public class VenteManager {
+import fr.labo.bo.ArticleVendu;
+import fr.labo.dal.vente.VenteDAO;
 
+public class VenteManager {
+	
+	VenteDAO venteDAO;
+	public void ajuterVente(ArticleVendu article) {
+		venteDAO.insert(article);
+	}
 }
