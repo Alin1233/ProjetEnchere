@@ -28,13 +28,13 @@ public class ServletConnectionUser extends HttpServlet {
     }
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * Servlet de connextion des utilisateur
+	 * Création d'un d'une session d'un utilisateur
 	 */
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		//--------------------------------------------------------------------------//
-		//Créaetion d'un liste d'utilisateur pour test
+		//------------------Créaetion d'un liste d'utilisateur pour test----------------------//
 		User user1 = new User("a","a");
 		User user2 = new User("b","b");
 
@@ -42,7 +42,7 @@ public class ServletConnectionUser extends HttpServlet {
 		listeUser.add(user1);
 		listeUser.add(user2);
 
-		//--------------------------------------------------------------------------//
+		//------------------------------------------------------------------------------------//
 		
 		
 		// Récupération des identifiants et mot de passe de l'utilisateur
@@ -50,22 +50,23 @@ public class ServletConnectionUser extends HttpServlet {
 		String passwordUser = request.getParameter("passwordUser");
 		User utilisateurExistant = null;
 		HttpSession session =  request.getSession(false);
+		
+		
+		
 
-		//--------------------A modifier----------------------------//
-
-
-		//A modifier avec condition : si useur existe
+		//--------------------A modifier avec condition : si useur existe----------------------------//
+		//--------------------Utiliser la méthode correspondante------------------------------------//
+	
 		for (User user : listeUser) {
 
 			if(idUser.equals(user.getIdUser()) && passwordUser.equals(user.getPasswordUser())) {
 
 				utilisateurExistant = user;
 
-
 			}
 		}
 		
-		//////////////////////////////////////////////////////////
+		//-------------------------------------------------------------------------------------------//
 		
 		
 		if(utilisateurExistant != null) {

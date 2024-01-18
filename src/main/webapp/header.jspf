@@ -5,7 +5,7 @@
 	<c:if test="${empty user }">
 	    <nav >
 	        <div class="container-fluid  d-flex bg-warning p-2">
-	          <a class="navbar-brand p-2 flex-grow-1" href="#"><i class="fa-solid fa-gavel fa-2xl"></i></a>
+	          <a class="navbar-brand p-2 flex-grow-1" href="ServletAccesIndexJsp"><i class="fa-solid fa-gavel fa-2xl"></i></a>
 	          <a class="nav-link p-2" href="#">S'inscrire</a>
 	          <a class="nav-link p-2" href="ServletAccesConnectionUserJsp">Se connecter</a>
 	        </div>

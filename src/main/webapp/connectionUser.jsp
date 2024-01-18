@@ -4,11 +4,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<%@ include file="head.jspf"%>
 <title>Page de connexion</title>
 </head>
 <body>
-
+	<%@ include file="header.jspf"%>
 	<main>
 		<form method="POST" action="ServletConnectionUser">
 			<label for="idUser">Identifiant</label>
