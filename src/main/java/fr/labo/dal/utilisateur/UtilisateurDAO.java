@@ -19,4 +19,6 @@ public interface UtilisateurDAO {
 	public Utilisateur selectById(int id);
 
 	public List<Utilisateur> selectAll();
+	
+	public String checkPseudoEtEmail(String pseudo, String email);
 }
