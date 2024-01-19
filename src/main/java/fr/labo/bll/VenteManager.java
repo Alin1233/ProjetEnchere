@@ -23,4 +23,13 @@ public class VenteManager {
 	public List<ArticleVendu> getCategorie(Categorie categorie){
 		return venteDAO.selectCategorie(categorie);
 	}
+	
+	public List<String> getCategorieLibelles(){
+		return venteDAO.selectCategorieLibelles();
+	}
+	
+	public ArticleVendu getArticleVendu(int id) {
+		return venteDAO.selectById(id);
+	}
+	
 }

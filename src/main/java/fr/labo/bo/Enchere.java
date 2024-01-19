@@ -3,6 +3,7 @@ package fr.labo.bo;
 import java.util.Date;
 
 public class Enchere {
+	
 	private String dateEnchere;
 	private Float montant_enchere;
 	private Utilisateur utilisateur;

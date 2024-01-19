@@ -12,4 +12,8 @@ public interface VenteDAO {
 	public List<ArticleVendu> selectAll();
 	
 	public List<ArticleVendu> selectCategorie(Categorie categorie);
+	
+	public List<String>selectCategorieLibelles();
+	
+	public ArticleVendu selectById(int id);
 }

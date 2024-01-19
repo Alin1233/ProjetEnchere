@@ -6,8 +6,8 @@ public class ArticleVendu {
 	private String description;
 	private String dateDebutEncheres;
 	private String dateFinEncheres;
-	private Float miseAPrix;
-	private Float prixVente;
+	private Integer miseAPrix;
+	private Integer prixVente;
 	private String etatVente;
 	
 	private Categorie categorie;
@@ -18,7 +18,7 @@ public class ArticleVendu {
 		
 	}
 	public ArticleVendu(String nomArticle, String description, String dateDebutEncheres,
-			String dateFinEncheres, Float miseAPrix, Float prixVente, String etatVente, Categorie categorie,
+			String dateFinEncheres, Integer miseAPrix, Integer prixVente, String etatVente, Categorie categorie,
 			Utilisateur vendeur, Adresse retrait) {
 		super();
 		this.nomArticle = nomArticle;
@@ -33,7 +33,7 @@ public class ArticleVendu {
 		this.retrait = retrait;
 	}
 	public ArticleVendu(int noArticle, String nomArticle, String description, String dateDebutEncheres,
-			String dateFinEncheres, Float miseAPrix, Float prixVente, String etatVente, Categorie categorie,
+			String dateFinEncheres, Integer miseAPrix, Integer prixVente, String etatVente, Categorie categorie,
 			Utilisateur vendeur, Adresse retrait) {
 		super();
 		this.noArticle = noArticle;
@@ -78,16 +78,16 @@ public class ArticleVendu {
 	public void setDateFinEncheres(String dateFinEncheres) {
 		this.dateFinEncheres = dateFinEncheres;
 	}
-	public Float getMiseAPrix() {
+	public Integer getMiseAPrix() {
 		return miseAPrix;
 	}
-	public void setMiseAPrix(Float miseAPrix) {
+	public void setMiseAPrix(Integer miseAPrix) {
 		this.miseAPrix = miseAPrix;
 	}
-	public Float getPrixVente() {
+	public Integer getPrixVente() {
 		return prixVente;
 	}
-	public void setPrixVente(Float prixVente) {
+	public void setPrixVente(Integer prixVente) {
 		this.prixVente = prixVente;
 	}
 	public String getEtatVente() {
