@@ -9,8 +9,8 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet("/ServletAccesIndexJsp")
-public class ServletAccesIndexJsp extends HttpServlet {
+@WebServlet("/ServletAccesConnectionUserJsp")
+public class ServletAccesConnectionUserJsp extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 
@@ -19,9 +19,9 @@ public class ServletAccesIndexJsp extends HttpServlet {
 	 */
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher rd = request.getRequestDispatcher("/index.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/connectionUser.jsp");
 		rd.forward(request, response);
-		}
+	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

@@ -4,9 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.labo.bll.UtilisateurManager;
-import fr.labo.bo.Adresse;
-import fr.labo.bo.Utilisateur;
+import fr.labo.bo.User;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -30,34 +28,59 @@ public class ServletConnectionUser extends HttpServlet {
     }
 
 	/**
-	 * Servlet de connextion des utilisateur
-	 * Création d'un d'une session d'un utilisateur
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		HttpSession session =  request.getSession(false);
-		UtilisateurManager utilisateurManager = new UtilisateurManager();
-		
+
+		//Créaetion d'un liste d'utilisateur pour test
+		User user1 = new User("a","a");
+		User user2 = new User("b","b");
+
+		List<User> listeUser = new ArrayList<>();
+		listeUser.add(user1);
+		listeUser.add(user2);
+
 		// Récupération des identifiants et mot de passe de l'utilisateur
-		String pseudoUser = request.getParameter("pseudoUser");
+		String idUser = request.getParameter("idUser");
 		String passwordUser = request.getParameter("passwordUser");
-		//Vérification de l'existence dans la bdd
-		Utilisateur utilisateurExistant = utilisateurManager.verifierPseudoEtPassword(pseudoUser, passwordUser );
-		
-		//Si existe, ouverture d'une session utilisateur et redirection vers index.jsp
+		User utilisateurExistant = null;
+		HttpSession session =  request.getSession(false);
+
+		//--------------------A modifier----------------------------//
+
+
+		//A modifier avec condition : si useur existe
+		for (User user : listeUser) {
+
+			if(idUser.equals(user.getIdUser()) && passwordUser.equals(user.getPasswordUser())) {
+
+				utilisateurExistant = user;
+
+
+			}
+		}
 		if(utilisateurExistant != null) {
 				session =  request.getSession(true);
 				session.setAttribute("user", utilisateurExistant);
 				response.sendRedirect("ServletAccesIndexJsp");
 
-		//Si n'existe pas, envoie message erreur et recharge la page 
 		}else {
 
 			request.setAttribute("erreur", "l'utilisateur ou mot de passe n'est pas valide");
 			doGet(request, response);
 
 		}
+
+
+
+		//Si useur n'existe pas
+
+
+		//----------------------------------------------------------//
+
+
+
 
 	}
 }

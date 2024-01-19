@@ -15,14 +15,13 @@ public class ServletDeconnection extends HttpServlet {
 
 
 	/**
-	 * Servlet de déconnection
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.getSession().removeAttribute("user");
-		response.sendRedirect("ServletAccesIndexJsp");
-//		RequestDispatcher rd = request.getRequestDispatcher("/ServletAccesIndexJsp");
-//		rd.forward(request, response);
+		RequestDispatcher rd = request.getRequestDispatcher("/ServletAccesIndexJsp");
+		rd.forward(request, response);
 	}
 
 	/**

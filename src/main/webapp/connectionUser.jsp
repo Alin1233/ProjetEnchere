@@ -4,15 +4,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-<%@ include file="head.jspf"%>
+<meta charset="UTF-8">
 <title>Page de connexion</title>
 </head>
 <body>
-	<%@ include file="header.jspf"%>
+
 	<main>
 		<form method="POST" action="ServletConnectionUser">
-			<label for="pseudoUser">Identifiant</label>
-			<input type="text" name="pseudoUser" id="pseudoUser">
+			<label for="idUser">Identifiant</label>
+			<input type="text" name="idUser" id="idUser">
 			<label for="passwordUser">Mot de passe</label>
 			<input type="password" name="passwordUser" id="passwordUser">
 			<button type="submit" >Connexion</button>

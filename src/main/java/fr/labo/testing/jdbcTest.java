@@ -36,12 +36,8 @@ public class jdbcTest extends HttpServlet {
 		//Utilisateur user = new Utilisateur("awl213", "herciu22", "alin22","coolemail@gw2il.com","1234567890",adresse, 10, false,"s2tronPasswor2d");
 
 		//manager.ajouterUser(user);
-		//manager.deleteUser(10);
-
-		System.out.println(manager.verifierPseudoEtEmail("awl213", "coolemail@gw2il.com"));
-		System.out.println(manager.verifierPseudoEtPassword("awl213", "s2tronPasswor2d"));
-
-		System.out.println(manager.getUser(11));
+		manager.deleteUser(10);
+		System.out.println(manager.getAll());
 		//System.out.println(manager.getAll()+" useres in the db");
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}

@@ -23,15 +23,19 @@ public class UtilisateurManager {
 	s'il existe retournera true sinon false
 	utile pour le login
 	*/
-	public Utilisateur verifierPseudoEtPassword(String pseudo, String password) {
-		return utilisateurDAO.selectByPseudoEtPassword(pseudo, password);
+	public Boolean checkPseudoEtPassword(String pseudo, String password) {
+		if (utilisateurDAO.selectByPseudoEtPassword(pseudo, password) == null) {
+			return false;
+		}else {
+			return true;
+		}
 	}
 	//supprimer de la db
 	public void deleteUser(int id) {
 		utilisateurDAO.delete(id);
 	}
 	//mettre à jour l'utilisateur dans la db
-	public void modifierUser(Utilisateur user) {
+	public void updateUser(Utilisateur user) {
 		utilisateurDAO.update(user);
 	}
 	//renvoie un utilisateur, vérifie par l'id
@@ -46,7 +50,7 @@ public class UtilisateurManager {
 	 * si le pseudo est pris, renvoie "pseudo-pris"
 	 * else renvoie "bon"
 	*/
-	public String verifierPseudoEtEmail(String pseudo, String email) {
+	public String checkPseudoEtEmail(String pseudo, String email) {
 		return utilisateurDAO.checkPseudoEtEmail(pseudo, email);
 	}
 
