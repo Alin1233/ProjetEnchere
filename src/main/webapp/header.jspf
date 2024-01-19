@@ -7,7 +7,7 @@
 	        <div class="container-fluid  d-flex bg-warning p-2">
 	          <a class="navbar-brand p-2 flex-grow-1" href="ServletAccesIndexJsp"><i class="fa-solid fa-gavel fa-2xl"></i></a>
 	          <a class="nav-link p-2" href="#">S'inscrire</a>
-	          <a class="nav-link p-2" href="ServletAccesConnectionUserJsp">Se connecter</a>
+	          <a class="nav-link p-2" href="ServletConnectionUser">Se connecter</a>
 	        </div>
 	      </nav>
      </c:if>

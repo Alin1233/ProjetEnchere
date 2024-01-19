@@ -5,6 +5,7 @@
     <display-name>ServletAccesIndexJsp</display-name>
     <servlet-name>ServletAccesIndexJsp</servlet-name>
     <servlet-class>fr.labo.servlets.ServletAccesIndexJsp</servlet-class>
+    <load-on-startup>1</load-on-startup>
   </servlet>
   <servlet-mapping>
     <servlet-name>ServletAccesIndexJsp</servlet-name>

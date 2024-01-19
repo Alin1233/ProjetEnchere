@@ -37,33 +37,21 @@ public class ServletConnectionUser extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		HttpSession session =  request.getSession(false);
-
-		//------------------Créaetion d'un liste d'utilisateur pour test----------------------//
 		UtilisateurManager utilisateurManager = new UtilisateurManager();
-		
-		Adresse adresse = new Adresse("rueAdresse", "villeAdresse", "CPAdresse");
-		Utilisateur user = new Utilisateur("Bagou", "coronas", "Louis-Philippe", "emailLouis-p", "0102030405", adresse, 5000, true, "Pa$$w0rd");
-		Utilisateur user1 = new Utilisateur("Bagou1", "coronas", "Louis-Philippe", "emailLouis-p", "0102030405", adresse, 5000, true, "Pa$$w0rd");
-		Utilisateur user2 = new Utilisateur("Bagou2", "coronas", "Louis-Philippe", "emailLouis-p", "0102030405", adresse, 5000, true, "Pa$$w0rd");
-		
-		utilisateurManager.ajouterUser(user);
-		utilisateurManager.ajouterUser(user1);
-		utilisateurManager.ajouterUser(user2);
-
-
-		//------------------------------------------------------------------------------------//
-		
 		
 		// Récupération des identifiants et mot de passe de l'utilisateur
 		String pseudoUser = request.getParameter("pseudoUser");
 		String passwordUser = request.getParameter("passwordUser");
+		//Vérification de l'existence dans la bdd
 		Utilisateur utilisateurExistant = utilisateurManager.verifierPseudoEtPassword(pseudoUser, passwordUser );
 		
+		//Si existe, ouverture d'une session utilisateur et redirection vers index.jsp
 		if(utilisateurExistant != null) {
 				session =  request.getSession(true);
 				session.setAttribute("user", utilisateurExistant);
 				response.sendRedirect("ServletAccesIndexJsp");
 
+		//Si n'existe pas, envoie message erreur et recharge la page 
 		}else {
 
 			request.setAttribute("erreur", "l'utilisateur ou mot de passe n'est pas valide");

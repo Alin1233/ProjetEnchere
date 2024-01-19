@@ -26,9 +26,9 @@
 
 					<!-- Affichage de l'ensemble des catégorie présente dans la base donnée -->
 					<label for="categorie">Catégorie :</label>
-					 <select id="categorie" name="categorie">
+					 <select class="w-25" id="categorie" name="categorie">
 						<c:forEach var="categorie" items="${categorieListe}">
-							<option value="${categorie.idUser}">${categorie.passwordUser}</option>
+							<option value="${categorie.noCategorie}">${categorie.libelle}</option>
 						</c:forEach>
 					</select>
 					
@@ -42,7 +42,7 @@
 						    <div class="filtreAchat">
                                 <div class="d-flex flex-row">
                                     <input type="radio" name="filtre" id="filtreAchat" onclick="desactiverCasesACocher()" checked> 
-                                    <label for="filtreAchat">Achats</label> 
+                                    <label class="ms-2" for="filtreAchat">Achats</label> 
                                 </div>
                                 <div class="d-flex flex-row ">
 							        <input class="ms-4" type="checkbox" name="enchereOuverte" value="enchereOuverte">
@@ -61,7 +61,7 @@
 						    <div class="filtreVente flex-column "> 
                                 <div class="d-flex flex-row">
                                     <input type="radio" name="filtre" id="filtreVente" onclick="desactiverCasesACocher()"> 
-                                    <label for="filtreVente">Ventes</label> 
+                                    <label class="ms-2" for="filtreVente">Ventes</label> 
                                 </div>
                                 <div class="d-flex flex-row ">
 							        <input class="ms-4" type="checkbox" name="veteEnCours" value="veteEnCours" disabled>
@@ -89,26 +89,28 @@
 		</section>
 
 		<!-- Section Articles -->
-		<section>
+		<section class="d-flex flex-row flex-wrap">
 			<!-- Ajouter une boucle forEach pour afficher tout les articles -->
-			<div class="card mb-3" style="max-width: 50%;">
-				<div class="container-fluid  row g-0 ">
-					<div class="col-md-5 d-flex flex-wrap align-items-center">
-						<img src="${article.image }" class="img-fluid" alt="cailloux">
-					</div>
-					<div class="col-md-5">
-						<div class="card-body">
-							<h5 class="card-title">${article.nom_article}</h5>
-							<p class="card-text">Description : ${article.description}</p>
-							<p class="card-text">Prix : ${article.prix_vente}</p>
-							<p class="card-text">Date de fin d'enchère :
-								${article.date_fin_encheres}</p>
-							<!-- A tester -->
-							<p class="card-text">Vendeur : ${article.vendeur }</p>
+			<c:forEach var="article" items="${listeArticles}">
+				<div class="card mb-5 col-5 m-5" style="max-width: 50%;">
+					<div class="container-fluid row">
+						<div class="col-5 d-flex flex-wrap align-items-center">
+							<img src="" class="img-fluid" alt="cailloux">
+						</div>
+						<div class="col">
+							<div class="card-body">
+								<h5 class="card-title">${article.nomArticle}</h5>
+								<p class="card-text">Description : ${article.description}</p>
+								<p class="card-text">Mise à prix : ${article.miseAPrix}</p>
+								<p class="card-text">Enchère actuelle : ${article.prixVente}</p>
+								<p class="card-text">Date de fin d'enchère : ${article.dateFinEncheres}</p>
+								<!-- A tester -->
+								<p class="card-text">Vendeur : ${article.vendeur.pseudo}</p>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
+				</c:forEach>
 		</section>
 
 	</main>
