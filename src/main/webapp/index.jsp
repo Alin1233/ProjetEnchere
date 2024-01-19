@@ -36,7 +36,7 @@
 					<!-- Section avec champs de recherche pour utilisateur connécté-->
 					 <!--Script pour desactiver les checkbox selon le radio filtreAchat/filtreVente sélctionné-->
 					<%@ include file="scriptIndex.jspf"%>
-					<c:if test="${empty user }">
+					<c:if test="${!empty user }">
 					
 						<section class="container-fluid d-flex flex-row justify-content-start">
 						    <div class="filtreAchat">
