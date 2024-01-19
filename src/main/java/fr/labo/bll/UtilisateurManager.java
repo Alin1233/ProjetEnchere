@@ -23,12 +23,8 @@ public class UtilisateurManager {
 	s'il existe retournera true sinon false
 	utile pour le login
 	*/
-	public Boolean verifierPseudoEtPassword(String pseudo, String password) {
-		if (utilisateurDAO.selectByPseudoEtPassword(pseudo, password) == null) {
-			return false;
-		}else {
-			return true;
-		}
+	public Utilisateur verifierPseudoEtPassword(String pseudo, String password) {
+		return utilisateurDAO.selectByPseudoEtPassword(pseudo, password);
 	}
 	//supprimer de la db
 	public void deleteUser(int id) {
