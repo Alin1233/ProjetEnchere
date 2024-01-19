@@ -54,13 +54,13 @@ public class ServletConnectionUser extends HttpServlet {
 		String pseudoUser = request.getParameter("pseudoUser");
 		String passwordUser = request.getParameter("passwordUser");
 		
-		
+		//////////////////////////////////////////////////////////////////////////////////////////
 		//Remplacer méthode getUserById par getUserByPseudo(ou nom)
 		if(utilisateurManager.verifierPseudoEtPassword(pseudoUser, passwordUser)) {
 			utilisateurExistant = utilisateurManager.getUser(1);
 			
 		};
-			
+		//////////////////////////////////////////////////////////////////////////////////////////	
 		
 		if(utilisateurExistant != null) {
 				session =  request.getSession(true);
@@ -73,16 +73,6 @@ public class ServletConnectionUser extends HttpServlet {
 			doGet(request, response);
 
 		}
-
-
-
-		//Si useur n'existe pas
-
-
-		//----------------------------------------------------------//
-
-
-
 
 	}
 }
