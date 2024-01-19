@@ -24,7 +24,7 @@ public class ServletConnectionUser extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/connectionUser.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/connectionUser.jsp");
 		rd.forward(request, response);
 
     }
@@ -35,7 +35,7 @@ public class ServletConnectionUser extends HttpServlet {
 	 */
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Utilisateur utilisateurExistant = null;
+		
 		HttpSession session =  request.getSession(false);
 
 		//------------------Créaetion d'un liste d'utilisateur pour test----------------------//
@@ -43,8 +43,12 @@ public class ServletConnectionUser extends HttpServlet {
 		
 		Adresse adresse = new Adresse("rueAdresse", "villeAdresse", "CPAdresse");
 		Utilisateur user = new Utilisateur("Bagou", "coronas", "Louis-Philippe", "emailLouis-p", "0102030405", adresse, 5000, true, "Pa$$w0rd");
+		Utilisateur user1 = new Utilisateur("Bagou1", "coronas", "Louis-Philippe", "emailLouis-p", "0102030405", adresse, 5000, true, "Pa$$w0rd");
+		Utilisateur user2 = new Utilisateur("Bagou2", "coronas", "Louis-Philippe", "emailLouis-p", "0102030405", adresse, 5000, true, "Pa$$w0rd");
 		
 		utilisateurManager.ajouterUser(user);
+		utilisateurManager.ajouterUser(user1);
+		utilisateurManager.ajouterUser(user2);
 
 
 		//------------------------------------------------------------------------------------//
@@ -53,14 +57,7 @@ public class ServletConnectionUser extends HttpServlet {
 		// Récupération des identifiants et mot de passe de l'utilisateur
 		String pseudoUser = request.getParameter("pseudoUser");
 		String passwordUser = request.getParameter("passwordUser");
-		
-		//////////////////////////////////////////////////////////////////////////////////////////
-		//Remplacer méthode getUserById par getUserByPseudo(ou nom)
-		if(utilisateurManager.verifierPseudoEtPassword(pseudoUser, passwordUser)) {
-			utilisateurExistant = utilisateurManager.getUser(1);
-			
-		};
-		//////////////////////////////////////////////////////////////////////////////////////////	
+		Utilisateur utilisateurExistant = utilisateurManager.verifierPseudoEtPassword(pseudoUser, passwordUser );
 		
 		if(utilisateurExistant != null) {
 				session =  request.getSession(true);
