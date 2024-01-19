@@ -12,7 +12,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 
-@WebServlet("/ServletCreationCompte")//Mettre le lien de la JSP
+@WebServlet("/creationCompte.jsp")//Mettre le lien de la JSP
 public class ServletCreationCompte extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -42,22 +42,25 @@ public class ServletCreationCompte extends HttpServlet {
 		Utilisateur utilisateur = new Utilisateur();
 		//Verif unicité de deux variables
 		// appel methode verif unicité de la BO User
-		boolean pseudoUnique = utilisateur.pseudoUnique(pseudo);
-		boolean emailUnique = utilisateur.emailUnique(email);
+		//boolean pseudoUnique = utilisateur.pseudoUnique(pseudo);
+		//boolean emailUnique = utilisateur.emailUnique(email);
 
-		// Logique verification
-		if (pseudoUnique && emailUnique) {
-			if (motDePasse == confirmationMp) {
+		 //Logique verification
+		//if (pseudoUnique && emailUnique) {
+			//if (motDePasse == confirmationMp) {
 				// Continuer creation compte (Insert within DB)
 				UtilisateurDAO utilisateurDAO = DAOFactory.getUtilisateurDAO();
 				utilisateurDAO.insert(utilisateur);
-			}else {
-			response.getWriter().println("Le mot de passe et le mot de passe de confirmation ne correspondent pas.");
-			}
-		} else {
+			//}else {
+			//response.getWriter().println("Le mot de passe et le mot de passe de confirmation ne correspondent pas.");
+			//}
+		//} else {
 		    //Message erreur et retour page creation compte
-			response.getWriter().println("Le pseudo ou le mail est déjà utilisé.");
-		}
+			//response.getWriter().println("Le pseudo ou le mail est déjà utilisé.");
+		//}
+		
+		// Redirection apres saisir du formulaire vers page "connecté"
+		response.sendRedirect("/connectionUser.jsp");
 
 		}
 
