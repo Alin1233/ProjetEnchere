@@ -5,14 +5,14 @@ import java.util.Date;
 public class Enchere {
 	
 	private String dateEnchere;
-	private Float montant_enchere;
+	private Integer montant_enchere;
 	private Utilisateur utilisateur;
 	private ArticleVendu articleVendu;
 	
 	public Enchere() {
 		
 	}
-	public Enchere(String dateEnchere, Float montant_enchere, Utilisateur utilisateur, ArticleVendu articleVendu) {
+	public Enchere(String dateEnchere, Integer montant_enchere, Utilisateur utilisateur, ArticleVendu articleVendu) {
 		super();
 		this.dateEnchere = dateEnchere;
 		this.montant_enchere = montant_enchere;
@@ -25,10 +25,10 @@ public class Enchere {
 	public void setDateEnchere(String dateEnchere) {
 		this.dateEnchere = dateEnchere;
 	}
-	public Float getMontant_enchere() {
+	public Integer getMontant_enchere() {
 		return montant_enchere;
 	}
-	public void setMontant_enchere(Float montant_enchere) {
+	public void setMontant_enchere(Integer montant_enchere) {
 		this.montant_enchere = montant_enchere;
 	}
 	public Utilisateur getUtilisateur() {

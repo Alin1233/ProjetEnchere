@@ -4,6 +4,7 @@ import java.util.List;
 
 import fr.labo.bo.ArticleVendu;
 import fr.labo.bo.Categorie;
+import fr.labo.bo.Enchere;
 import fr.labo.dal.DAOFactory;
 import fr.labo.dal.vente.VenteDAO;
 
@@ -15,8 +16,14 @@ public class VenteManager {
 		this.venteDAO = DAOFactory.getVenteDAO();
 	}
 	
+	//insérer une nouvelle enchère dans la db
+	public void ajuterEnchre(Enchere enchere) {
+		venteDAO.insertEnchere(enchere);
+	}
+	
+	//Insérer l'objet article dans la db
 	public void ajuterVente(ArticleVendu article) {
-		venteDAO.insert(article);
+		venteDAO.insertArticle(article);
 	}
 	
 	//rien ne fonctionne sous ce commentaire pour le instant !!!!!
