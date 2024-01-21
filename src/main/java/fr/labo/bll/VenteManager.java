@@ -17,7 +17,9 @@ public class VenteManager {
 	}
 	
 	//insérer une nouvelle enchère dans la db
+
 	public void ajuterEnchere(Enchere enchere) {
+
 		venteDAO.insertEnchere(enchere);
 	}
 	
