@@ -32,7 +32,7 @@ public class UtilisateurManager {
 		utilisateurDAO.delete(id);
 	}
 	//mettre à jour l'utilisateur dans la db
-	public void modifierUser(Utilisateur user) {
+	public void updateUser(Utilisateur user) {
 		utilisateurDAO.update(user);
 	}
 	//renvoie un utilisateur, vérifie par l'id
@@ -47,7 +47,7 @@ public class UtilisateurManager {
 	 * si le pseudo est pris, renvoie "pseudo-pris"
 	 * else renvoie "bon"
 	*/
-	public String verifierPseudoEtEmail(String pseudo, String email) {
+	public String checkPseudoEtEmail(String pseudo, String email) {
 		return utilisateurDAO.checkPseudoEtEmail(pseudo, email);
 	}
 
