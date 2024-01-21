@@ -9,12 +9,13 @@ import java.util.List;
 
 import fr.labo.bo.ArticleVendu;
 import fr.labo.bo.Categorie;
+import fr.labo.bo.Enchere;
 import fr.labo.dal.ConnectionProvider;
 
 public class VenteDAOJdbcImpl implements VenteDAO {
 
 	@Override
-	public void insert(ArticleVendu vente) {
+	public void insertArticle(ArticleVendu vente) {
 		String insertArticleQuery = "INSERT INTO ARTICLES_VENDUS (nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial,"
 				+ "prix_vente, no_utilisateur, no_categorie) VALUES("
 				+ "?,?,?,?,?,?,?,?)";
@@ -47,7 +48,7 @@ public class VenteDAOJdbcImpl implements VenteDAO {
 			cnx.close();
 			
 		} catch (SQLException e) {
-			 System.out.println("Erreur d'insertion de l'ArticleVendu" + e.getMessage());
+			 System.out.println("Erreur d'insertion de l'ArticleVendu " + e.getMessage());
 		}
 		
 	}
@@ -74,6 +75,30 @@ public class VenteDAOJdbcImpl implements VenteDAO {
 	public ArticleVendu selectById(int id) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public void insertEnchere(Enchere enchere) {
+		String insertEnchereQuery ="INSERT INTO ENCHERES (no_utilisateur, no_article, date_enchere, montant_enchere) "
+				+ "VALUES (?, ?, ?, ?)";
+		
+		try {
+			Connection cnx = ConnectionProvider.getConnection();
+			PreparedStatement pstmt = cnx.prepareStatement(insertEnchereQuery);
+			
+			pstmt.setInt(1, enchere.getUtilisateur().getNoUtilisateur());
+			pstmt.setInt(2, enchere.getArticleVendu().getNoArticle());
+			pstmt.setString(3,enchere.getDateEnchere());
+			pstmt.setInt(4, enchere.getMontant_enchere());
+			
+			pstmt.execute();
+			
+			pstmt.close();
+			cnx.close();
+		} catch (SQLException e) {
+			 System.out.println("Erreur d'insertion de insertEnchere " + e.getMessage());
+		}
+		
 	}
 
 }

@@ -4,10 +4,13 @@ import java.util.List;
 
 import fr.labo.bo.ArticleVendu;
 import fr.labo.bo.Categorie;
+import fr.labo.bo.Enchere;
 
 public interface VenteDAO {
 	
-	public void insert(ArticleVendu vente);
+	public void insertArticle(ArticleVendu vente);
+	
+	public void insertEnchere(Enchere enchere);
 	
 	public List<ArticleVendu> selectAll();
 	
