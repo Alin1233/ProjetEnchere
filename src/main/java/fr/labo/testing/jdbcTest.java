@@ -5,6 +5,7 @@ import java.io.IOException;
 import fr.labo.bll.UtilisateurManager;
 import fr.labo.bll.VenteManager;
 import fr.labo.bo.ArticleVendu;
+import fr.labo.bo.Categorie;
 import fr.labo.bo.Utilisateur;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -45,8 +46,10 @@ public class jdbcTest extends HttpServlet {
 		//System.out.println(manager.verifierPseudoEtEmail("awl213", "coolemail@gw2il.com"));
 		//System.out.println(manager.verifierPseudoEtPassword("awl213", "s2tronPasswor2d"));
 		Utilisateur user = manager.getUser(11);
-		ArticleVendu article = new ArticleVendu("nom","description","12/12/2000","11/11/1111", 11,10,user.getNoUtilisateur(),2);
-		System.out.println(manager.getUser(11));
+		Categorie categorie = new Categorie(2,"Informatique");
+		ArticleVendu article = new ArticleVendu("nom","description","12/12/2000","11/11/1111", 11,10,"etatVente",categorie,user,user.getAdresse());
+		venteManager.ajuterVente(article);
+		//System.out.println(manager.getUser(11));
 		
 		
 		

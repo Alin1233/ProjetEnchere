@@ -4,13 +4,16 @@ import java.util.List;
 
 import fr.labo.bo.ArticleVendu;
 import fr.labo.bo.Categorie;
+import fr.labo.dal.DAOFactory;
 import fr.labo.dal.vente.VenteDAO;
 
 public class VenteManager {
 	
 	VenteDAO venteDAO;
 	
-	
+	public VenteManager() {
+		this.venteDAO = DAOFactory.getVenteDAO();
+	}
 	
 	public void ajuterVente(ArticleVendu article) {
 		venteDAO.insert(article);

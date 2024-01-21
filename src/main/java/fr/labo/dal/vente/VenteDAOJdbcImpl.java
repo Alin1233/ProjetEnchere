@@ -17,20 +17,33 @@ public class VenteDAOJdbcImpl implements VenteDAO {
 	public void insert(ArticleVendu vente) {
 		String insertArticleQuery = "INSERT INTO ARTICLES_VENDUS (nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial,"
 				+ "prix_vente, no_utilisateur, no_categorie) VALUES("
-				+ "?,?,?,?,?,?,?,?,?)";
+				+ "?,?,?,?,?,?,?,?)";
+		String insertRetraitQuery = "INSERT INTO RETRAITS (no_article, rue, code_postal, ville) VALUES"
+				+ "(?,?,?,?)";
 		try {
 			Connection cnx = ConnectionProvider.getConnection();
-			PreparedStatement pstmt = cnx.prepareStatement(insertArticleQuery,Statement.RETURN_GENERATED_KEYS);
+			PreparedStatement pstmtArticle = cnx.prepareStatement(insertArticleQuery,Statement.RETURN_GENERATED_KEYS);
 			
-			pstmt = HelperClassVente.setPreparedStatementParameters(pstmt, vente);
-			pstmt.executeUpdate();
+			PreparedStatement pstmtRetrait = cnx.prepareStatement(insertRetraitQuery);
 			
-			ResultSet rs = pstmt.getGeneratedKeys();
+			pstmtArticle = HelperClassVente.setPreparedStatementParameters(pstmtArticle, vente);
+			pstmtArticle.executeUpdate();
+			
+			ResultSet rs = pstmtArticle.getGeneratedKeys();
 			if(rs.next()) {
 				vente.setNoArticle(rs.getInt(1));
 			}
+			//insérer dans la table retrait après avoir obtenu id de l'article
+			pstmtRetrait.setInt(1, vente.getNoArticle());
+			pstmtRetrait.setString(2, vente.getRetrait().getRue());
+			pstmtRetrait.setString(3, vente.getRetrait().getCodePostal());
+			pstmtRetrait.setString(4, vente.getRetrait().getVille());
+			pstmtRetrait.execute();
+			
+			
 			rs.close();
-			pstmt.close();
+			pstmtArticle.close();
+			pstmtRetrait.close();
 			cnx.close();
 			
 		} catch (SQLException e) {
