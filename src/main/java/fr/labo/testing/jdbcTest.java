@@ -3,6 +3,9 @@ package fr.labo.testing;
 import java.io.IOException;
 
 import fr.labo.bll.UtilisateurManager;
+import fr.labo.bll.VenteManager;
+import fr.labo.bo.ArticleVendu;
+import fr.labo.bo.Utilisateur;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -30,6 +33,7 @@ public class jdbcTest extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		UtilisateurManager manager = new UtilisateurManager();
+		VenteManager venteManager = new VenteManager();
 
 		//Adresse adresse = new Adresse("rue","nantes","4000");
 
@@ -38,10 +42,14 @@ public class jdbcTest extends HttpServlet {
 		//manager.ajouterUser(user);
 		//manager.deleteUser(10);
 
-		System.out.println(manager.verifierPseudoEtEmail("awl213", "coolemail@gw2il.com"));
-		System.out.println(manager.verifierPseudoEtPassword("awl213", "s2tronPasswor2d"));
-
+		//System.out.println(manager.verifierPseudoEtEmail("awl213", "coolemail@gw2il.com"));
+		//System.out.println(manager.verifierPseudoEtPassword("awl213", "s2tronPasswor2d"));
+		Utilisateur user = manager.getUser(11);
+		ArticleVendu article = new ArticleVendu("nom","description","12/12/2000","11/11/1111", 11,10,user.getNoUtilisateur(),2);
 		System.out.println(manager.getUser(11));
+		
+		
+		
 		//System.out.println(manager.getAll()+" useres in the db");
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}

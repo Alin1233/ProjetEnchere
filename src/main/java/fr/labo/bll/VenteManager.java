@@ -10,11 +10,13 @@ public class VenteManager {
 	
 	VenteDAO venteDAO;
 	
-	//Rien ne fonctionne ici pour l'instant!!!!!!!!
+	
 	
 	public void ajuterVente(ArticleVendu article) {
 		venteDAO.insert(article);
 	}
+	
+	//rien ne fonctionne sous ce commentaire pour le instant !!!!!
 	
 	public List<ArticleVendu> getAll(){
 		return venteDAO.selectAll();
