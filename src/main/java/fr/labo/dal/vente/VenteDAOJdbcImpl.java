@@ -189,4 +189,40 @@ public class VenteDAOJdbcImpl implements VenteDAO {
 		return allEncheres;
 	}
 
+	@Override
+	public List<Enchere> selectEnchereByUserId(int id) {
+		List<Enchere> allEnchereByUser = new ArrayList<Enchere>();
+		String selectEnchereQuery = "SELECT * FROM ENCHERES JOIN UTILISATEURS ON ENCHERES.no_utilisateur = UTILISATEURS.no_utilisateur "
+				+ "JOIN ARTICLES_VENDUS ON ENCHERES.no_article = ARTICLES_VENDUS.no_article "
+				+ "JOIN CATEGORIES ON ARTICLES_VENDUS.no_categorie = CATEGORIES.no_categorie "
+				+ "JOIN RETRAITS ON ARTICLES_VENDUS.no_article = RETRAITS.no_article "
+				+ "WHERE ENCHERES.no_utilisateur = ?";
+		
+		try {
+			Connection cnx = ConnectionProvider.getConnection();
+			PreparedStatement pstmt = cnx.prepareStatement(selectEnchereQuery);
+			ResultSet rs = pstmt.executeQuery();
+			while(rs.next()) {
+				Utilisateur user = new Utilisateur();
+				user = HelperClassUtilisateur.createUserFromRs(rs);
+				ArticleVendu article = new ArticleVendu();
+				article = HelperClassVente.createArticleFromRS(rs);
+				
+				Enchere enchere = new Enchere();
+				
+				enchere.setArticleVendu(article);
+				enchere.setUtilisateur(user);
+				enchere.setMontant_enchere(rs.getInt("montant_enchere"));
+				enchere.setDateEnchere(rs.getString("date_enchere"));
+				
+				allEnchereByUser.add(enchere);
+				
+			}
+		} catch (SQLException e) {
+			System.out.println("Erreur List<Enchere> selectEnchereByUserId(int id) " + e.getMessage());
+		}
+		
+		return allEnchereByUser;
+	}
+
 }

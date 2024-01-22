@@ -36,7 +36,9 @@ public class VenteManager {
 	public ArticleVendu getArticleVendu(int id) {
 		return venteDAO.selectArticleById(id);
 	}
-	
+	public List<Enchere> getAllEncheresByUser(int no_utilisateur) {
+		return venteDAO.selectEnchereByUserId(no_utilisateur);
+	}
 	
 	//rien ne fonctionne sous ce commentaire pour le instant !!!!!
 	public List<ArticleVendu> getCategorie(Categorie categorie){

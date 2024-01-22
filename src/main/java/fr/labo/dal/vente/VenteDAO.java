@@ -21,4 +21,6 @@ public interface VenteDAO {
 	public List<String>selectCategorieLibelles();
 	
 	public ArticleVendu selectArticleById(int id);
+	
+	public List<Enchere> selectEnchereByUserId(int id);
 }
