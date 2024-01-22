@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 import fr.labo.bo.ArticleVendu;
@@ -55,7 +56,18 @@ public class VenteDAOJdbcImpl implements VenteDAO {
 
 	@Override
 	public List<ArticleVendu> selectAll() {
-		// TODO Auto-generated method stub
+		String selectAllQuery = "SELECT * FROM ARTICLES_VENDUS JOIN UTILISATEURS ON ARTICLES_VENDUS.no_utilisateur = UTILISATEURS.no_utilisateur";
+		ArrayList<ArticleVendu> allArticles = new ArrayList<ArticleVendu>();
+		try {
+			Connection cnx = ConnectionProvider.getConnection();
+			PreparedStatement pstmt =cnx.prepareStatement(selectAllQuery);
+			ResultSet rs = pstmt.executeQuery();
+			while(rs.next()) {
+				System.out.println(rs);
+			}
+		} catch (SQLException e) {
+			System.out.println("Erreur List<ArticleVendu> selectAll() " + e.getMessage());
+		}
 		return null;
 	}
 
