@@ -47,7 +47,7 @@ public class VenteManager {
 	}
 	
 	public ArticleVendu getArticleVendu(int id) {
-		return venteDAO.selectById(id);
+		return venteDAO.selectArticleById(id);
 	}
 	
 }

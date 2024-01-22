@@ -98,9 +98,32 @@ public class VenteDAOJdbcImpl implements VenteDAO {
 	}
 
 	@Override
-	public ArticleVendu selectById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+	public ArticleVendu selectArticleById(int id) {
+		ArticleVendu article = null;
+		String selectByIdQuery = "SELECT * FROM ARTICLES_VENDUS "
+			    + "JOIN CATEGORIES ON ARTICLES_VENDUS.no_categorie = CATEGORIES.no_categorie "
+			    + "JOIN RETRAITS ON ARTICLES_VENDUS.no_article = RETRAITS.no_article "
+			    + "JOIN UTILISATEURS ON ARTICLES_VENDUS.no_utilisateur = UTILISATEURS.no_utilisateur "
+			    + "WHERE ARTICLES_VENDUS.no_article = ?";
+		
+		try {
+			Connection cnx = ConnectionProvider.getConnection();
+			PreparedStatement pstmt =cnx.prepareStatement(selectByIdQuery);
+			pstmt.setInt(1, id);
+			ResultSet rs = pstmt.executeQuery();
+			if(rs.next()) {
+				Utilisateur user = new Utilisateur();
+				user = HelperClassUtilisateur.createUserFromRs(rs);
+				article = HelperClassVente.createArticleFromRS(rs);
+				article.setVendeur(user);
+			}
+			cnx.close();
+			pstmt.close();
+			rs.close();
+		} catch (SQLException e) {
+			 System.out.println("Erreur ArticleVendu selectArticleById(int id) " + e.getMessage());
+		}
+		return article;
 	}
 
 	@Override

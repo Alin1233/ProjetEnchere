@@ -53,7 +53,7 @@ public class jdbcTest extends HttpServlet {
 		
 		Enchere enchere = new Enchere("11-11-2000",11,user,article);
 		//venteManager.ajuterEnchere(enchere);
-		System.out.println(venteManager.getAllEncheres());
+		System.out.println(venteManager.getArticleVendu(1));
 		//System.out.println(manager.getUser(11));
 		
 		
