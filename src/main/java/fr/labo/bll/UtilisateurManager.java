@@ -20,15 +20,12 @@ public class UtilisateurManager {
 
 	/*
 	fonction qui vérifie si l'utilisateur qui tente de se connecter existe dans la db
-	s'il existe retournera true sinon false
+	si le mot de passe et le pseudo sont bons, renvoie un objet utilisateur avec tous les détails 
+	si le mot de passe et le pseudo sont faux, renvoie null
 	utile pour le login
 	*/
-	public Boolean checkPseudoEtPassword(String pseudo, String password) {
-		if (utilisateurDAO.selectByPseudoEtPassword(pseudo, password) == null) {
-			return false;
-		}else {
-			return true;
-		}
+	public Utilisateur verifierPseudoEtPassword(String pseudo, String password) {
+		return utilisateurDAO.selectByPseudoEtPassword(pseudo, password);
 	}
 	//supprimer de la db
 	public void deleteUser(int id) {
