@@ -21,25 +21,52 @@ public class ServletConnectionUser extends HttpServlet {
    }
 
    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-      RequestDispatcher rd = request.getRequestDispatcher("/connectionUser.jsp");
-      rd.forward(request, response);
+	   // Récuperation de l'utilisateur lors de l'inscription pour se connecter à la suite de la validation du formulaire d'inscription
+	   Utilisateur newUser = null;
+	   newUser = (Utilisateur) request.getAttribute("user");
+	   
+	   // Si l'inscription est valide, connection de l'utilisateur et redirection vers la page d'accueil
+	   if(newUser != null) {
+		   doPost(request,response);
+		   	
+	   //Si l'inscription ou la connexion n'est pas valide, redirection vers la page de conection
+	   }else {
+		   
+		   RequestDispatcher rd = request.getRequestDispatcher("/connectionUser.jsp");
+		   rd.forward(request, response);
+	   }
    }
 
    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
       HttpSession session = request.getSession(false);
-      UtilisateurManager utilisateurManager = new UtilisateurManager();
-      String pseudoUser = request.getParameter("pseudoUser");
-      String passwordUser = request.getParameter("passwordUser");
-      Utilisateur utilisateurExistant = utilisateurManager.verifierPseudoEtPassword(pseudoUser, passwordUser);
-      if (utilisateurExistant != null) {
-         session = request.getSession(true);
-         session.setAttribute("user", utilisateurExistant);
-         response.sendRedirect("ServletAccesIndexJsp");
-      } else {
-         request.setAttribute("erreur", "l'utilisateur ou mot de passe n'est pas valide");
-         this.doGet(request, response);
+      Utilisateur utilisateurExistant = null;
+      
+      //Executer depuis la page de connexion, quand l'utilisateur existant souhaite se connecter
+      if(request.getAttribute("user") == null){
+    	  
+	      UtilisateurManager utilisateurManager = new UtilisateurManager();
+	      String pseudoUser = request.getParameter("pseudoUser");
+	      String passwordUser = request.getParameter("passwordUser");
+	      
+	      utilisateurExistant = utilisateurManager.verifierPseudoEtPassword(pseudoUser, passwordUser);
+	      
+	      if (utilisateurExistant != null) {
+	         session = request.getSession(true);
+	         session.setAttribute("user", utilisateurExistant);
+	         response.sendRedirect("ServletAccesIndexJsp");
+	      } else {
+	         request.setAttribute("erreur", "l'utilisateur ou mot de passe n'est pas valide");
+	         this.doGet(request, response);
+	      }
+	      
+      //Executé depuis la page d'inscription lorsque l'utilisateur valide son inscription
+      }else {
+    	  
+    	  utilisateurExistant = (Utilisateur) request.getAttribute("user");
+    	  session = request.getSession(true);
+    	  session.setAttribute("user", utilisateurExistant);
+    	  response.sendRedirect("ServletAccesIndexJsp");
       }
 
    }
-
 }
