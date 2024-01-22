@@ -5,6 +5,7 @@ import java.util.List;
 import fr.labo.bo.ArticleVendu;
 import fr.labo.bo.Categorie;
 import fr.labo.bo.Enchere;
+import fr.labo.bo.Utilisateur;
 import fr.labo.dal.DAOFactory;
 import fr.labo.dal.vente.VenteDAO;
 
@@ -49,7 +50,10 @@ public class VenteManager {
 	public void updateArticle(ArticleVendu article) {
 		venteDAO.updateArticle(article);
 	}
-	
+	//obtenir tous les articles créés par un utilisateur
+	public List<ArticleVendu> getAllArticlesByUser(Utilisateur user){
+		return venteDAO.selectAllArticlesByUser(user);
+	}
 	//rien ne fonctionne sous ce commentaire pour le instant !!!!!
 	public List<String> getCategorieLibelles(){
 		return venteDAO.selectCategorieLibelles();
