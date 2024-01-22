@@ -45,7 +45,7 @@ public class VenteManager {
 	public List<ArticleVendu> getAllArticlesDansCategorie(Categorie categorie){
 		return venteDAO.selectAllArticlesCategorie(categorie);
 	}
-	
+	//mettre à jour un article, utile si vous voulez changer l'adresse d'un retrait
 	public void updateArticle(ArticleVendu article) {
 		venteDAO.updateArticle(article);
 	}
