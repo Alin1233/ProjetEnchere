@@ -51,11 +51,23 @@ public class jdbcTest extends HttpServlet {
 		//ArticleVendu article = new ArticleVendu(1,"nom","description","12/12/2000","11/11/1111", 11,10,"etatVente",categorie,user,user.getAdresse());
 		//venteManager.ajuterVente(article);
 		
+		//Utilisateur vendeur = article.getVendeur();
+		
+		System.out.println(manager.getUserByPseudo("awl213"));
+		
+		
+
+		
+		
+		
+		
 		//Enchere enchere = new Enchere("11-11-2000",11,user,article);
 		//venteManager.ajuterEnchere(enchere);
 		//Categorie cat = new Categorie(1,"la");
 		Utilisateur useUtilisateur = new Utilisateur();
-		System.out.println(venteManager.getAllArticlesByUser(useUtilisateur));
+		//System.out.println(venteManager.getAllArticlesByUser(useUtilisateur));
+		
+		
 		//System.out.println(manager.getUser(11));
 		
 		
