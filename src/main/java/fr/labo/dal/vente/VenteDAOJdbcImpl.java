@@ -58,7 +58,7 @@ public class VenteDAOJdbcImpl implements VenteDAO {
 	}
 
 	@Override
-	public List<ArticleVendu> selectAll() {
+	public List<ArticleVendu> selectAllArticles() {
 		String selectAllQuery = "SELECT * FROM ARTICLES_VENDUS JOIN UTILISATEURS ON ARTICLES_VENDUS.no_utilisateur = UTILISATEURS.no_utilisateur "
 				+ "JOIN CATEGORIES ON ARTICLES_VENDUS.no_categorie = CATEGORIES.no_categorie "
 				+ "JOIN RETRAITS ON ARTICLES_VENDUS.no_article = RETRAITS.no_article";
@@ -125,6 +125,45 @@ public class VenteDAOJdbcImpl implements VenteDAO {
 			 System.out.println("Erreur d'insertion de insertEnchere " + e.getMessage());
 		}
 		
+	}
+
+	@Override
+	public List<Enchere> selectAllEncheres() {
+		List<Enchere> allEncheres = new ArrayList<Enchere>();
+		String selectAllQuery = "SELECT * FROM ENCHERES JOIN UTILISATEURS ON ENCHERES.no_utilisateur = UTILISATEURS.no_utilisateur "
+				+ "JOIN ARTICLES_VENDUS ON ENCHERES.no_article = ARTICLES_VENDUS.no_article "
+				+ "JOIN CATEGORIES ON ARTICLES_VENDUS.no_categorie = CATEGORIES.no_categorie "
+				+ "JOIN RETRAITS ON ARTICLES_VENDUS.no_article = RETRAITS.no_article";
+		
+		try {
+			Connection cnx = ConnectionProvider.getConnection();
+			PreparedStatement pstmt = cnx.prepareStatement(selectAllQuery);
+			ResultSet rs = pstmt.executeQuery();
+			while(rs.next()) {
+				Utilisateur user = new Utilisateur();
+				user = HelperClassUtilisateur.createUserFromRs(rs);
+				ArticleVendu article = new ArticleVendu();
+				article = HelperClassVente.createArticleFromRS(rs);
+				
+				Enchere enchere = new Enchere();
+				
+				enchere.setArticleVendu(article);
+				enchere.setUtilisateur(user);
+				enchere.setMontant_enchere(rs.getInt("montant_enchere"));
+				enchere.setDateEnchere(rs.getString("date_enchere"));
+				
+				allEncheres.add(enchere);
+				
+			}
+			cnx.close();
+			pstmt.close();
+			rs.close();
+		} catch (SQLException e) {
+			System.out.println("Erreur List<Enchere> selectAllEncheres() " + e.getMessage());
+		}
+		
+		
+		return allEncheres;
 	}
 
 }

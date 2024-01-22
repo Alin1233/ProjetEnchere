@@ -30,8 +30,12 @@ public class VenteManager {
 	
 	//rien ne fonctionne sous ce commentaire pour le instant !!!!!
 	
-	public List<ArticleVendu> getAll(){
-		return venteDAO.selectAll();
+	public List<ArticleVendu> getAllArticles(){
+		return venteDAO.selectAllArticles();
+	}
+	
+	public List<Enchere> getAllEncheres(){
+		return venteDAO.selectAllEncheres();
 	}
 	
 	public List<ArticleVendu> getCategorie(Categorie categorie){
