@@ -14,6 +14,7 @@ import java.io.IOException;
 
 @WebServlet({"/ServletConnectionUser"})
 public class ServletConnectionUser extends HttpServlet {
+
    private static final long serialVersionUID = 1L;
 
    public ServletConnectionUser() {
@@ -40,4 +41,5 @@ public class ServletConnectionUser extends HttpServlet {
       }
 
    }
+
 }
