@@ -5,6 +5,7 @@
 <html>
 <head>
 <%@ include file="head.jspf"%>
+<link rel="stylesheet" href="style/style.css">
 <title>Page de connexion</title>
 </head>
 <body>
