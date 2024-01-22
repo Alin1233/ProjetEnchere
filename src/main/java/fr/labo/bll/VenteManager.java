@@ -17,9 +17,7 @@ public class VenteManager {
 	}
 	
 	//insérer une nouvelle enchère dans la db
-
 	public void ajuterEnchere(Enchere enchere) {
-
 		venteDAO.insertEnchere(enchere);
 	}
 	
@@ -28,8 +26,6 @@ public class VenteManager {
 		venteDAO.insertArticle(article);
 	}
 	
-	//rien ne fonctionne sous ce commentaire pour le instant !!!!!
-	
 	public List<ArticleVendu> getAllArticles(){
 		return venteDAO.selectAllArticles();
 	}
@@ -37,7 +33,12 @@ public class VenteManager {
 	public List<Enchere> getAllEncheres(){
 		return venteDAO.selectAllEncheres();
 	}
+	public ArticleVendu getArticleVendu(int id) {
+		return venteDAO.selectArticleById(id);
+	}
 	
+	
+	//rien ne fonctionne sous ce commentaire pour le instant !!!!!
 	public List<ArticleVendu> getCategorie(Categorie categorie){
 		return venteDAO.selectCategorie(categorie);
 	}
@@ -46,8 +47,6 @@ public class VenteManager {
 		return venteDAO.selectCategorieLibelles();
 	}
 	
-	public ArticleVendu getArticleVendu(int id) {
-		return venteDAO.selectArticleById(id);
-	}
+	
 	
 }
