@@ -104,7 +104,7 @@
     </div>
 </header>
  
-<h1>Mon Profil</h1>
+<h1>Profil Autre</h1>
  
 <form>
     

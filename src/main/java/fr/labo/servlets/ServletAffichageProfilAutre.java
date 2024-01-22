@@ -1,23 +1,18 @@
 package fr.labo.servlets;
+import java.io.IOException;
+
+import fr.labo.bll.UtilisateurManager;
 import fr.labo.bo.Adresse;
 import fr.labo.bo.Utilisateur;
-
-import jakarta.servlet.ServletException;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import java.io.IOException;
 
 
-		@WebServlet("/ServletAffichageProfil")
+		@WebServlet("/ServletAffichageProfilAutre")
 		public class ServletAffichageProfilAutre extends HttpServlet {
 			private static final long serialVersionUID = 1L;
 		       
@@ -29,9 +24,15 @@ import java.io.IOException;
 				response.getWriter().append("Served at: ").append(request.getContextPath());
 				
 				
-				//SelectbyPseudo
+				//Recuperer pseudo vendeur en parametre pour l'appel methode getUSerbyPSeudo
 				
+				
+				UtilisateurManager utilisateurManager = new UtilisateurManager();
+				String ps = request.getParameter("pseudo");
 				Utilisateur Us = new Utilisateur();
+				Us = utilisateurManager.getUserByPseudo(ps);
+				
+				
 				String pseudo = Us.getPseudo();
 				String nom = Us.getNom();
 				String prenom = Us.getPrenom();

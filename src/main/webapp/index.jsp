@@ -106,6 +106,14 @@
 								<p class="card-text">Date de fin d'enchère : ${article.dateFinEncheres}</p>
 								<!-- A tester -->
 								<p class="card-text">Vendeur : ${article.vendeur.pseudo}</p>
+								<p class="card-text">Vendeur :</p><a href="ServletAffichageProfilAutre?parameter=###">${article.vendeur.pseudo}</a>
+								
+								<form action="ServletAffichageProfilAutre" method="post">
+    							<input type="hidden" name="pseudo" value="article.vendeur.pseudo">
+    							<input type="submit" value="Submit">
+								</form>
+								
+								
 							</div>
 						</div>
 					</div>
