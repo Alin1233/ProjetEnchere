@@ -16,7 +16,7 @@ public interface VenteDAO {
 	
 	public List<Enchere> selectAllEncheres();
 	
-	public List<ArticleVendu> selectCategorie(Categorie categorie);
+	public List<ArticleVendu> selectAllArticlesCategorie(Categorie categorie);
 	
 	public List<String>selectCategorieLibelles();
 	

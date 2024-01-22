@@ -41,8 +41,8 @@ public class VenteManager {
 	}
 	
 	//rien ne fonctionne sous ce commentaire pour le instant !!!!!
-	public List<ArticleVendu> getCategorie(Categorie categorie){
-		return venteDAO.selectCategorie(categorie);
+	public List<ArticleVendu> getAllArticlesDansCategorie(Categorie categorie){
+		return venteDAO.selectAllArticlesCategorie(categorie);
 	}
 	
 	public List<String> getCategorieLibelles(){

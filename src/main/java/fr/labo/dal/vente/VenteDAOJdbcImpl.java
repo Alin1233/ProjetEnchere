@@ -86,9 +86,34 @@ public class VenteDAOJdbcImpl implements VenteDAO {
 	}
 
 	@Override
-	public List<ArticleVendu> selectCategorie(Categorie categorie) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<ArticleVendu> selectAllArticlesCategorie(Categorie categorie) {
+		List<ArticleVendu> articles = new ArrayList<ArticleVendu>();
+		
+		String selectAllArtByCatQuery = "SELECT * FROM ARTICLES_VENDUS "
+				+ "JOIN UTILISATEURS ON ARTICLES_VENDUS.no_utilisateur = UTILISATEURS.no_utilisateur "
+				+ "JOIN CATEGORIES ON ARTICLES_VENDUS.no_categorie = CATEGORIES.no_categorie "
+				+ "JOIN RETRAITS ON ARTICLES_VENDUS.no_article = RETRAITS.no_article "
+				+ "WHERE ARTICLES_VENDUS.no_categorie = ?";
+		try {
+			Connection cnx = ConnectionProvider.getConnection();
+			PreparedStatement pstmt =cnx.prepareStatement(selectAllArtByCatQuery);
+			pstmt.setInt(1, categorie.getNoCategorie());
+			ResultSet rs = pstmt.executeQuery();
+			while(rs.next()) {
+				Utilisateur user = new Utilisateur();
+				user = HelperClassUtilisateur.createUserFromRs(rs);
+				ArticleVendu article = new ArticleVendu();
+				article = HelperClassVente.createArticleFromRS(rs);
+				article.setVendeur(user);
+				articles.add(article);
+			}
+			cnx.close();
+			pstmt.close();
+			rs.close();
+		} catch (SQLException e) {
+			System.out.println("List<ArticleVendu> selectAllArticlesCategorie(Categorie categorie) " + e.getMessage());
+		}
+		return articles;
 	}
 
 	@Override
@@ -201,12 +226,16 @@ public class VenteDAOJdbcImpl implements VenteDAO {
 		try {
 			Connection cnx = ConnectionProvider.getConnection();
 			PreparedStatement pstmt = cnx.prepareStatement(selectEnchereQuery);
+			pstmt.setInt(1, id);
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()) {
 				Utilisateur user = new Utilisateur();
 				user = HelperClassUtilisateur.createUserFromRs(rs);
 				ArticleVendu article = new ArticleVendu();
 				article = HelperClassVente.createArticleFromRS(rs);
+				
+				//pas sûr que ce soit bon, bugs possibles, à vérifier plus tard
+				article.setVendeur(user);
 				
 				Enchere enchere = new Enchere();
 				
