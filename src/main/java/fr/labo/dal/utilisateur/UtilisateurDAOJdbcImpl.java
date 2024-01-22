@@ -8,7 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.labo.bo.Adresse;
+
 import fr.labo.bo.Utilisateur;
 import fr.labo.dal.ConnectionProvider;
 
