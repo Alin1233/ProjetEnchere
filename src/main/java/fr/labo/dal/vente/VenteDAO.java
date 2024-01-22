@@ -20,5 +20,5 @@ public interface VenteDAO {
 	
 	public List<String>selectCategorieLibelles();
 	
-	public ArticleVendu selectById(int id);
+	public ArticleVendu selectArticleById(int id);
 }
