@@ -21,30 +21,32 @@ public class VenteManager {
 		venteDAO.insertEnchere(enchere);
 	}
 	
-	//Insérer l'objet article dans la db
+	//insérer l'objet article dans la db
 	public void ajuterVente(ArticleVendu article) {
 		venteDAO.insertArticle(article);
 	}
-	
+	//obtenir tous les articles de la db
 	public List<ArticleVendu> getAllArticles(){
 		return venteDAO.selectAllArticles();
 	}
-	
+	//obtenir tous les Encheres de la db
 	public List<Enchere> getAllEncheres(){
 		return venteDAO.selectAllEncheres();
 	}
+	//obtenir un article par id dans la db
 	public ArticleVendu getArticleVendu(int id) {
 		return venteDAO.selectArticleById(id);
 	}
+	//obtenir une liste de tous les Encheres effectués par un utilisateur
 	public List<Enchere> getAllEncheresByUser(int no_utilisateur) {
 		return venteDAO.selectEnchereByUserId(no_utilisateur);
 	}
-	
-	//rien ne fonctionne sous ce commentaire pour le instant !!!!!
+	//obtenir une liste de tous les articles d'une catégorie précise
 	public List<ArticleVendu> getAllArticlesDansCategorie(Categorie categorie){
 		return venteDAO.selectAllArticlesCategorie(categorie);
 	}
 	
+	//rien ne fonctionne sous ce commentaire pour le instant !!!!!
 	public List<String> getCategorieLibelles(){
 		return venteDAO.selectCategorieLibelles();
 	}
