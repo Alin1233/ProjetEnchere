@@ -8,7 +8,11 @@ public class Utilisateur implements Serializable {
 
 
 
-    private int noUtilisateur;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private int noUtilisateur;
 	private String pseudo;
     private String nom;
     private String prenom;
