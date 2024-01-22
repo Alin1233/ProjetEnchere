@@ -1,20 +1,23 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>	
 <header>
+
+<!-- Html généré si aucune session utilisateur est en cours -->
 	<c:if test="${empty user }">
 	    <nav >
 	        <div class="container-fluid  d-flex bg-warning p-2">
-	          <a class="navbar-brand p-2 flex-grow-1" href="#"><i class="fa-solid fa-gavel fa-2xl"></i></a>
+	          <a class="navbar-brand p-2 flex-grow-1" href="ServletAccesIndexJsp"><i class="fa-solid fa-gavel fa-2xl"></i></a>
 	          <a class="nav-link p-2" href="#">S'inscrire</a>
-	          <a class="nav-link p-2" href="ServletAccesConnectionUserJsp">Se connecter</a>
+	          <a class="nav-link p-2" href="ServletConnectionUser">Se connecter</a>
 	        </div>
 	      </nav>
      </c:if>
      
+<!-- Html généré si une session utilisateur est en cours -->
      <c:if test="${!empty user }">
      	<nav >
 		  <div class="container-fluid  d-flex bg-warning p-2">
 			  <a class="navbar-brand p-2 flex-grow-1" href="#"><i class="fa-solid fa-gavel fa-2xl"></i></a>
-			  <p class="nav-link p-2 me-5 flex-grow-1">Bienvenue ${user.idUser} !</p>
+			  <p class="nav-link p-2 me-5 flex-grow-1">Bienvenue ${user.pseudo} !</p>
 			  <a class="nav-link p-2" href="#">Enchère</a>
 			  <a class="nav-link p-2" href="#">Vendre un article</a>
 			  <a class="nav-link p-2" href="#">Mon profil</a>
