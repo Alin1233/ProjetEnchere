@@ -24,10 +24,15 @@ public class ServletAccesIndexJsp extends HttpServlet {
    }
 
    public void init() throws ServletException {
+	   ////////////////////////////////////////////////////////////////////////////
+	   /////////////////////////////////     Début   //////////////////////////////
+	   ////////////////////////////////////////////////////////////////////////////
+	   
+	   //Pour test
       Categorie cat1 = new Categorie(1, "libelle-1");
       Categorie cat2 = new Categorie(2, "libelle-2 libelle-2 libelle-2");
       Categorie cat3 = new Categorie(3, "libelle-3");
-      List<Categorie> categorieListe = new ArrayList();
+      List<Categorie> categorieListe = new ArrayList<>();
       categorieListe.add(cat1);
       categorieListe.add(cat2);
       categorieListe.add(cat3);
@@ -38,10 +43,16 @@ public class ServletAccesIndexJsp extends HttpServlet {
       ArticleVendu art1 = new ArticleVendu("nomArticle1", "descriptionArticle1", "10/10/2020Art1", "10/12/2020Art1", 11, 111, "etatVenteArt1", cat1, user1, adresse);
       ArticleVendu art2 = new ArticleVendu("nomArticle2", "descriptionArticle2", "10/10/2020Art2", "10/12/2020Art2", 22, 222, "etatVenteArt2", cat2, user2, adresse);
       ArticleVendu art3 = new ArticleVendu("nomArticle3", "descriptionArticle3", "10/10/2020Art3", "10/12/2020Art3", 33, 333, "etatVenteArt3", cat3, user3, adresse);
-      List<ArticleVendu> listeArticles = new ArrayList();
+      List<ArticleVendu> listeArticles = new ArrayList<>();
       listeArticles.add(art1);
       listeArticles.add(art2);
       listeArticles.add(art3);
+      
+	   ////////////////////////////////////////////////////////////////////////////
+	   /////////////////////////////////    fin      //////////////////////////////
+	   ////////////////////////////////////////////////////////////////////////////
+      
+      
       this.getServletContext().setAttribute("listeArticles", listeArticles);
       this.getServletContext().setAttribute("categorieListe", categorieListe);
    }
