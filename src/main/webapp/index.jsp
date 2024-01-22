@@ -1,34 +1,34 @@
 <%@page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<%@ include file="head.jspf"%>
 <title>Accueil</title>
-<%@ include file="head.jspf" %>
 </head>
 <body>
+
 	<%@ include file="header.jspf"%>
 	<main>
-
+	
 		<h1 class="text-center p-3">Liste des enchères</h1>
-		
+
 		<!-- Section filtre -->
 		<section>
 			<p>Filtres</p>
-			<form method="POST">
-				<div>
+			<form class="container-fluid d-flex flex-row " method="POST">
+				<div class="col-8">
 					<!-- Champs de recherche par defaut (non connecté) -->
-					<label for="search">Rechercher par mot clef</label> <input
-						class="border border-black form-control w-25" type="search"
+					<label for="search">Rechercher par mot clef</label> 
+					<input	class="border border-black form-control w-50" type="search"
 						placeholder="Search" aria-label="Search" name="search"> <br>
 
 					<!-- Affichage de l'ensemble des catégorie présente dans la base donnée -->
-					<label for="categorie">Catégorie :</label> 
-					<select id="categorie" name="categorie">
+					<label for="categorie">Catégorie :</label>
+					 <select class="w-25" id="categorie" name="categorie">
 						<c:forEach var="categorie" items="${categorieListe}">
-							<option value="${categorie.idUser}">${categorie.passwordUser}</option>
+							<option value="${categorie.noCategorie}">${categorie.libelle}</option>
 						</c:forEach>
 					</select>
 					
@@ -36,7 +36,7 @@
 					<!-- Section avec champs de recherche pour utilisateur connécté-->
 					 <!--Script pour desactiver les checkbox selon le radio filtreAchat/filtreVente sélctionné-->
 					<%@ include file="scriptIndex.jspf"%>
-					<c:if test="${empty user }">
+					<c:if test="${!empty user }">
 					
 						<section class="container-fluid d-flex flex-row justify-content-start">
 						    <div class="filtreAchat">
@@ -78,37 +78,43 @@
 						    </div>
 						</section>
 					</c:if>
+					
 				</div>
-				<button type="submit">Rechercher</button>
+				<div class="col align-self-center ">
+					<button class="d-block btn btn-lg btn-warning w-50" type="submit">Rechercher</button>
+				</div>
+				
 			</form>
+
 		</section>
 
-			<!-- Section Articles -->
-		<section>
+		<!-- Section Articles -->
+		<section class="d-flex flex-row flex-wrap">
 			<!-- Ajouter une boucle forEach pour afficher tout les articles -->
-			<div class="card mb-3" style="max-width: 50%;">
-				<div class="container-fluid  row g-0 ">
-					<div class="col-md-5 d-flex flex-wrap align-items-center">
-						<img src="${article.image }"
-							class="img-fluid" alt="cailloux">
-					</div>
-					<div class="col-md-5">
-						<div class="card-body">
-							<h5 class="card-title">${article.nom_article}</h5>
-							<p class="card-text">Description : ${article.description}</p>
-							<p class="card-text">Prix : ${article.prix_vente}</p>
-							<p class="card-text">Date de fin d'enchère :
-								${article.date_fin_encheres}</p>
-							<!-- A tester -->
-							<p class="card-text">Vendeur : ${article.vendeur }</p>
+			<c:forEach var="article" items="${listeArticles}">
+				<div class="card mb-5 col-5 m-5" style="max-width: 50%;">
+					<div class="container-fluid row">
+						<div class="col-5 d-flex flex-wrap align-items-center">
+							<img src="" class="img-fluid" alt="cailloux">
+						</div>
+						<div class="col">
+							<div class="card-body">
+								<h5 class="card-title">${article.nomArticle}</h5>
+								<p class="card-text">Description : ${article.description}</p>
+								<p class="card-text">Mise à prix : ${article.miseAPrix}</p>
+								<p class="card-text">Enchère actuelle : ${article.prixVente}</p>
+								<p class="card-text">Date de fin d'enchère : ${article.dateFinEncheres}</p>
+								<!-- A tester -->
+								<p class="card-text">Vendeur : ${article.vendeur.pseudo}</p>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
+				</c:forEach>
 		</section>
 
 	</main>
-
+	<%@ include file="footer.jspf"%>
 
 </body>
 </html>
