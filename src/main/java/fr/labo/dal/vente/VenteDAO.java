@@ -18,6 +18,8 @@ public interface VenteDAO {
 	
 	public List<ArticleVendu> selectAllArticlesCategorie(Categorie categorie);
 	
+	public void updateArticle(ArticleVendu article);
+	
 	public List<String>selectCategorieLibelles();
 	
 	public ArticleVendu selectArticleById(int id);

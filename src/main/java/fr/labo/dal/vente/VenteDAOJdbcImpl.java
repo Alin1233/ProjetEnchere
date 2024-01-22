@@ -254,4 +254,35 @@ public class VenteDAOJdbcImpl implements VenteDAO {
 		return allEnchereByUser;
 	}
 
+	@Override
+	public void updateArticle(ArticleVendu article) {
+		String updateArticleQuery = "UPDATE ARTICLES_VENDUS SET nom_article = ?, description = ?, date_debut_encheres = ?, date_fin_encheres = ?, prix_initial = ?, "
+			    + "prix_vente = ?, no_utilisateur = ?, no_categorie = ? WHERE no_article = ?";
+
+		String updateRetraitQuery = "UPDATE RETRAITS SET rue = ?, code_postal = ?, ville = ? WHERE no_article = ?";
+
+		try {
+			Connection cnx = ConnectionProvider.getConnection();
+			PreparedStatement pstmt =cnx.prepareStatement(updateArticleQuery);
+			PreparedStatement pstmtRetrait = cnx.prepareStatement(updateRetraitQuery);
+			pstmt = HelperClassVente.setPreparedStatementParameters(pstmt, article);
+			pstmt.setInt(9, article.getNoArticle());
+			pstmt.executeUpdate();
+			
+			
+			pstmtRetrait.setString(1, article.getRetrait().getRue());
+			pstmtRetrait.setString(2, article.getRetrait().getCodePostal());
+			pstmtRetrait.setString(3, article.getRetrait().getVille());
+			pstmtRetrait.setInt(4, article.getNoArticle());
+			pstmtRetrait.executeUpdate();
+			
+			pstmt.close();
+			pstmtRetrait.close();
+			cnx.close();
+					
+		} catch (SQLException e) {
+			System.out.println("Erreur updateArticle(int id) " + e.getMessage());
+		}
+	}
+
 }

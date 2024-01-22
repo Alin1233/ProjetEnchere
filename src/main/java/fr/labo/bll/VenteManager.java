@@ -46,6 +46,10 @@ public class VenteManager {
 		return venteDAO.selectAllArticlesCategorie(categorie);
 	}
 	
+	public void updateArticle(ArticleVendu article) {
+		venteDAO.updateArticle(article);
+	}
+	
 	//rien ne fonctionne sous ce commentaire pour le instant !!!!!
 	public List<String> getCategorieLibelles(){
 		return venteDAO.selectCategorieLibelles();
