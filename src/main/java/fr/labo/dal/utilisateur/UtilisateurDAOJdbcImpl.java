@@ -154,8 +154,8 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 	@Override
 	public String checkPseudoEtEmail(String pseudo, String email) {
 		
-		String queryPseudo = "SELECT * FROM users WHERE username = ?";
-        String queryEmail = "SELECT * FROM users WHERE email = ?";
+		String queryPseudo = "SELECT * FROM UTILISATEURS WHERE pseudo = ?";
+        String queryEmail = "SELECT * FROM UTILISATEURS WHERE email = ?";
         
         String toReturn = "bon";
         
@@ -183,6 +183,24 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 		
 		
 		return toReturn;
+	}
+
+	@Override
+	public Utilisateur selectUserByPseudo(String pseudo) {
+		String selectQuery = "SELECT * FROM UTILISATEURS WHERE pseudo = ?";
+		Utilisateur user = null;
+		try {
+			Connection cnx = ConnectionProvider.getConnection();
+			PreparedStatement pstmt = cnx.prepareStatement(selectQuery);
+			pstmt.setString(1, pseudo);
+			ResultSet rs = pstmt.executeQuery();
+			if(rs.next()) {
+				user = HelperClassUtilisateur.createUserFromRs(rs);
+			}
+		} catch (SQLException e) {
+			System.out.println("Erreur selectUserByPseudo(String pseudo)" + e.getMessage());
+		}
+		return user;
 	}
 
 	

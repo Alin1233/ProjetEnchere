@@ -50,5 +50,9 @@ public class UtilisateurManager {
 	public String checkPseudoEtEmail(String pseudo, String email) {
 		return utilisateurDAO.checkPseudoEtEmail(pseudo, email);
 	}
+	public Utilisateur getUserByPseudo(String pseudo) {
+		return utilisateurDAO.selectUserByPseudo(pseudo);
+	}
+	
 
 }
