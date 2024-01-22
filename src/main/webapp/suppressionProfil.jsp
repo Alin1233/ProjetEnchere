@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -14,39 +16,20 @@
         margin: 0;
         padding: 0;
         }
-    
-        form {
-            max-width: 800px;
-            margin: 0 auto;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-        }
  
-        .form-group {
-            width: 48%;
-            box-sizing: border-box;
-            padding: 10px;
-            margin-bottom: 15px;
-            text-align: left;
-        }
- 
-        input {
-            width: 100%;
-            box-sizing: border-box;
-            padding: 8px;
-            margin-bottom: 10px;
-            display: block;
-        }
- 
-        h1 {
+        h2 {
             text-align: center;
             margin: 0;
             padding: 16px;
         }
-        
-        
-       
+ 
+        .text {
+            margin-top: 5vw;
+        }
+ 
+        p {
+            text-align: center;
+        }
         
         .boutton {
             text-align: center;
@@ -104,43 +87,18 @@
     </div>
 </header>
  
-<h1>Mon Profil</h1>
  
-<form>
-    
-    <div class="form-group">
-        <p> Pseudo : </p>
-        <p><%= request.getAttribute("pseudo") %></p>
+ 
+<div class="text">
+    <h2>Confirmation de la suppression</h2>
+    <br>
+    <p>Etes-vous sÃ»r de vouloir supprimer votre compte?</p>
+    <div class="boutton">
+        <a href="affichageProfil.jsp" target="_blank" class="bouton-lien">Annuler</a>
+        <a href="ServletSuppressionProfil" target="_blank" class="bouton-lien">Oui</a>
     </div>
-    <div class="form-group">
-        <p> Nom : </p>
-        <p><%= request.getAttribute("nom") %></p>
-    </div>  <div class="form-group">
-        <p> Prénom: </p>
-        <p><%= request.getAttribute("prenom") %></p>
-    </div>  <div class="form-group">
-        <p> Email : </p>
-        <p><%= request.getAttribute("email") %></p>
-    </div>  <div class="form-group">
-        <p> Téléphone : </p>
-        <p><%= request.getAttribute("telephone") %></p>
-    </div>  <div class="form-group">
-        <p> Adresse : </p>
-        <p><%= request.getAttribute("adresse") %></p>
-    </div>
-    
-    <p> Le credit est de :  <%= request.getAttribute("credit") %>  </p>
-    
-</form>
  
-<div class="boutton">
-    <a href="modificationProfil.jsp" target="_blank" class="bouton-lien">Modifier</a>
-    <a href="suppressionProfil.jsp" target="_blank" class="bouton-lien">Supprimer</a>
-    <a href="index.jsp" target="_blank" class="bouton-lien">Annuler</a>
-    
-</div>
- 
- 
+</span>
  
 </body>
 </html>

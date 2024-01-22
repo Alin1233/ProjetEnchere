@@ -129,13 +129,9 @@
         <p><%= request.getAttribute("adresse") %></p>
     </div>
     
-    <p> Le credit est de :  <%= request.getAttribute("credit") %>  </p>
-    
 </form>
  
 <div class="boutton">
-    <a href="modificationProfil.jsp" target="_blank" class="bouton-lien">Modifier</a>
-    <a href="suppressionProfil.jsp" target="_blank" class="bouton-lien">Supprimer</a>
     <a href="index.jsp" target="_blank" class="bouton-lien">Annuler</a>
     
 </div>

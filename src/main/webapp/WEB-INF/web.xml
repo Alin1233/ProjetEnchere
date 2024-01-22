@@ -1,17 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
-    <servlet>
-    <description></description>
-    <display-name>ServletAccesIndexJsp</display-name>
-    <servlet-name>ServletAccesIndexJsp</servlet-name>
-    <servlet-class>fr.labo.servlets.ServletAccesIndexJsp</servlet-class>
-    <load-on-startup>1</load-on-startup>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>ServletAccesIndexJsp</servlet-name>
-    <url-pattern>/ServletAccesIndexJsp</url-pattern>
-  </servlet-mapping>
-  <display-name>ProjetEnchere</display-name>
   <display-name>ProjetEnchere</display-name>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
@@ -21,55 +9,4 @@
     <welcome-file>default.jsp</welcome-file>
     <welcome-file>default.htm</welcome-file>
   </welcome-file-list>
-  <servlet>
-    <description></description>
-    <display-name>Sadasadsa</display-name>
-    <servlet-name>Sadasadsa</servlet-name>
-    <servlet-class>fr.labo.servlets.Sadasadsa</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>Sadasadsa</servlet-name>
-    <url-pattern>/Sadasadsa</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>saas</display-name>
-    <servlet-name>saas</servlet-name>
-    <servlet-class>fr.labo.servlets.saas</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>saas</servlet-name>
-    <url-pattern>/saas</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>ServletModificationProfil</display-name>
-    <servlet-name>ServletModificationProfil</servlet-name>
-    <servlet-class>fr.labo.servlets.ServletModificationProfil</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>ServletModificationProfil</servlet-name>
-    <url-pattern>/ServletModificationProfil</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>ServletSuppressionProfil</display-name>
-    <servlet-name>ServletSuppressionProfil</servlet-name>
-    <servlet-class>fr.labo.servlets.ServletSuppressionProfil</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>ServletSuppressionProfil</servlet-name>
-    <url-pattern>/ServletSuppressionProfil</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>ServletAffichageProfil</display-name>
-    <servlet-name>ServletAffichageProfil</servlet-name>
-    <servlet-class>fr.labo.servlets.ServletAffichageProfil</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>ServletAffichageProfil</servlet-name>
-    <url-pattern>/ServletAffichageProfil</url-pattern>
-  </servlet-mapping>
-  
 </web-app>

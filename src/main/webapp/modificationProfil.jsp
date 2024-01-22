@@ -170,6 +170,7 @@
 
 <div class="button-container">
     <button type="submit">Enregistrer</button>
+    <a href="affichageProfil.jsp" target="_blank" class="bouton-lien">Annuler</a>
 </div>
  
 
