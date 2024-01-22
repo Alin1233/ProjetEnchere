@@ -285,4 +285,35 @@ public class VenteDAOJdbcImpl implements VenteDAO {
 		}
 	}
 
+	@Override
+	public List<ArticleVendu> selectAllArticlesByUser(Utilisateur user) {
+		String selectAllQuery = "SELECT * FROM ARTICLES_VENDUS JOIN UTILISATEURS ON ARTICLES_VENDUS.no_utilisateur = UTILISATEURS.no_utilisateur "
+				+ "JOIN CATEGORIES ON ARTICLES_VENDUS.no_categorie = CATEGORIES.no_categorie "
+				+ "JOIN RETRAITS ON ARTICLES_VENDUS.no_article = RETRAITS.no_article "
+				+ "WHERE ARTICLES_VENDUS.no_utilisateur = ?";
+		
+		ArrayList<ArticleVendu> allArticles = new ArrayList<ArticleVendu>();
+		try {
+			Connection cnx = ConnectionProvider.getConnection();
+			PreparedStatement pstmt =cnx.prepareStatement(selectAllQuery);
+			pstmt.setInt(1, user.getNoUtilisateur());
+			ResultSet rs = pstmt.executeQuery();
+			while(rs.next()) {
+				Utilisateur userOg = new Utilisateur();
+				userOg = HelperClassUtilisateur.createUserFromRs(rs);
+				ArticleVendu article = new ArticleVendu();
+				article = HelperClassVente.createArticleFromRS(rs);
+				article.setVendeur(userOg);
+				allArticles.add(article);
+			}
+			cnx.close();
+			pstmt.close();
+			rs.close();
+		} catch (SQLException e) {
+			System.out.println("Erreur List<ArticleVendu> selectAll() " + e.getMessage());
+		}
+		return allArticles;
+		
+	}
+
 }

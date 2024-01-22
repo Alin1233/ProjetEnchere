@@ -46,15 +46,16 @@ public class jdbcTest extends HttpServlet {
 
 		//System.out.println(manager.verifierPseudoEtEmail("awl213", "coolemail@gw2il.com"));
 		//System.out.println(manager.verifierPseudoEtPassword("awl213", "s2tronPasswor2d"));
-		//Utilisateur user = manager.getUser(11);
+		Utilisateur user = manager.getUser(11);
 		//Categorie categorie = new Categorie(2,"Informatique");
 		//ArticleVendu article = new ArticleVendu(1,"nom","description","12/12/2000","11/11/1111", 11,10,"etatVente",categorie,user,user.getAdresse());
 		//venteManager.ajuterVente(article);
 		
 		//Enchere enchere = new Enchere("11-11-2000",11,user,article);
 		//venteManager.ajuterEnchere(enchere);
-		Categorie cat = new Categorie(1,"la");
-		System.out.println(venteManager.getAllArticlesDansCategorie(cat));
+		//Categorie cat = new Categorie(1,"la");
+		Utilisateur useUtilisateur = new Utilisateur();
+		System.out.println(venteManager.getAllArticlesByUser(useUtilisateur));
 		//System.out.println(manager.getUser(11));
 		
 		

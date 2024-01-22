@@ -5,6 +5,7 @@ import java.util.List;
 import fr.labo.bo.ArticleVendu;
 import fr.labo.bo.Categorie;
 import fr.labo.bo.Enchere;
+import fr.labo.bo.Utilisateur;
 
 public interface VenteDAO {
 	
@@ -19,6 +20,8 @@ public interface VenteDAO {
 	public List<ArticleVendu> selectAllArticlesCategorie(Categorie categorie);
 	
 	public void updateArticle(ArticleVendu article);
+	
+	public List<ArticleVendu> selectAllArticlesByUser(Utilisateur user);
 	
 	public List<String>selectCategorieLibelles();
 	
