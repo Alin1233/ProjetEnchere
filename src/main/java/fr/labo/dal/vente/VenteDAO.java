@@ -12,7 +12,9 @@ public interface VenteDAO {
 	
 	public void insertEnchere(Enchere enchere);
 	
-	public List<ArticleVendu> selectAll();
+	public List<ArticleVendu> selectAllArticles();
+	
+	public List<Enchere> selectAllEncheres();
 	
 	public List<ArticleVendu> selectCategorie(Categorie categorie);
 	
