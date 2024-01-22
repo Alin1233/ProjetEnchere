@@ -8,10 +8,13 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.labo.bo.Adresse;
 import fr.labo.bo.ArticleVendu;
 import fr.labo.bo.Categorie;
 import fr.labo.bo.Enchere;
+import fr.labo.bo.Utilisateur;
 import fr.labo.dal.ConnectionProvider;
+import fr.labo.dal.utilisateur.HelperClassUtilisateur;
 
 public class VenteDAOJdbcImpl implements VenteDAO {
 
@@ -56,19 +59,30 @@ public class VenteDAOJdbcImpl implements VenteDAO {
 
 	@Override
 	public List<ArticleVendu> selectAll() {
-		String selectAllQuery = "SELECT * FROM ARTICLES_VENDUS JOIN UTILISATEURS ON ARTICLES_VENDUS.no_utilisateur = UTILISATEURS.no_utilisateur";
+		String selectAllQuery = "SELECT * FROM ARTICLES_VENDUS JOIN UTILISATEURS ON ARTICLES_VENDUS.no_utilisateur = UTILISATEURS.no_utilisateur "
+				+ "JOIN CATEGORIES ON ARTICLES_VENDUS.no_categorie = CATEGORIES.no_categorie "
+				+ "JOIN RETRAITS ON ARTICLES_VENDUS.no_article = RETRAITS.no_article";
+		
 		ArrayList<ArticleVendu> allArticles = new ArrayList<ArticleVendu>();
 		try {
 			Connection cnx = ConnectionProvider.getConnection();
 			PreparedStatement pstmt =cnx.prepareStatement(selectAllQuery);
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()) {
-				System.out.println(rs);
+				Utilisateur user = new Utilisateur();
+				user = HelperClassUtilisateur.createUserFromRs(rs);
+				ArticleVendu article = new ArticleVendu();
+				article = HelperClassVente.createArticleFromRS(rs);
+				article.setVendeur(user);
+				allArticles.add(article);
 			}
+			cnx.close();
+			pstmt.close();
+			rs.close();
 		} catch (SQLException e) {
 			System.out.println("Erreur List<ArticleVendu> selectAll() " + e.getMessage());
 		}
-		return null;
+		return allArticles;
 	}
 
 	@Override
