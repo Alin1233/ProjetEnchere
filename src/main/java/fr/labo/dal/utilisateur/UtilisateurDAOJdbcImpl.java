@@ -154,8 +154,8 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 	@Override
 	public String checkPseudoEtEmail(String pseudo, String email) {
 		
-		String queryPseudo = "SELECT * FROM users WHERE username = ?";
-        String queryEmail = "SELECT * FROM users WHERE email = ?";
+		String queryPseudo = "SELECT * FROM UTILISATEURS WHERE pseudo = ?";
+        String queryEmail = "SELECT * FROM UTILISATEURS WHERE email = ?";
         
         String toReturn = "bon";
         

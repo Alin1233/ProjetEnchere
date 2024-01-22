@@ -45,10 +45,11 @@ public class ServletCreationCompte extends HttpServlet {
 
 		String ckeckExistingUser = utilisateurManager.checkPseudoEtEmail(pseudo,email);
 		
+		
 		//vérifictaion de la double saisie du mot de passe
 		
 		if(!motDePasse.equals(confirmationMp)) {
-	         request.setAttribute("erreurMdp", "Les mots de passes saisies ne correspondent pas");
+	         request.setAttribute("erreurMdp", "Les mots de passe saisies ne correspondent pas");
 	         this.doGet(request, response);
 			
 	         
@@ -66,37 +67,7 @@ public class ServletCreationCompte extends HttpServlet {
 			request.getRequestDispatcher("ServletConnectionUser").forward(request, response);	
 		}
 		
-		
-		
-		
-		//Verification que tous les champs sont required, sinon renvoi vers la page creation compte (VERIF DANS LE JSP AVEC BALISE HTML REQUIRED)
-
-		//Verifier unicité, si absent = poursuite de la creation de compte, si present, alors erreur et retour page accueil
-		//Creation object Utilisateur
-		//pseudo, nom, prenom, email, telephone, adresse, credit, administrateur, motDePasse
-		//Verif unicité de deux variables
-		// appel methode verif unicité de la BO User
-		//boolean pseudoUnique = utilisateur.pseudoUnique(pseudo);
-		//boolean emailUnique = utilisateur.emailUnique(email);
-
-		 //Logique verification
-		//if (pseudoUnique && emailUnique) {
-			//if (motDePasse == confirmationMp) {
-				// Continuer creation compte (Insert within DB)
-//				UtilisateurDAO utilisateurDAO = DAOFactory.getUtilisateurDAO();
-//				utilisateurDAO.insert(utilisateur);
-			//}else {
-			//response.getWriter().println("Le mot de passe et le mot de passe de confirmation ne correspondent pas.");
-			//}
-		//} else {
-		    //Message erreur et retour page creation compte
-			//response.getWriter().println("Le pseudo ou le mail est déjà utilisé.");
-		//}
-		
-		// Redirection apres saisir du formulaire vers page "connecté"
-		//response.sendRedirect("/connectionUser.jsp");
-
-		}
+	}
 }
 
 	
