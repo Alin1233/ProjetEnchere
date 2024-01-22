@@ -197,6 +197,9 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 			if(rs.next()) {
 				user = HelperClassUtilisateur.createUserFromRs(rs);
 			}
+			cnx.close();
+			pstmt.close();
+			rs.close();
 		} catch (SQLException e) {
 			System.out.println("Erreur selectUserByPseudo(String pseudo)" + e.getMessage());
 		}
