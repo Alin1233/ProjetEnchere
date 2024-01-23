@@ -55,8 +55,8 @@ public class VenteManager {
 		return venteDAO.selectAllArticlesByUser(user);
 	}
 	//rien ne fonctionne sous ce commentaire pour le instant !!!!!
-	public List<String> getCategorieLibelles(){
-		return venteDAO.selectCategorieLibelles();
+	public List<String> getCategorieByLibelles(){
+		return venteDAO.selectCategorieByLibelles();
 	}
 	
 	
