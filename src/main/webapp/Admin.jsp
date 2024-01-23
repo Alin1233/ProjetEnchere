@@ -63,13 +63,15 @@
 				<td>${categories.libelle}</td>
 				<td>
 					<form action="ServletAccesAdmin" method="POST">
-						<input type="hidden" name="noCategorie" value="${categories.noCategorie}"  name="action" value="modifier"/>
+						<input type="hidden" name="noCategorie" value="${categories.noCategorie}"/>
+						<input type="hidden" name="action" value="modifier"/>
 						<button type="submit" class="btn btn-warning">Modifier</button>
 					</form>
 				</td>
 				<td>
 					<form action="ServletAccesAdmin" method="POST">
-						<input type="hidden" name="noCategorie" value="${categories.noCategorie}" name="action" value="supprimer"/>
+						<input type="hidden" name="noCategorie" value="${categories.noCategorie}"/>
+    					<input type="hidden" name="action" value="supprimer"/>
 						<button type="submit" class="btn btn-danger">Supprimer</button>
 					</form>
 				</td>

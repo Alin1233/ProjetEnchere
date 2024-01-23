@@ -70,9 +70,22 @@ public class ServletAccesAdmin extends HttpServlet {
 			userManager.deleteUser(id);
 		}
 		Categorie cat = new Categorie(request.getParameter("categorie"));
-		if(cat != null) {
+		if(cat.getLibelle() != null) {
 			VenteManager venteManager = new VenteManager();
 			venteManager.ajuterCategorie(cat);
+		}
+		String action = request.getParameter("action");
+		if(action != null) {
+			if(action.equals("supprimer")) {
+				String idStringCat = request.getParameter("noCategorie");
+				int idIntCat= Integer.parseInt(idStringCat);
+				System.out.println(idIntCat + " supprimer");
+			}
+			if(action.equals("modifier")) {
+				String idStringCat = request.getParameter("noCategorie");
+				int idIntCat= Integer.parseInt(idStringCat);
+				System.out.println(idIntCat + " modifier");
+			}
 		}
 		response.sendRedirect("./ServletAccesAdmin");
 	}
