@@ -42,8 +42,8 @@ public class ServletAccesAdmin extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		
-		 HttpSession session = request.getSession(); Utilisateur admin = (Utilisateur)
-		 session.getAttribute("user"); 
+		 HttpSession session = request.getSession();
+		 Utilisateur admin = (Utilisateur)session.getAttribute("user"); 
 		 if (admin == null || admin.getAdministrateur()== false) {
 			  response.sendRedirect("./ServletAccesIndexJsp");
 			  return;
