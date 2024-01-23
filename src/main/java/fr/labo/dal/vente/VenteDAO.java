@@ -28,4 +28,6 @@ public interface VenteDAO {
 	public ArticleVendu selectArticleById(int id);
 	
 	public List<Enchere> selectEnchereByUserId(int id);
+	
+	public List<Categorie> selectAllCategories();
 }
