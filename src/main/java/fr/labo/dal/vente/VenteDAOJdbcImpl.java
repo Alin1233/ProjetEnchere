@@ -341,4 +341,28 @@ public class VenteDAOJdbcImpl implements VenteDAO {
 		
 	}
 
+	@Override
+	public List<Categorie> selectAllCategories() {
+		final String SELECT_ALL_CATEGORIES = "SELECT * FROM CATEGORIES";
+		List<Categorie> categories = new ArrayList<Categorie>();
+
+		try {
+			Connection cnx = ConnectionProvider.getConnection();
+			PreparedStatement stm = cnx.prepareStatement(SELECT_ALL_CATEGORIES);
+			ResultSet rs = stm.executeQuery();
+			
+			while(rs.next()) {
+				Categorie cat = new Categorie(rs.getInt(1), rs.getString(2));
+				categories.add(cat);	
+			}
+			cnx.close();
+			stm.close();
+			rs.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("List<Categorie> selectAllCategories()" + e.getMessage());
+		}
+		return categories;
+	}
+
 }

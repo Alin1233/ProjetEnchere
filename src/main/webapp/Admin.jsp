@@ -42,7 +42,7 @@
 			</tr>
 			</c:forEach>
 		</table>
-		<p class="h2">Tous les articles:</p>
+		<p class="h2">Tous les categories:</p>
 		<table  class="table">
 			<tr>
 				<th>Identifiant</th>
