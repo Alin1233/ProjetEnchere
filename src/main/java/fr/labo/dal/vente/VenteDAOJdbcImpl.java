@@ -392,6 +392,7 @@ public class VenteDAOJdbcImpl implements VenteDAO {
 		try {
 			Connection cnx = ConnectionProvider.getConnection();
 			PreparedStatement pstmt =cnx.prepareStatement(deleteQuery);
+			pstmt.setInt(1, id);
 			pstmt.execute();
 		} catch (SQLException e) {
 			System.out.println("deleteCategorie(int id)" + e.getMessage());

@@ -64,6 +64,9 @@ public class VenteManager {
 	public void ajuterCategorie(Categorie categorie) {
 		venteDAO.insertCategorie(categorie);
 	}
+	public void deleteCategorie(int id) {
+		venteDAO.deleteCategorie(id);
+	}
 	
 	
 }
