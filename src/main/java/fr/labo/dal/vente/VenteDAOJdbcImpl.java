@@ -365,4 +365,25 @@ public class VenteDAOJdbcImpl implements VenteDAO {
 		return categories;
 	}
 
+	@Override
+	public void insertCategorie(Categorie categorie) {
+		String insertQuery = "INSERT INTO CATEGORIES (libelle) VALUES (?)";
+		try {
+			Connection cnx = ConnectionProvider.getConnection();
+			PreparedStatement pstmt =cnx.prepareStatement(insertQuery, Statement.RETURN_GENERATED_KEYS);
+			pstmt.setString(1, categorie.getLibelle());
+			pstmt.executeUpdate();
+			ResultSet rs = pstmt.getGeneratedKeys();
+			if(rs.next()) {
+				categorie.setNoCategorie(rs.getInt(1));
+			}
+			pstmt.close();
+			rs.close();
+			cnx.close();
+		} catch (SQLException e) {
+			System.out.println("insertCategorie(Categorie categorie)" + e.getMessage());
+		}
+		
+	}
+
 }

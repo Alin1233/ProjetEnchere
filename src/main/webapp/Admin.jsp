@@ -43,28 +43,34 @@
 			</c:forEach>
 		</table>
 		<p class="h2">Tous les categories:</p>
+		<form action="ServletAccesAdmin" method="POST">
+			<div class="form-group">
+						<label for="cat">Nouvelle catégorie:</label>
+						<input type="text" class="form-control-sm" name="categorie" value=""/>
+			</div>
+			<button type="submit" class="btn btn-primary mt-3">Ajouter une nouvelle catégorie</button>
+		</form>
 		<table  class="table">
 			<tr>
 				<th>Identifiant</th>
-				<th>Nom Article</th>
-				<th>Description</th>
-				<th>Prix</th>
-				<th>Categorie</th>
-				<th>Vendeur</th>
-				<th>Action</th>
+				<th>Libelle</th>
+				<th>Modifier</th>
+				<th>Supprimer</th>
 			</tr>
-			<c:forEach var="articles" items="${articles}">
+			<c:forEach var="categories" items="${categories}">
 			<tr>
-				<td>${articles.noArticle}</td>
-				<td>${articles.nomArticle}</td>
-				<td>${articles.description}</td>
-				<td>${articles.miseAPrix}</td>
-				<td>${articles.getCategorie().libelle}</td>
-				<td>${articles.getVendeur().pseudo}</td>
+				<td>${categories.noCategorie}</td>
+				<td>${categories.libelle}</td>
 				<td>
 					<form action="ServletAccesAdmin" method="POST">
-						<input type="hidden" name="userId" value="${users.noUtilisateur}"/>
+						<input type="hidden" name="noCategorie" value="${categories.noCategorie}"  name="action" value="modifier"/>
 						<button type="submit" class="btn btn-warning">Modifier</button>
+					</form>
+				</td>
+				<td>
+					<form action="ServletAccesAdmin" method="POST">
+						<input type="hidden" name="noCategorie" value="${categories.noCategorie}" name="action" value="supprimer"/>
+						<button type="submit" class="btn btn-danger">Supprimer</button>
 					</form>
 				</td>
 			</tr>

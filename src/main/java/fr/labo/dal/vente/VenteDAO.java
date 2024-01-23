@@ -30,4 +30,6 @@ public interface VenteDAO {
 	public List<Enchere> selectEnchereByUserId(int id);
 	
 	public List<Categorie> selectAllCategories();
+	
+	public void insertCategorie(Categorie categorie);
 }
