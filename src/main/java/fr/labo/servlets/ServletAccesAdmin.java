@@ -16,6 +16,7 @@ import java.util.List;
 import fr.labo.bll.UtilisateurManager;
 import fr.labo.bll.VenteManager;
 import fr.labo.bo.ArticleVendu;
+import fr.labo.bo.Categorie;
 import fr.labo.bo.Utilisateur;
 
 /**
@@ -52,8 +53,8 @@ public class ServletAccesAdmin extends HttpServlet {
 		List<Utilisateur> userList = userManager.getAll();
 		request.setAttribute("allUsers", userList);
 		VenteManager venteManager = new VenteManager();
-		List<ArticleVendu> articleList = venteManager.getAllArticles();
-		request.setAttribute("articles", articleList);
+		List<Categorie> categories = venteManager.getAllCategories();
+		request.setAttribute("categories", categories);
 		
 		RequestDispatcher rd = request.getRequestDispatcher("Admin.jsp");
 		rd.forward(request, response);
@@ -63,10 +64,17 @@ public class ServletAccesAdmin extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String idString = request.getParameter("userId");
-		int id = Integer.parseInt(idString);
-		UtilisateurManager userManager = new UtilisateurManager();
-		userManager.deleteUser(id);
-		doGet(request, response);
+		if(idString != null) {
+			int id = Integer.parseInt(idString);
+			UtilisateurManager userManager = new UtilisateurManager();
+			userManager.deleteUser(id);
+		}
+		Categorie cat = new Categorie(request.getParameter("categorie"));
+		if(cat != null) {
+			VenteManager venteManager = new VenteManager();
+			venteManager.ajuterCategorie(cat);
+		}
+		response.sendRedirect("./ServletAccesAdmin");
 	}
 
 }

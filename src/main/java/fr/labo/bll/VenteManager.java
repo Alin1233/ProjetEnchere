@@ -61,6 +61,9 @@ public class VenteManager {
 	public List<Categorie> getAllCategories(){
 		return venteDAO.selectAllCategories();
 	}
+	public void ajuterCategorie(Categorie categorie) {
+		venteDAO.insertCategorie(categorie);
+	}
 	
 	
 }
