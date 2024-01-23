@@ -12,7 +12,7 @@
 	<%@ include file="header.jspf"%>
 	<main>
 	
-	<h1 >Bonjour Monsieur l'administrateur</h1>
+	<h1 >Bonjour l'administrateur ${sessionScope.user.pseudo}</h1>
 		
 		<p class="h2">Tous les utilisateurs:</p>
 		<table  class="table">

@@ -40,15 +40,14 @@ public class ServletAccesAdmin extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		/*
-		 * HttpSession session = request.getSession(); Utilisateur admin = (Utilisateur)
-		 * session.getAttribute("user"); if (admin == null ||
-		 * admin.getAdministrateur()==false) {
-		 * response.sendRedirect("./ServletAccesIndexJsp");
-		 * 
-		 * }else { System.out.println(admin); RequestDispatcher rd =
-		 * request.getRequestDispatcher("./Admin.jsp"); rd.forward(request, response); }
-		 */
+		
+		 HttpSession session = request.getSession(); Utilisateur admin = (Utilisateur)
+		 session.getAttribute("user"); 
+		 if (admin == null || admin.getAdministrateur()== false) {
+			  response.sendRedirect("./ServletAccesIndexJsp");
+			  return;
+		  }
+		 
 		UtilisateurManager userManager = new UtilisateurManager();
 		List<Utilisateur> userList = userManager.getAll();
 		request.setAttribute("allUsers", userList);
