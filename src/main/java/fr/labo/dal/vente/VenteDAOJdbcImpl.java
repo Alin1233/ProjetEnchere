@@ -386,4 +386,17 @@ public class VenteDAOJdbcImpl implements VenteDAO {
 		
 	}
 
+	@Override
+	public void deleteCategorie(int id) {
+		String deleteQuery = "DELETE FROM CATEGORIES WHERE no_categorie = ?";
+		try {
+			Connection cnx = ConnectionProvider.getConnection();
+			PreparedStatement pstmt =cnx.prepareStatement(deleteQuery);
+			pstmt.execute();
+		} catch (SQLException e) {
+			System.out.println("deleteCategorie(int id)" + e.getMessage());
+		}
+		
+	}
+
 }
