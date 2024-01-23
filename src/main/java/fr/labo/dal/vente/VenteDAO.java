@@ -23,7 +23,7 @@ public interface VenteDAO {
 	
 	public List<ArticleVendu> selectAllArticlesByUser(Utilisateur user);
 	
-	public List<String>selectCategorieLibelles();
+	public List<String>selectCategorieByLibelles();
 	
 	public ArticleVendu selectArticleById(int id);
 	

@@ -18,6 +18,7 @@ import fr.labo.dal.utilisateur.HelperClassUtilisateur;
 
 public class VenteDAOJdbcImpl implements VenteDAO {
 
+	
 	@Override
 	public void insertArticle(ArticleVendu vente) {
 		String insertArticleQuery = "INSERT INTO ARTICLES_VENDUS (nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial,"
@@ -117,9 +118,33 @@ public class VenteDAOJdbcImpl implements VenteDAO {
 	}
 
 	@Override
-	public List<String> selectCategorieLibelles() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<String> selectCategorieByLibelles() {
+		
+		final String SELECT_ALL_CATEGORIES = "SELECT * FROM CATEGORIES";
+		List<String> categories = new ArrayList<String>();
+
+		try {
+			Connection cnx = ConnectionProvider.getConnection();
+			PreparedStatement stm = cnx.prepareStatement(SELECT_ALL_CATEGORIES);
+			ResultSet rs = stm.executeQuery();
+			
+			while(rs.next()) {
+				
+				String libelleCategorie = rs.getString(2);
+				categories.add(libelleCategorie);
+				
+			}
+			
+			
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("List<String> selectCategorieLibelles() " + e.getMessage());
+		}
+		
+		
+		return categories;
 	}
 
 	@Override
