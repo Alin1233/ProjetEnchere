@@ -394,8 +394,30 @@ public class VenteDAOJdbcImpl implements VenteDAO {
 			PreparedStatement pstmt =cnx.prepareStatement(deleteQuery);
 			pstmt.setInt(1, id);
 			pstmt.execute();
+			
+			cnx.close();
+			pstmt.close();
 		} catch (SQLException e) {
 			System.out.println("deleteCategorie(int id)" + e.getMessage());
+		}
+		
+	}
+
+	@Override
+	public void updateCategorie(Categorie categorie) {
+		String updateQuery = "UPDATE CATEGORIES SET libelle = ? WHERE no_categorie = ?";
+
+		try {
+			Connection cnx = ConnectionProvider.getConnection();
+			PreparedStatement pstmt = cnx.prepareStatement(updateQuery);
+			pstmt.setString(1, categorie.getLibelle());
+			pstmt.setInt(2, categorie.getNoCategorie());
+			pstmt.executeUpdate();
+			
+			cnx.close();
+			pstmt.close();
+		} catch (SQLException e) {
+			System.out.println("updateCategorie(Categorie categorie)" + e.getMessage());
 		}
 		
 	}

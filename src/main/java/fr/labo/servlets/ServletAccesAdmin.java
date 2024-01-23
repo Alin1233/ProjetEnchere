@@ -88,8 +88,13 @@ public class ServletAccesAdmin extends HttpServlet {
 			}
 			if(action.equals("modifier")) {
 				String idStringCat = request.getParameter("noCategorie");
-				int idIntCat= Integer.parseInt(idStringCat);
-				System.out.println(idIntCat + " modifier");
+				String catLibelle = request.getParameter("modifierCategorie");
+				int idIntCat = Integer.parseInt(idStringCat);
+				if(catLibelle!=null) {
+					Categorie categorie = new Categorie(idIntCat, catLibelle);
+					venteManager.updateCategorie(categorie);
+				}
+				
 			}
 		}
 		response.sendRedirect("./ServletAccesAdmin");

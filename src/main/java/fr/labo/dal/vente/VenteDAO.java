@@ -34,4 +34,6 @@ public interface VenteDAO {
 	public void insertCategorie(Categorie categorie);
 	
 	public void deleteCategorie(int id);
+	
+	public void updateCategorie(Categorie categorie);
 }

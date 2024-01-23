@@ -54,6 +54,7 @@
 			<tr>
 				<th>Identifiant</th>
 				<th>Libelle</th>
+				<th>Nouvelle Libelle</th>
 				<th>Modifier</th>
 				<th>Supprimer</th>
 			</tr>
@@ -61,13 +62,16 @@
 			<tr>
 				<td>${categories.noCategorie}</td>
 				<td>${categories.libelle}</td>
-				<td>
-					<form action="ServletAccesAdmin" method="POST">
+				<form action="ServletAccesAdmin" method="POST">
+					<td>
+						<input type="text" class="form-control-sm" name="modifierCategorie" value=""/>
+					</td>
+					<td>
 						<input type="hidden" name="noCategorie" value="${categories.noCategorie}"/>
 						<input type="hidden" name="action" value="modifier"/>
 						<button type="submit" class="btn btn-warning">Modifier</button>
-					</form>
-				</td>
+					</td>
+				</form>
 				<td>
 					<form action="ServletAccesAdmin" method="POST">
 						<input type="hidden" name="noCategorie" value="${categories.noCategorie}"/>
