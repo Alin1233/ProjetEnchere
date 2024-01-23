@@ -6,9 +6,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
-
+import fr.labo.bll.UtilisateurManager;
+import fr.labo.bll.VenteManager;
+import fr.labo.bo.ArticleVendu;
 import fr.labo.bo.Utilisateur;
 import fr.labo.dal.ConnectionProvider;
 
@@ -60,15 +63,34 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 
 	@Override
 	public void delete(int id) {
-		String deleteQuery = "DELETE FROM UTILISATEURS WHERE id = ?";
+		String deleteQuery = "DELETE FROM UTILISATEURS WHERE no_utilisateur = ?";
+		String deleteArticlesQuery = "DELETE FROM ARTICLES_VENDUS WHERE no_utilisateur = ?";
+		String deleteRETRAITSQuery = "DELETE FROM RETRAITS WHERE no_article = ?";
+		
 		try {
 			Connection cnx = ConnectionProvider.getConnection();
-			PreparedStatement pstmt = cnx.prepareStatement(deleteQuery);
-
-			pstmt.setInt(1, id);
-			pstmt.executeUpdate();
-
-			pstmt.close();
+			PreparedStatement pstmtDeleteUser = cnx.prepareStatement(deleteQuery);
+			PreparedStatement pstmtArticleUser = cnx.prepareStatement(deleteArticlesQuery);
+			PreparedStatement pstmtRETRAITSUser = cnx.prepareStatement(deleteRETRAITSQuery);
+			
+			VenteManager venteManager = new VenteManager();
+			UtilisateurManager utilisateurManager = new UtilisateurManager();
+			Utilisateur user = utilisateurManager.getUser(id);
+			List<ArticleVendu> userArticles = venteManager.getAllArticlesByUser(user);
+			for(ArticleVendu userArticle : userArticles) {
+				pstmtRETRAITSUser.setInt(1, userArticle.getNoArticle());
+				pstmtRETRAITSUser.executeUpdate();
+			}
+			
+			pstmtArticleUser.setInt(1, id);
+			pstmtArticleUser.executeUpdate();
+			
+			pstmtDeleteUser.setInt(1, id);
+			pstmtDeleteUser.executeUpdate();
+			
+			pstmtRETRAITSUser.close();
+			pstmtArticleUser.close();
+			pstmtDeleteUser.close();
 			cnx.close();
 
 		} catch (SQLException e) {

@@ -63,7 +63,10 @@ public class ServletAccesAdmin extends HttpServlet {
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println(request.getParameter("userId"));
+		String idString = request.getParameter("userId");
+		int id = Integer.parseInt(idString);
+		UtilisateurManager userManager = new UtilisateurManager();
+		userManager.deleteUser(id);
 		doGet(request, response);
 	}
 
