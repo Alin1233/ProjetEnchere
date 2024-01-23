@@ -83,8 +83,6 @@ public class ServletAccesAdmin extends HttpServlet {
 				String idStringCat = request.getParameter("noCategorie");
 				int idIntCat= Integer.parseInt(idStringCat);
 				venteManager.deleteCategorie(idIntCat);
-				
-				
 			}
 			if(action.equals("modifier")) {
 				String idStringCat = request.getParameter("noCategorie");
