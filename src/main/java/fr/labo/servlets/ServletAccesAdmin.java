@@ -63,15 +63,18 @@ public class ServletAccesAdmin extends HttpServlet {
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		UtilisateurManager userManager = new UtilisateurManager();
+		VenteManager venteManager = new VenteManager();
+		
 		String idString = request.getParameter("userId");
 		if(idString != null) {
 			int id = Integer.parseInt(idString);
-			UtilisateurManager userManager = new UtilisateurManager();
 			userManager.deleteUser(id);
 		}
 		Categorie cat = new Categorie(request.getParameter("categorie"));
 		if(cat.getLibelle() != null) {
-			VenteManager venteManager = new VenteManager();
+			
 			venteManager.ajuterCategorie(cat);
 		}
 		String action = request.getParameter("action");
@@ -79,7 +82,9 @@ public class ServletAccesAdmin extends HttpServlet {
 			if(action.equals("supprimer")) {
 				String idStringCat = request.getParameter("noCategorie");
 				int idIntCat= Integer.parseInt(idStringCat);
-				System.out.println(idIntCat + " supprimer");
+				venteManager.deleteCategorie(idIntCat);
+				
+				
 			}
 			if(action.equals("modifier")) {
 				String idStringCat = request.getParameter("noCategorie");
