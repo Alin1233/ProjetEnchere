@@ -17,6 +17,7 @@ import fr.labo.bo.ArticleVendu;
 import fr.labo.bo.Categorie;
 import fr.labo.bo.Utilisateur;
 
+
 @WebServlet( "/ServletNouvelArticle" )
 public class ServletNouvelArticle extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -74,6 +75,7 @@ public class ServletNouvelArticle extends HttpServlet {
 		
 		// Ajouter un attribut à la requête pour indiquer la réussite
 		request.setAttribute("confirmationMessage", "L'article a été ajouté avec succès.");
+		request.getRequestDispatcher("ServletAccesIndexJsp").forward(request, response);
 		
 		//Erreur, format différent attendue par la base de donnée
 	   }catch (SQLException e) {
