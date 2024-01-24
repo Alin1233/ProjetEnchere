@@ -43,7 +43,6 @@ public class ServletAccesAdmin extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		HttpSession session = request.getSession(false);
-		
 		//vérifie et met à jour l'activité de l'utilisateur de la session en cours
 		try {
 			SessionsUtilisateurLimit.checkLastAction(session);
