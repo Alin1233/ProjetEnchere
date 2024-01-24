@@ -20,7 +20,7 @@
 		</form>
 		<c:if test="${!empty erreur }">
 		
-			<p>${erreur}</p>
+			<p class="text-center text-danger">${erreur}</p>
 		
 		</c:if>
 	</main>
