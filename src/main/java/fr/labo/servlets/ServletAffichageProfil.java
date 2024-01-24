@@ -11,6 +11,7 @@ import java.io.IOException;
 import fr.labo.bo.Adresse;
 import fr.labo.bo.Utilisateur;
 
+@WebServlet("/ServletAffichageProfil")
 public class ServletAffichageProfil extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
