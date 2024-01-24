@@ -12,7 +12,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 
-		@WebServlet("/ServletAffichageProfilAutre")
 		public class ServletAffichageProfilAutre extends HttpServlet {
 			private static final long serialVersionUID = 1L;
 		       

@@ -30,6 +30,7 @@ public class ServletNouvelArticle extends HttpServlet {
 		
 		VenteManager venteManager = new VenteManager();
 		
+		
 		//Récuperation des information de l'utilisateur connecté
 		HttpSession session = request.getSession();
 		Utilisateur user = (Utilisateur) session.getAttribute("user");
@@ -45,6 +46,9 @@ public class ServletNouvelArticle extends HttpServlet {
 		String dateDebutEnchere = request.getParameter( "dateDebutEnchere" );
 		String dateFinEnchere = request.getParameter( "dateFinEnchere" );
 		String etatVente = "en cours";
+		
+		//Recuperation de la categorie (necessaire à la creation de l'article)
+		
 
 		//Adresse de retrait
 		String RetraitRue = request.getParameter( "RetraitRue" );
