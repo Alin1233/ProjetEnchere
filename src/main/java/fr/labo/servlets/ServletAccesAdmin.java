@@ -18,6 +18,7 @@ import fr.labo.bll.VenteManager;
 import fr.labo.bo.ArticleVendu;
 import fr.labo.bo.Categorie;
 import fr.labo.bo.Utilisateur;
+import fr.labo.servlets.helpers.SessionsUtilisateurLimit;
 
 /**
  * Servlet implementation class ServletAccesAdmin
@@ -41,8 +42,19 @@ public class ServletAccesAdmin extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		HttpSession session = request.getSession(false);
 		
-		 HttpSession session = request.getSession();
+		//vérifie et met à jour l'activité de l'utilisateur de la session en cours
+		try {
+			SessionsUtilisateurLimit.checkLastAction(session);
+		} catch (RuntimeException e) {
+			System.out.println("L'utilisateur est inactif depuis plus d'une minute, redirection vers la page de connexion.");
+			session.invalidate();
+		    response.sendRedirect("./ServletConnectionUser");
+		    return;
+		}
+		
+		 
 		 Utilisateur admin = (Utilisateur)session.getAttribute("user"); 
 		 if (admin == null || admin.getAdministrateur()== false) {
 			  response.sendRedirect("./ServletAccesIndexJsp");
@@ -59,10 +71,24 @@ public class ServletAccesAdmin extends HttpServlet {
 		RequestDispatcher rd = request.getRequestDispatcher("Admin.jsp");
 		rd.forward(request, response);
 		
+		
+		
 	}
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		HttpSession session = request.getSession(false);
+		//vérifie et met à jour l'activité de l'utilisateur de la session en cours
+		try {
+			SessionsUtilisateurLimit.checkLastAction(session);
+		} catch (RuntimeException e) {
+			System.out.println("L'utilisateur est inactif depuis plus d'une minute, redirection vers la page de connexion.");
+			session.invalidate();
+		    response.sendRedirect("./ServletConnectionUser");
+		    return;
+		}
+		
 		
 		UtilisateurManager userManager = new UtilisateurManager();
 		VenteManager venteManager = new VenteManager();
