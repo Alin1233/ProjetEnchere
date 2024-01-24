@@ -42,17 +42,27 @@ public class ServletRechercherVentes extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String categorieString = request.getParameter("categorie");
-		
-		
-		List<ArticleVendu> articlesToSend = new ArrayList<ArticleVendu>();
+		String searchString = request.getParameter("search");
 		VenteManager venteManager = new VenteManager();
-		if(categorieString.equals("all")) {
-			articlesToSend =  venteManager.getAllArticles();
+		List<ArticleVendu> articlesToSend = new ArrayList<ArticleVendu>();
+		
+		if (searchString == null || searchString.trim().isEmpty()) {
+			venteManager = new VenteManager();
+			if(categorieString.equals("all")) {
+				articlesToSend =  venteManager.getAllArticles();
+			}else {
+				List<Categorie> allCategories = venteManager.getAllCategories();
+				for(Categorie categorie: allCategories) {
+					if(categorie.getLibelle().equals(categorieString)) {
+						articlesToSend = venteManager.getAllArticlesDansCategorie(categorie);
+					}
+				}
+			}
 		}else {
-			List<Categorie> allCategories = venteManager.getAllCategories();
-			for(Categorie categorie: allCategories) {
-				if(categorie.getLibelle().equals(categorieString)) {
-					articlesToSend = venteManager.getAllArticlesDansCategorie(categorie);
+			List<ArticleVendu> articleToFilter = venteManager.getAllArticles();
+			for(ArticleVendu article: articleToFilter) {
+				if(article.getNomArticle().toLowerCase().contains(searchString.toLowerCase())) {
+					articlesToSend.add(article);
 				}
 			}
 		}
