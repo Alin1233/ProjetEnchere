@@ -2,15 +2,10 @@
 package fr.labo.servlets;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
-import fr.labo.bll.UtilisateurManager;
 import fr.labo.bll.VenteManager;
-import fr.labo.bo.Adresse;
 import fr.labo.bo.ArticleVendu;
-import fr.labo.bo.Categorie;
-import fr.labo.bo.Utilisateur;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
