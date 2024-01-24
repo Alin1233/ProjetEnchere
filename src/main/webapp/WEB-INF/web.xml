@@ -23,54 +23,15 @@
   </welcome-file-list>
   <servlet>
     <description></description>
-    <display-name>Sadasadsa</display-name>
-    <servlet-name>Sadasadsa</servlet-name>
-    <servlet-class>fr.labo.servlets.Sadasadsa</servlet-class>
+    <display-name>ServletEncherir</display-name>
+    <servlet-name>ServletEncherir</servlet-name>
+    <servlet-class>fr.labo.servlets.ServletEncherir</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>Sadasadsa</servlet-name>
-    <url-pattern>/Sadasadsa</url-pattern>
+    <servlet-name>ServletEncherir</servlet-name>
+    <url-pattern>/ServletEncherir</url-pattern>
   </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>saas</display-name>
-    <servlet-name>saas</servlet-name>
-    <servlet-class>fr.labo.servlets.saas</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>saas</servlet-name>
-    <url-pattern>/saas</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>ServletModificationProfil</display-name>
-    <servlet-name>ServletModificationProfil</servlet-name>
-    <servlet-class>fr.labo.servlets.ServletModificationProfil</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>ServletModificationProfil</servlet-name>
-    <url-pattern>/ServletModificationProfil</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>ServletSuppressionProfil</display-name>
-    <servlet-name>ServletSuppressionProfil</servlet-name>
-    <servlet-class>fr.labo.servlets.ServletSuppressionProfil</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>ServletSuppressionProfil</servlet-name>
-    <url-pattern>/ServletSuppressionProfil</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>ServletAffichageProfil</display-name>
-    <servlet-name>ServletAffichageProfil</servlet-name>
-    <servlet-class>fr.labo.servlets.ServletAffichageProfil</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>ServletAffichageProfil</servlet-name>
-    <url-pattern>/ServletAffichageProfil</url-pattern>
-  </servlet-mapping>
+
   <servlet>
     <description></description>
     <display-name>ServletAccesAdmin</display-name>
@@ -81,4 +42,5 @@
     <servlet-name>ServletAccesAdmin</servlet-name>
     <url-pattern>/ServletAccesAdmin</url-pattern>
   </servlet-mapping>
+
 </web-app>
