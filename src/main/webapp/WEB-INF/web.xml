@@ -71,4 +71,14 @@
     <servlet-name>ServletAffichageProfil</servlet-name>
     <url-pattern>/ServletAffichageProfil</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ServletAccesAdmin</display-name>
+    <servlet-name>ServletAccesAdmin</servlet-name>
+    <servlet-class>fr.labo.servlets.ServletAccesAdmin</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletAccesAdmin</servlet-name>
+    <url-pattern>/ServletAccesAdmin</url-pattern>
+  </servlet-mapping>
 </web-app>

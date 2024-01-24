@@ -341,4 +341,85 @@ public class VenteDAOJdbcImpl implements VenteDAO {
 		
 	}
 
+	@Override
+	public List<Categorie> selectAllCategories() {
+		final String SELECT_ALL_CATEGORIES = "SELECT * FROM CATEGORIES";
+		List<Categorie> categories = new ArrayList<Categorie>();
+
+		try {
+			Connection cnx = ConnectionProvider.getConnection();
+			PreparedStatement stm = cnx.prepareStatement(SELECT_ALL_CATEGORIES);
+			ResultSet rs = stm.executeQuery();
+			
+			while(rs.next()) {
+				Categorie cat = new Categorie(rs.getInt(1), rs.getString(2));
+				categories.add(cat);	
+			}
+			cnx.close();
+			stm.close();
+			rs.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("List<Categorie> selectAllCategories()" + e.getMessage());
+		}
+		return categories;
+	}
+
+	@Override
+	public void insertCategorie(Categorie categorie) {
+		String insertQuery = "INSERT INTO CATEGORIES (libelle) VALUES (?)";
+		try {
+			Connection cnx = ConnectionProvider.getConnection();
+			PreparedStatement pstmt =cnx.prepareStatement(insertQuery, Statement.RETURN_GENERATED_KEYS);
+			pstmt.setString(1, categorie.getLibelle());
+			pstmt.executeUpdate();
+			ResultSet rs = pstmt.getGeneratedKeys();
+			if(rs.next()) {
+				categorie.setNoCategorie(rs.getInt(1));
+			}
+			pstmt.close();
+			rs.close();
+			cnx.close();
+		} catch (SQLException e) {
+			System.out.println("insertCategorie(Categorie categorie)" + e.getMessage());
+		}
+		
+	}
+
+	@Override
+	public void deleteCategorie(int id) {
+		String deleteQuery = "DELETE FROM CATEGORIES WHERE no_categorie = ?";
+		try {
+			Connection cnx = ConnectionProvider.getConnection();
+			PreparedStatement pstmt =cnx.prepareStatement(deleteQuery);
+			pstmt.setInt(1, id);
+			pstmt.execute();
+			
+			cnx.close();
+			pstmt.close();
+		} catch (SQLException e) {
+			System.out.println("deleteCategorie(int id)" + e.getMessage());
+		}
+		
+	}
+
+	@Override
+	public void updateCategorie(Categorie categorie) {
+		String updateQuery = "UPDATE CATEGORIES SET libelle = ? WHERE no_categorie = ?";
+
+		try {
+			Connection cnx = ConnectionProvider.getConnection();
+			PreparedStatement pstmt = cnx.prepareStatement(updateQuery);
+			pstmt.setString(1, categorie.getLibelle());
+			pstmt.setInt(2, categorie.getNoCategorie());
+			pstmt.executeUpdate();
+			
+			cnx.close();
+			pstmt.close();
+		} catch (SQLException e) {
+			System.out.println("updateCategorie(Categorie categorie)" + e.getMessage());
+		}
+		
+	}
+
 }

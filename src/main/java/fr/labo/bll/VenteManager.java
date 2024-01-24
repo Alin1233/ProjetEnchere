@@ -54,11 +54,22 @@ public class VenteManager {
 	public List<ArticleVendu> getAllArticlesByUser(Utilisateur user){
 		return venteDAO.selectAllArticlesByUser(user);
 	}
-	//rien ne fonctionne sous ce commentaire pour le instant !!!!!
+	
 	public List<String> getCategorieByLibelles(){
 		return venteDAO.selectCategorieByLibelles();
 	}
-	
+	public List<Categorie> getAllCategories(){
+		return venteDAO.selectAllCategories();
+	}
+	public void ajuterCategorie(Categorie categorie) {
+		venteDAO.insertCategorie(categorie);
+	}
+	public void deleteCategorie(int id) {
+		venteDAO.deleteCategorie(id);
+	}
+	public void updateCategorie(Categorie categorie) {
+		venteDAO.updateCategorie(categorie);
+	}
 	
 	
 }
