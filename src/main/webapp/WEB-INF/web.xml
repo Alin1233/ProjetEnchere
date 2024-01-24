@@ -51,4 +51,17 @@
     <servlet-name>ServletRechercherVentes</servlet-name>
     <url-pattern>/ServletRechercherVentes</url-pattern>
   </servlet-mapping>
+
+  
+    <servlet>
+    <description></description>
+    <display-name>ServletAffichageProfilAutre</display-name>
+    <servlet-name>ServletAffichageProfilAutre</servlet-name>
+    <servlet-class>fr.labo.servlets.ServletAffichageProfilAutre</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletAffichageProfilAutre</servlet-name>
+    <url-pattern>/ServletAffichageProfilAutre</url-pattern>
+  </servlet-mapping>
+
 </web-app>

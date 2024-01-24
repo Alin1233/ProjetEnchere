@@ -23,11 +23,23 @@
 	            <input class="btn btn-warning w-25 align-self-start ms-5" type="submit" value="Importer" /> <br/> 
 			</form>
 					
-			<form class="containder-fluid d-flex flex-row col"  action="">
+			<form class="containder-fluid d-flex flex-row col"  action="ServletNouvelArticle" method="POST">
 				
 				<div class="containder-fluid d-flex flex-column  col">
 					<br>
 					<h1 class="align-self-start ms-5">Creer une nouvelle vente</h1>
+					<br>
+					<!-- Afficher le message de confirmation s'il existe -->
+					<c:if test="${not empty requestScope.confirmationMessage}">
+					    <div class="alert alert-success w-50">
+					        ${requestScope.confirmationMessage}
+					    </div>
+					</c:if>
+					<c:if test="${not empty requestScope.error}">
+					    <div class="alert alert-danger w-50">
+					        ${requestScope.error}
+					    </div>
+					</c:if>
 					<br>
 					<div class="mt-3 d-flex flex-row">
 					    <label class="col-2 col-form-label" for="nomArticle">Article</label>
@@ -85,7 +97,7 @@
 	               	<br>
 					<div class="d-flex justify-content-center col-8">
 						<button type="submit" class="btn btn-warning btn-lg pe-5 ps-5">Valider</button>
-						<button type="button" class="btn btn-danger btn-lg pe-5 ps-5 ms-5">Retour</button>		
+						<button type="button" onclick="location.href='index.jsp'" class="btn btn-danger btn-lg pe-5 ps-5 ms-5">Retour</button>		
 					</div>
 				</div>
 				

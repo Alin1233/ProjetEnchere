@@ -20,7 +20,7 @@ public class VenteDAOJdbcImpl implements VenteDAO {
 
 	
 	@Override
-	public void insertArticle(ArticleVendu vente) {
+	public void insertArticle(ArticleVendu vente) throws SQLException{
 		String insertArticleQuery = "INSERT INTO ARTICLES_VENDUS (nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial,"
 				+ "prix_vente, no_utilisateur, no_categorie) VALUES("
 				+ "?,?,?,?,?,?,?,?)";
@@ -53,7 +53,8 @@ public class VenteDAOJdbcImpl implements VenteDAO {
 			cnx.close();
 			
 		} catch (SQLException e) {
-			 System.out.println("Erreur d'insertion de l'ArticleVendu " + e.getMessage());
+			 throw new SQLException(e);
+			 
 		}
 		
 	}
