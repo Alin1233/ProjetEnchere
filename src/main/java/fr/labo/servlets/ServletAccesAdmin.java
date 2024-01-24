@@ -18,7 +18,9 @@ import fr.labo.bll.VenteManager;
 import fr.labo.bo.ArticleVendu;
 import fr.labo.bo.Categorie;
 import fr.labo.bo.Utilisateur;
+
 import fr.labo.servlets.helpers.SessionsUtilisateurLimit;
+
 
 /**
  * Servlet implementation class ServletAccesAdmin
@@ -42,6 +44,7 @@ public class ServletAccesAdmin extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+
 		HttpSession session = request.getSession(false);
 		//vérifie et met à jour l'activité de l'utilisateur de la session en cours
 		try {
@@ -55,6 +58,7 @@ public class ServletAccesAdmin extends HttpServlet {
 		
 		 
 		 Utilisateur admin = (Utilisateur)session.getAttribute("user"); 
+
 		 if (admin == null || admin.getAdministrateur()== false) {
 			  response.sendRedirect("./ServletAccesIndexJsp");
 			  return;
@@ -69,14 +73,13 @@ public class ServletAccesAdmin extends HttpServlet {
 		
 		RequestDispatcher rd = request.getRequestDispatcher("Admin.jsp");
 		rd.forward(request, response);
-		
-		
-		
+
 	}
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+
 		HttpSession session = request.getSession(false);
 		//vérifie et met à jour l'activité de l'utilisateur de la session en cours
 		try {
@@ -108,6 +111,7 @@ public class ServletAccesAdmin extends HttpServlet {
 				String idStringCat = request.getParameter("noCategorie");
 				int idIntCat= Integer.parseInt(idStringCat);
 				venteManager.deleteCategorie(idIntCat);
+
 			}
 			if(action.equals("modifier")) {
 				String idStringCat = request.getParameter("noCategorie");
