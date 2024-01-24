@@ -6,6 +6,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -14,6 +16,7 @@ import java.util.List;
 import fr.labo.bll.VenteManager;
 import fr.labo.bo.ArticleVendu;
 import fr.labo.bo.Categorie;
+import fr.labo.bo.Utilisateur;
 
 /**
  * Servlet implementation class ServletRechercherVentes
@@ -43,11 +46,12 @@ public class ServletRechercherVentes extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String categorieString = request.getParameter("categorie");
 		String searchString = request.getParameter("search");
+		String filtreRadio = request.getParameter("filtreRadio");
+		
 		VenteManager venteManager = new VenteManager();
 		List<ArticleVendu> articlesToSend = new ArrayList<ArticleVendu>();
 		
 		if (searchString == null || searchString.trim().isEmpty()) {
-			venteManager = new VenteManager();
 			if(categorieString.equals("all")) {
 				articlesToSend =  venteManager.getAllArticles();
 			}else {
@@ -64,6 +68,23 @@ public class ServletRechercherVentes extends HttpServlet {
 				if(article.getNomArticle().toLowerCase().contains(searchString.toLowerCase())) {
 					articlesToSend.add(article);
 				}
+			}
+		}
+		if(filtreRadio != null) {
+			HttpSession session = request.getSession(false);
+			Utilisateur user = (Utilisateur)session.getAttribute("user"); 
+			if(filtreRadio.equals("enchereOuverte")) {
+				System.out.println(filtreRadio);
+			}else if (filtreRadio.equals("enchereEnCours")) {
+				System.out.println(filtreRadio);
+			}else if (filtreRadio.equals("enchereRemporte")) {
+				System.out.println(filtreRadio);
+			}else if (filtreRadio.equals("veteEnCours")) {
+				System.out.println(filtreRadio);
+			}else if (filtreRadio.equals("venteNonDebute")) {
+				System.out.println(filtreRadio);
+			}else if (filtreRadio.equals("venteTermine")) {
+				System.out.println(filtreRadio);
 			}
 		}
 		this.getServletContext().setAttribute("listeArticles", articlesToSend);
