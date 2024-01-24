@@ -20,7 +20,7 @@ public class SessionsUtilisateurLimit {
 			//System.out.println(currentTime);
 			//System.out.println(difference);
 			
-			if (difference >= 1) {
+			if (difference >= 5) {
 				 throw new RuntimeException("L'utilisateur est inactif depuis plus d'une minute");
 			}else {
 				session.setAttribute("actionPerformed", currentTime);
