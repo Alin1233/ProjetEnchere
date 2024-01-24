@@ -50,8 +50,10 @@ public class ServletAccesAdmin extends HttpServlet {
 		try {
 			SessionsUtilisateurLimit.checkLastAction(session);
 		} catch (RuntimeException e) {
-			System.out.println("L'utilisateur est inactif depuis plus d'une minute, redirection vers la page de connexion.");
-			session.invalidate();
+			System.out.println("L'utilisateur est inactif depuis plus de 5 minutes, redirection vers la page de connexion.");
+			if(session !=null) {
+				session.invalidate();
+			}
 		    response.sendRedirect("./ServletConnectionUser");
 		    return;
 		}
