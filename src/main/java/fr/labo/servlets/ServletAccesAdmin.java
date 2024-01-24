@@ -19,6 +19,9 @@ import fr.labo.bo.ArticleVendu;
 import fr.labo.bo.Categorie;
 import fr.labo.bo.Utilisateur;
 
+import fr.labo.servlets.helpers.SessionsUtilisateurLimit;
+
+
 /**
  * Servlet implementation class ServletAccesAdmin
  */
@@ -41,9 +44,23 @@ public class ServletAccesAdmin extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+
+		HttpSession session = request.getSession(false);
+		//vérifie et met à jour l'activité de l'utilisateur de la session en cours
+		try {
+			SessionsUtilisateurLimit.checkLastAction(session);
+		} catch (RuntimeException e) {
+			System.out.println("L'utilisateur est inactif depuis plus de 5 minutes, redirection vers la page de connexion.");
+			if(session !=null) {
+				session.invalidate();
+			}
+		    response.sendRedirect("./ServletConnectionUser");
+		    return;
+		}
 		
-		 HttpSession session = request.getSession(); Utilisateur admin = (Utilisateur)
-		 session.getAttribute("user"); 
+		 
+		 Utilisateur admin = (Utilisateur)session.getAttribute("user"); 
+
 		 if (admin == null || admin.getAdministrateur()== false) {
 			  response.sendRedirect("./ServletAccesIndexJsp");
 			  return;
@@ -58,11 +75,24 @@ public class ServletAccesAdmin extends HttpServlet {
 		
 		RequestDispatcher rd = request.getRequestDispatcher("Admin.jsp");
 		rd.forward(request, response);
-		
+
 	}
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+
+		HttpSession session = request.getSession(false);
+		//vérifie et met à jour l'activité de l'utilisateur de la session en cours
+		try {
+			SessionsUtilisateurLimit.checkLastAction(session);
+		} catch (RuntimeException e) {
+			System.out.println("L'utilisateur est inactif depuis plus d'une minute, redirection vers la page de connexion.");
+			session.invalidate();
+		    response.sendRedirect("./ServletConnectionUser");
+		    return;
+		}
+		
 		
 		UtilisateurManager userManager = new UtilisateurManager();
 		VenteManager venteManager = new VenteManager();
@@ -83,8 +113,7 @@ public class ServletAccesAdmin extends HttpServlet {
 				String idStringCat = request.getParameter("noCategorie");
 				int idIntCat= Integer.parseInt(idStringCat);
 				venteManager.deleteCategorie(idIntCat);
-				
-				
+
 			}
 			if(action.equals("modifier")) {
 				String idStringCat = request.getParameter("noCategorie");
