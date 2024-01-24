@@ -18,7 +18,7 @@
         <!-- Section filtre -->
         <section>
             <p>Filtres</p>
-            <form class="container-fluid d-flex flex-row " method="POST" action="/ServletAffichageProfilAutre">
+            <form class="container-fluid d-flex flex-row " method="POST" action="ServletRechercherVentes">
                 <div class="col-8">
                     <!-- Champs de recherche par defaut (non connecté) -->
                     <label for="search">Rechercher par mot clef</label>
@@ -28,6 +28,7 @@
                     <!-- Affichage de l'ensemble des catégorie présente dans la base donnée -->
                     <label for="categorie">Catégorie :</label>
                     <select class="w-25" id="categorie" name="categorie">
+                    	<option value="all">Tous</option>
                         <c:forEach var="categorie" items="${categorieListe}">
                             <option value="${categorie}">${categorie}</option>
                         </c:forEach>
