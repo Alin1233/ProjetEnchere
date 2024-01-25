@@ -78,7 +78,6 @@ public class ServletNouvelArticle extends HttpServlet {
 		venteManager.ajuterVente(nouvelArticle);
 		
 		//remplacer le nom de l'image téléchargée par le nom de l'article + le nom du seler
-		System.out.println(session.getAttribute("imagePath"));
 		String oldImage = (String) session.getAttribute("imagePath");
 		File oldImageFile = new File(oldImage);
 		String newImageName = nouvelArticle.getNomArticle()+"-"+ nouvelArticle.getVendeur().getPseudo()+".png";

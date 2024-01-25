@@ -84,7 +84,7 @@
                 <div class="card mb-5 col-5 m-5" style="max-width: 50%;">
                     <div class="container-fluid row">
                         <div class="col-5 d-flex flex-wrap align-items-center">
-                            <img src="" class="img-fluid" alt="cailloux">
+                            <img src="${pageContext.request.contextPath}/images/${article.nomArticle}-${article.vendeur.pseudo}.png" class="img-fluid" alt="placeholder.png">
                         </div>
                         <div class="col">
                             <div class="card-body">
