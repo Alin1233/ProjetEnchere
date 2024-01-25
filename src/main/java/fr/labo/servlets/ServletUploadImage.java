@@ -57,13 +57,10 @@ public class ServletUploadImage extends HttpServlet {
             String fullPath = uploadPath + File.separator + fileName;
             part.write( fullPath );
             
-            System.out.println(fullPath);
-    
-            
-            
+
             request.setAttribute("imageName", fileName);
-            
-            request.getRequestDispatcher("nouvelleVente.jsp").forward(request, response);
+            session.setAttribute("imagePath", fullPath);
+            request.getRequestDispatcher("ServletAccesNouvelleVente").forward(request, response);
         
 	}
 
