@@ -75,7 +75,7 @@ public class ServletNouvelArticle extends HttpServlet {
 		
 		// Ajouter un attribut à la requête pour indiquer la réussite
 		request.setAttribute("confirmationMessage", "L'article a été ajouté avec succès.");
-		request.getRequestDispatcher("ServletAccesIndexJsp").forward(request, response);
+		request.getRequestDispatcher("nouvelleVente.jsp").forward(request, response);
 		
 		//Erreur, format différent attendue par la base de donnée
 	   }catch (SQLException e) {
