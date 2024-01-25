@@ -13,10 +13,14 @@
 	<main>
 		<form method="POST" action="ServletConnectionUser">
 			<label for="pseudoUser">Identifiant</label>
-			<input  type="text" name="pseudoUser" id="pseudoUser">
+			<input  type="text" name="pseudoUser" id="pseudoUser" value="${pseudo}">
 			<label for="passwordUser">Mot de passe</label>
-			<input  type="password" name="passwordUser" id="passwordUser">
-			<button type="submit" >Connexion</button>
+			<input  type="password" name="passwordUser" id="passwordUser" value="${password}">
+		<div class="form-check">
+    		<input type="checkbox" class="form-check-input" id="exampleCheck1" name="souvenir">
+   			<label class="form-check-label" for="exampleCheck1">Se souvenir de moi!</label>
+  		</div>
+			<button type="submit" class="btn btn-primary">Connexion</button>
 		</form>
 		<c:if test="${!empty erreur }">
 		

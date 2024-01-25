@@ -1,5 +1,6 @@
 package fr.labo.bll;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import fr.labo.bo.ArticleVendu;
@@ -23,7 +24,7 @@ public class VenteManager {
 	}
 	
 	//insérer l'objet article dans la db
-	public void ajuterVente(ArticleVendu article) {
+	public void ajuterVente(ArticleVendu article) throws SQLException{
 		venteDAO.insertArticle(article);
 	}
 	//obtenir tous les articles de la db
