@@ -31,7 +31,6 @@
     <servlet-name>ServletEncherir</servlet-name>
     <url-pattern>/ServletEncherir</url-pattern>
   </servlet-mapping>
-
   <servlet>
     <description></description>
     <display-name>ServletAccesAdmin</display-name>
@@ -41,6 +40,16 @@
   <servlet-mapping>
     <servlet-name>ServletAccesAdmin</servlet-name>
     <url-pattern>/ServletAccesAdmin</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ServletRechercherVentes</display-name>
+    <servlet-name>ServletRechercherVentes</servlet-name>
+    <servlet-class>fr.labo.servlets.ServletRechercherVentes</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletRechercherVentes</servlet-name>
+    <url-pattern>/ServletRechercherVentes</url-pattern>
   </servlet-mapping>
 
   

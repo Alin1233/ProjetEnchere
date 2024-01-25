@@ -18,7 +18,7 @@
         <!-- Section filtre -->
         <section>
             <p>Filtres</p>
-            <form class="container-fluid d-flex flex-row " method="POST" action="/ServletAffichageProfilAutre">
+            <form class="container-fluid d-flex flex-row " method="POST" action="ServletRechercherVentes">
                 <div class="col-8">
                     <!-- Champs de recherche par defaut (non connecté) -->
                     <label for="search">Rechercher par mot clef</label>
@@ -28,6 +28,7 @@
                     <!-- Affichage de l'ensemble des catégorie présente dans la base donnée -->
                     <label for="categorie">Catégorie :</label>
                     <select class="w-25" id="categorie" name="categorie">
+                    	<option value="all">Tous</option>
                         <c:forEach var="categorie" items="${categorieListe}">
                             <option value="${categorie}">${categorie}</option>
                         </c:forEach>
@@ -39,38 +40,30 @@
 
                         <section class="container-fluid d-flex flex-row justify-content-start">
                             <div class="filtreAchat">
-                                <div class="d-flex flex-row">
-                                    <input type="radio" name="filtre" id="filtreAchat" onclick="desactiverCasesACocher()" checked>
-                                    <label class="ms-2" for="filtreAchat">Achats</label>
-                                </div>
                                 <div class="d-flex flex-row ">
-                                    <input class="ms-4" type="checkbox" name="enchereOuverte" value="enchereOuverte">
+                                    <input class="ms-4" type="radio" name="filtreRadio" value="enchereOuverte">
                                     <label class="ms-2" for="enchereOuverte">Enchères ouvertes</label>
                                 </div>
                                 <div class="d-flex flex-row">
-                                    <input class="ms-4"  type="checkbox" name="enchereEnCours" value="enchereEnCours">
+                                    <input class="ms-4"  type="radio" name="filtreRadio" value="enchereEnCours">
                                     <label class="ms-2"  for="enchereEnCours">Enchères en cours</label>
                                 </div>
                                 <div class="d-flex flex-row">
-                                    <input class="ms-4"  type="checkbox" name="enchereRemporte" value="enchereRemporte">
+                                    <input class="ms-4"  type="radio" name="filtreRadio" value="enchereRemporte">
                                     <label class="ms-2"  for="enchereRemporte">Enchères remportées</label>
                                 </div>
                             </div>
                             <div class="filtreVente flex-column ">
-                                <div class="d-flex flex-row">
-                                    <input type="radio" name="filtre" id="filtreVente" onclick="desactiverCasesACocher()">
-                                    <label class="ms-2" for="filtreVente">Ventes</label>
-                                </div>
                                 <div class="d-flex flex-row ">
-                                    <input class="ms-4" type="checkbox" name="veteEnCours" value="veteEnCours" disabled>
+                                    <input class="ms-4" type="radio" name="filtreRadio" value="veteEnCours" >
                                     <label class="ms-2" for="veteEnCours">Ventes en cours</label>
                                 </div>
                                 <div class="d-flex flex-row">
-                                    <input class="ms-4"  type="checkbox" name="venteNonDebute" value="venteNonDebute" disabled>
+                                    <input class="ms-4"  type="radio" name="filtreRadio" value="venteNonDebute" >
                                     <label class="ms-2"  for="venteNonDebute">Ventes non debutées</label>
                                 </div>
                                 <div class="d-flex flex-row">
-                                    <input class="ms-4"  type="checkbox" name="venteTermine" value="venteTermine" disabled>
+                                    <input class="ms-4"  type="radio" name="filtreRadio" value="venteTermine" >
                                     <label class="ms-2"  for="venteTermine">Ventes terminées</label>
                                 </div>
                             </div>

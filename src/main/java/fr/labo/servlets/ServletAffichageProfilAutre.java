@@ -27,7 +27,7 @@ import jakarta.servlet.http.HttpServletResponse;
 		            String user = request.getParameter("pseudo");
 		            Utilisateur us = um.getUserByPseudo(user);
 		            
-		            System.out.println("user = " + user);
+		            //System.out.println("user = " + user);
 
 		            if (us != null) {
 		                String pseudo = us.getPseudo();

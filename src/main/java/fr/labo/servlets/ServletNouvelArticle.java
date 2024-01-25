@@ -17,6 +17,7 @@ import fr.labo.bo.ArticleVendu;
 import fr.labo.bo.Categorie;
 import fr.labo.bo.Utilisateur;
 
+
 @WebServlet( "/ServletNouvelArticle" )
 public class ServletNouvelArticle extends HttpServlet {
 	private static final long serialVersionUID = 1L;
