@@ -74,6 +74,7 @@ public class ServletConnectionUser extends HttpServlet {
 	      if (utilisateurExistant != null) {
 	         session = request.getSession(true);
 	         session.setAttribute("user", utilisateurExistant);
+
 	         
 	         //code qui concerne Sessions utilisateur de 5mn
 	    	  long actionTime = System.currentTimeMillis();
@@ -88,6 +89,7 @@ public class ServletConnectionUser extends HttpServlet {
 			      pseudoCookie.setMaxAge(60 * 60 * 24 * 7);
 			      response.addCookie(passwordCookie);
 	    	  }
+
 	         response.sendRedirect("ServletAccesIndexJsp");
 	      } else {
 	         request.setAttribute("erreur", "l'utilisateur ou mot de passe n'est pas valide");
@@ -100,11 +102,6 @@ public class ServletConnectionUser extends HttpServlet {
     	  utilisateurExistant = (Utilisateur) request.getAttribute("user");
     	  session = request.getSession(true);
     	  session.setAttribute("user", utilisateurExistant);
-    	  
-    	  //code qui concerne Sessions utilisateur de 5mn
-    	  long actionTime = System.currentTimeMillis();
-    	  session.setAttribute("actionPerformed", actionTime);
-    	  
     	  response.sendRedirect("ServletAccesIndexJsp");
       }
 

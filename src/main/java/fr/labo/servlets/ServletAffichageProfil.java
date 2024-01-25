@@ -38,6 +38,7 @@ public class ServletAffichageProfil extends HttpServlet {
 		RequestDispatcher rd = request.getRequestDispatcher("/affichageProfil.jsp");
 		rd.forward(request, response);
 		
+		
 	}
 
 }
