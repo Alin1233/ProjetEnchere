@@ -105,7 +105,7 @@
 			  <a class="nav-link p-2" href="ServletAffichageProfil?pseudo=${user.pseudo}">Mon profil</a>
 			  <a class="nav-link p-2" href="ServletDeconnection">Déconnexion</a>
 		  </div>
-		</nav>
+	</nav>
 </header>
  
 <h1>Mon Profil</h1>
