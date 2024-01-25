@@ -95,9 +95,8 @@
                         </div>
                         <div class="col">
                             <div class="card-body">
-                                <a href="encherir.jsp">
-                                    <h5 class="card-title">${article.nomArticle}</h5>
-                                </a>
+                                <a href="detailVente.jsp">
+                                    <h5 class="card-text"><a href="ServletDetailVente?nomArticle=${article.nomArticle}">${article.nomArticle}</a></h5>
 
                                 <p class="card-text">Description : ${article.description}</p>
                                 <p class="card-text">Mise à prix : ${article.miseAPrix}</p>

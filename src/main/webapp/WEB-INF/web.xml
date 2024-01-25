@@ -31,7 +31,6 @@
     <servlet-name>ServletEncherir</servlet-name>
     <url-pattern>/ServletEncherir</url-pattern>
   </servlet-mapping>
-
   <servlet>
     <description></description>
     <display-name>ServletAccesAdmin</display-name>
@@ -42,5 +41,14 @@
     <servlet-name>ServletAccesAdmin</servlet-name>
     <url-pattern>/ServletAccesAdmin</url-pattern>
   </servlet-mapping>
-
+  <servlet>
+    <description></description>
+    <display-name>ServletModificationVente</display-name>
+    <servlet-name>ServletModificationVente</servlet-name>
+    <servlet-class>fr.labo.servlets.ServletModificationVente</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletModificationVente</servlet-name>
+    <url-pattern>/ServletModificationVente</url-pattern>
+  </servlet-mapping>
 </web-app>

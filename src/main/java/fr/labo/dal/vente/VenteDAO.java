@@ -28,4 +28,12 @@ public interface VenteDAO {
 	public ArticleVendu selectArticleById(int id);
 	
 	public List<Enchere> selectEnchereByUserId(int id);
+	
+	public List<Categorie> selectAllCategories();
+	
+	public void insertCategorie(Categorie categorie);
+	
+	public void deleteCategorie(int id);
+	
+	public void updateCategorie(Categorie categorie);
 }
