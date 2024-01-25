@@ -43,6 +43,16 @@
   </servlet-mapping>
   <servlet>
     <description></description>
+
+    <display-name>ServletModificationVente</display-name>
+    <servlet-name>ServletModificationVente</servlet-name>
+    <servlet-class>fr.labo.servlets.ServletModificationVente</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletModificationVente</servlet-name>
+    <url-pattern>/ServletModificationVente</url-pattern>
+  </servlet-mapping>
+=======
     <display-name>ServletRechercherVentes</display-name>
     <servlet-name>ServletRechercherVentes</servlet-name>
     <servlet-class>fr.labo.servlets.ServletRechercherVentes</servlet-class>
@@ -63,5 +73,6 @@
     <servlet-name>ServletAffichageProfilAutre</servlet-name>
     <url-pattern>/ServletAffichageProfilAutre</url-pattern>
   </servlet-mapping>
+
 
 </web-app>

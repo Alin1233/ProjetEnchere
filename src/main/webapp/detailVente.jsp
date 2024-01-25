@@ -45,6 +45,19 @@
         transition: background-color 0.3s;
         margin-left: 5%;
     }
+    
+        .button {
+        background-color: #808080;
+        color: white;
+        padding: 8px 11px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        display: inline-block;
+        font-size: 16px;
+        transition: background-color 0.3s;
+        margin-left: 5%;
+    }
  
     .number {
         width: 100px;
@@ -53,6 +66,9 @@
     
     .image {
         margin-right: 2vw;
+    }
+    
+    .modifier{
     }
  
 </style>
@@ -101,29 +117,40 @@
  
                 <div class="form-group">
                     <p class="p"> Retrait : </p>
-                    <p class="text"><%= request.getAttribute("adresse") %></p>
+                    <p class="text"><%= request.getAttribute("retrait") %></p>
                 </div>
  
                 <div class="form-group">
                     <p class="p"> Fin de l'enchère: </p>
-                    <p class="text"><%= request.getAttribute("dateFinEnchere") %></p>
+                    <p class="text"><%= request.getAttribute("dateFinEncheres") %></p>
                 </div>
  
                 <div class="form-group">
                     <p class="p"> Mise à prix : </p>
-                    <p class="text"><%= request.getAttribute("prixDepart") %></p>
+                    <p class="text"><%= request.getAttribute("MiseAPrix") %></p>
                 </div>
  
                 <div class="form-group">
-                    <p class="p"> Meilleure offre: </p>
-                    <p class="text"><%= request.getAttribute("meilleureOffre") %></p>
+                    <p class="p"> Prix actuel: </p>
+                    <p class="text"><%= request.getAttribute("PrixVente") %></p>
                 </div>
+
  
-                <div class="enchere">
-                    <p class="p"> Ma proposition : </p>
-                    <input class="number" type="text" >
-                    <button type="submit">Enchérir</button>
-                </div>
+<c:choose>
+    <c:when test="${utilisateurConnecte.pseudo eq request.getAttribute('vendeur')}">
+        <div class="button">
+            <a href="ServletModificationVente" target="_blank" class="bouton-lien">Modifier la vente</a>
+        </div>
+    </c:when>
+    <c:when test="${utilisateurConnecte.pseudo ne request.getAttribute('vendeur')}">
+        <div class="enchere">
+            <p class="p"> Ma proposition : </p>
+            <input class="number" type="text">
+            <button type="submit">Enchérir</button>
+        </div>
+    </c:when>
+</c:choose>
+             
  
             </form>
  
