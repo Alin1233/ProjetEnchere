@@ -8,6 +8,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import fr.labo.bll.UtilisateurManager;
 import fr.labo.bo.Adresse;
 import fr.labo.bo.Utilisateur;
 
@@ -22,7 +23,9 @@ public class ServletAffichageProfil extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 		
+		UtilisateurManager utilisateurManager = new UtilisateurManager();
 		Utilisateur Us = new Utilisateur();
+		Us = utilisateurManager.getUserByPseudo(request.getParameter("pseudo"));
 		String pseudo = Us.getPseudo();
 		String nom = Us.getNom();
 		String prenom = Us.getPrenom();
