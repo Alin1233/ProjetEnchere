@@ -51,6 +51,8 @@ public class ServletRechercherVentes extends HttpServlet {
 		VenteManager venteManager = new VenteManager();
 		List<ArticleVendu> articlesToSend = new ArrayList<ArticleVendu>();
 		
+		//System.out.println(categorieString);
+		
 		if (searchString == null || searchString.trim().isEmpty()) {
 			if(categorieString.equals("all")) {
 				articlesToSend =  venteManager.getAllArticles();
@@ -88,7 +90,7 @@ public class ServletRechercherVentes extends HttpServlet {
 			}
 		}
 		this.getServletContext().setAttribute("listeArticles", articlesToSend);
-		 RequestDispatcher rd = request.getRequestDispatcher("ServletAccesIndexJsp");
+		 RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
 	     rd.forward(request, response);
 		//doGet(request, response);
 	}
