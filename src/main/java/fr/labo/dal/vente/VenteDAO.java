@@ -1,5 +1,6 @@
 package fr.labo.dal.vente;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import fr.labo.bo.ArticleVendu;
@@ -9,7 +10,7 @@ import fr.labo.bo.Utilisateur;
 
 public interface VenteDAO {
 	
-	public void insertArticle(ArticleVendu vente);
+	public void insertArticle(ArticleVendu vente) throws SQLException;
 	
 	public void insertEnchere(Enchere enchere);
 	
