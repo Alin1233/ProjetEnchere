@@ -130,7 +130,7 @@
           <div class="card-body">
             <div class="row">
               <div class="col-sm-3">
-                <p class="mb-0">Nom et prï¿½nom</p>
+                <p class="mb-0">Nom et prénom</p>
               </div>
               <div class="col-sm-9">
                 <p class="text-muted mb-0">${nom} ${prenom}</p>
@@ -157,7 +157,7 @@
             <hr>
             <div class="row">
               <div class="col-sm-3">
-                <p class="mb-0">Tï¿½lï¿½phone</p>
+                <p class="mb-0">Téléphone</p>
               </div>
               <div class="col-sm-9">
                 <p class="text-muted mb-0">${telephone }</p>
