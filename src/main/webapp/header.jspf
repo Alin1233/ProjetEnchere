@@ -16,11 +16,11 @@
      <c:if test="${!empty user }">
      	<nav >
 		  <div class="container-fluid  d-flex bg-warning p-2">
-			  <a class="navbar-brand p-2 flex-grow-1" href="#"><i class="fa-solid fa-gavel fa-2xl"></i></a>
+			  <a class="navbar-brand p-2 flex-grow-1" href="ServletAccesIndexJsp"><i class="fa-solid fa-gavel fa-2xl"></i></a>
 			  <p class="nav-link p-2 me-5 flex-grow-1">Bienvenue ${user.pseudo} !</p>
 			  <a class="nav-link p-2" href="#">Enchère</a>
 			  <a class="nav-link p-2" href="ServletAccesNouvelleVente">Vendre un article</a>
-			  <a class="nav-link p-2" href="#">Mon profil</a>
+			  <a class="nav-link p-2" href="ServletAffichageProfil?pseudo=${user.pseudo}">Mon profil</a>
 			  <a class="nav-link p-2" href="ServletDeconnection">Déconnexion</a>
 		  </div>
 		</nav>

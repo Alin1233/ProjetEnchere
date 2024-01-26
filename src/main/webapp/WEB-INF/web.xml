@@ -43,7 +43,6 @@
   </servlet-mapping>
   <servlet>
     <description></description>
-
     <display-name>ServletModificationVente</display-name>
     <servlet-name>ServletModificationVente</servlet-name>
     <servlet-class>fr.labo.servlets.ServletModificationVente</servlet-class>
@@ -52,6 +51,7 @@
     <servlet-name>ServletModificationVente</servlet-name>
     <url-pattern>/ServletModificationVente</url-pattern>
   </servlet-mapping>
+  <servlet>
     <display-name>ServletRechercherVentes</display-name>
     <servlet-name>ServletRechercherVentes</servlet-name>
     <servlet-class>fr.labo.servlets.ServletRechercherVentes</servlet-class>
@@ -60,9 +60,7 @@
     <servlet-name>ServletRechercherVentes</servlet-name>
     <url-pattern>/ServletRechercherVentes</url-pattern>
   </servlet-mapping>
-
-  
-    <servlet>
+  <servlet>
     <description></description>
     <display-name>ServletAffichageProfilAutre</display-name>
     <servlet-name>ServletAffichageProfilAutre</servlet-name>
@@ -72,6 +70,14 @@
     <servlet-name>ServletAffichageProfilAutre</servlet-name>
     <url-pattern>/ServletAffichageProfilAutre</url-pattern>
   </servlet-mapping>
-
-
+  <servlet>
+    <description></description>
+    <display-name>ServletPasswordReset</display-name>
+    <servlet-name>ServletPasswordReset</servlet-name>
+    <servlet-class>fr.labo.servlets.ServletPasswordReset</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletPasswordReset</servlet-name>
+    <url-pattern>/ServletPasswordReset</url-pattern>
+  </servlet-mapping>
 </web-app>

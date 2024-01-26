@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
+import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
@@ -25,6 +26,7 @@ public class ServletNouvelArticle extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.getRequestDispatcher( "nouvelleVente.jsp" ).forward(request, response);
+		
 	}
 
 	/**
@@ -38,7 +40,9 @@ public class ServletNouvelArticle extends HttpServlet {
 		
 		//Récuperation des information de l'utilisateur connecté
 		HttpSession session = request.getSession();
-		Utilisateur vendeur = (Utilisateur) session.getAttribute("user");	
+		Utilisateur vendeur = (Utilisateur) session.getAttribute("user");
+		
+		
 		
 		try {
 		//Récupération des informations du formulaire
@@ -72,6 +76,15 @@ public class ServletNouvelArticle extends HttpServlet {
 		//Insertion dans la bdd
 		
 		venteManager.ajuterVente(nouvelArticle);
+		
+		//remplacer le nom de l'image téléchargée par le nom de l'article + le nom du seler
+		String oldImage = (String) session.getAttribute("imagePath");
+		File oldImageFile = new File(oldImage);
+		String newImageName = nouvelArticle.getNomArticle()+"-"+ nouvelArticle.getVendeur().getPseudo()+".png";
+		String newImagePath = oldImageFile.getParent() + File.separator + newImageName;
+		File newImageFile = new File(newImagePath);
+		oldImageFile.renameTo(newImageFile);
+		
 		
 		// Ajouter un attribut à la requête pour indiquer la réussite
 		request.setAttribute("confirmationMessage", "L'article a été ajouté avec succès.");
