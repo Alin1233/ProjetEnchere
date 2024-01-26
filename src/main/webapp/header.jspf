@@ -18,6 +18,9 @@
 		  <div class="container-fluid  d-flex bg-warning p-2">
 			  <a class="navbar-brand p-2 flex-grow-1" href="ServletAccesIndexJsp"><i class="fa-solid fa-gavel fa-2xl"></i></a>
 			  <p class="nav-link p-2 me-5 flex-grow-1">Bienvenue ${user.pseudo} !</p>
+			  <c:if test="${ user.administrateur }">
+			  <a class="nav-link p-2" href="ServletAccesAdmin">Admin</a>
+			  </c:if>
 			  <a class="nav-link p-2" href="#">Enchère</a>
 			  <a class="nav-link p-2" href="ServletAccesNouvelleVente">Vendre un article</a>
 			  <a class="nav-link p-2" href="ServletAffichageProfil?pseudo=${user.pseudo}">Mon profil</a>
