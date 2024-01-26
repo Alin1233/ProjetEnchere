@@ -18,6 +18,7 @@ public interface VenteDAO {
 	
 	public List<Enchere> selectAllEncheres();
 	
+	
 	public List<ArticleVendu> selectAllArticlesCategorie(Categorie categorie);
 	
 	public void updateArticle(ArticleVendu article);

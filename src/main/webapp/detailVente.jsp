@@ -134,6 +134,7 @@
                     <p class="p"> Prix actuel: </p>
                     <p class="text"><%= request.getAttribute("PrixVente") %></p>
                 </div>
+                <a  href="ServletModificationVente"> modifier la vente </a>
 
  
 <c:choose>
