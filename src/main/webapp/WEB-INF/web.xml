@@ -51,4 +51,14 @@
     <servlet-name>ServletModificationVente</servlet-name>
     <url-pattern>/ServletModificationVente</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ServletEncherirJsp</display-name>
+    <servlet-name>ServletEncherirJsp</servlet-name>
+    <servlet-class>fr.labo.servlets.ServletEncherirJsp</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletEncherirJsp</servlet-name>
+    <url-pattern>/ServletEncherirJsp</url-pattern>
+  </servlet-mapping>
 </web-app>

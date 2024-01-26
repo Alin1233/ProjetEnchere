@@ -90,8 +90,6 @@
     </style>
    
         
-        
-    </style>
 </head>
  
 <body>
