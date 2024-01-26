@@ -46,6 +46,7 @@ public class ServletDetailVente extends HttpServlet {
 		List<ArticleVendu> listeArticles = vm.getAllArticles();
 		ArticleVendu Av = new ArticleVendu();
 		
+		
 		for (ArticleVendu articleVendu : listeArticles) {
 			if (articleVendu.getNomArticle().equals(request.getParameter("nomArticle")))
 			{
@@ -55,12 +56,16 @@ public class ServletDetailVente extends HttpServlet {
 			}
 		}
 		
+		//Création d'un attribut pour la récuperer l'article en vu d'une modification potentielle
+		se.setAttribute("articleVendu", Av);
+		
+		
 		UtilisateurManager um = new UtilisateurManager();
 		String user = request.getParameter("pseudo");
 		
 		
 		//Enchere En = new Enchere();
-		String nom = Av.getVendeur().getNom();
+		String nom = Av.getNomArticle();
 		String description = Av.getDescription();
 		String categorie = Av.getCategorie().getLibelle();
 		String vendeur = Av.getVendeur().getPseudo();

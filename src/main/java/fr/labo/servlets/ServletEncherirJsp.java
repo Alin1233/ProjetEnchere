@@ -87,9 +87,9 @@ public class ServletEncherirJsp extends HttpServlet {
 				String dateFinEncheres = request.getParameter("dateFinEncheres");
 	        	
 				//Le dernier encherisseur devient acquereur
-	        	if (dateFinEncheres.compareTo(formattedDate) <=0) {
-	        		enchere.setUtilisateur(dernierEncherisseur);
-	        	}
+//	        	if (dateFinEncheres.compareTo(formattedDate) <=0) {
+//	        		enchere.setUtilisateur(dernierEncherisseur);
+//	        	}
 	        	
 	        }
 	        	
