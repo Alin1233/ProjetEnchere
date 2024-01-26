@@ -84,7 +84,7 @@
                 <div class="card mb-5 col-5 m-5" style="max-width: 50%;">
                     <div class="container-fluid row">
                         <div class="col-5 d-flex flex-wrap align-items-center">
-                            <img src="" class="img-fluid" alt="cailloux">
+                            <img src="${pageContext.request.contextPath}/images/${article.nomArticle}-${article.vendeur.pseudo}.png" class="img-fluid" alt="placeholder.png">
                         </div>
                         <div class="col">
                             <div class="card-body">
@@ -92,8 +92,10 @@
                                     <h5 class="card-text"><a href="ServletDetailVente?nomArticle=${article.nomArticle}">${article.nomArticle}</a></h5>
 
                                 <p class="card-text">Description : ${article.description}</p>
+                                <p class="card-text">Categorie : ${article.categorie.libelle}</p>
                                 <p class="card-text">Mise à prix : ${article.miseAPrix}</p>
                                 <p class="card-text">Enchère actuelle : ${article.prixVente}</p>
+                                <p class="card-text">Date de debut d'enchère : ${article.dateDebutEncheres}</p>
                                 <p class="card-text">Date de fin d'enchère : ${article.dateFinEncheres}</p>
                                 <!-- A tester -->
                                 <p class="card-text">Vendeur : <a href="ServletAffichageProfilAutre?pseudo=${article.vendeur.pseudo}">${article.vendeur.pseudo}</a></p>

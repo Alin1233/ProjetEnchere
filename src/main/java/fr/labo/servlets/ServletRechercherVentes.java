@@ -9,6 +9,8 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -16,6 +18,7 @@ import java.util.List;
 import fr.labo.bll.VenteManager;
 import fr.labo.bo.ArticleVendu;
 import fr.labo.bo.Categorie;
+import fr.labo.bo.Enchere;
 import fr.labo.bo.Utilisateur;
 
 /**
@@ -51,6 +54,8 @@ public class ServletRechercherVentes extends HttpServlet {
 		VenteManager venteManager = new VenteManager();
 		List<ArticleVendu> articlesToSend = new ArrayList<ArticleVendu>();
 		
+		//System.out.println(categorieString);
+		
 		if (searchString == null || searchString.trim().isEmpty()) {
 			if(categorieString.equals("all")) {
 				articlesToSend =  venteManager.getAllArticles();
@@ -74,21 +79,46 @@ public class ServletRechercherVentes extends HttpServlet {
 			HttpSession session = request.getSession(false);
 			Utilisateur user = (Utilisateur)session.getAttribute("user"); 
 			if(filtreRadio.equals("enchereOuverte")) {
-				System.out.println(filtreRadio);
+				List<Enchere> userEncheres = venteManager.getAllEncheresByUser(user.getNoUtilisateur());
+				articlesToSend.clear();
+				for(Enchere enchere: userEncheres) {
+					articlesToSend.add(enchere.getArticleVendu());
+				}
 			}else if (filtreRadio.equals("enchereEnCours")) {
-				System.out.println(filtreRadio);
+				List<Enchere> userEncheres = venteManager.getAllEncheres();
+				articlesToSend.clear();
+				for(Enchere enchere: userEncheres) {
+					articlesToSend.add(enchere.getArticleVendu());
+				}
 			}else if (filtreRadio.equals("enchereRemporte")) {
 				System.out.println(filtreRadio);
 			}else if (filtreRadio.equals("veteEnCours")) {
-				System.out.println(filtreRadio);
+				List<ArticleVendu> articleToFilter = venteManager.getAllArticlesByUser(user);
+				articlesToSend = articleToFilter;
+				for(ArticleVendu article: articleToFilter) {
+					LocalDate dateDebut = LocalDate.parse(article.getDateDebutEncheres());
+					LocalDate dateCurrent = LocalDate.now();
+					if(dateDebut.isAfter(dateCurrent)) {
+						articlesToSend.remove(article);
+					}
+				}
 			}else if (filtreRadio.equals("venteNonDebute")) {
-				System.out.println(filtreRadio);
+				List<ArticleVendu> articleToFilter = venteManager.getAllArticlesByUser(user);
+				articlesToSend = articleToFilter;
+				for(ArticleVendu article: articleToFilter) {
+					LocalDate dateDebut = LocalDate.parse(article.getDateDebutEncheres());
+					LocalDate dateCurrent = LocalDate.now();
+					if(dateDebut.isBefore(dateCurrent)) {
+						articleToFilter.remove(article);
+						System.out.println("ola");
+					}
+				}
 			}else if (filtreRadio.equals("venteTermine")) {
 				System.out.println(filtreRadio);
 			}
 		}
 		this.getServletContext().setAttribute("listeArticles", articlesToSend);
-		 RequestDispatcher rd = request.getRequestDispatcher("ServletAccesIndexJsp");
+		 RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
 	     rd.forward(request, response);
 		//doGet(request, response);
 	}

@@ -91,55 +91,92 @@
    
         
         
-    </style>
+
 </head>
  
 <body>
  
 <header>
-    <div class="container-fluid d-flex bg-warning p-2">
-        <a class="navbar-brand p-2 flex-grow-1" href="ServletAccesIndexJsp">
-            <i class="fa-solid fa-gavel fa-2xl"></i>
-        </a>
-    </div>
+    <nav >
+		  <div class="container-fluid  d-flex bg-warning p-2">
+			  <a class="navbar-brand p-2 flex-grow-1" href="ServletAccesIndexJsp"><i class="fa-solid fa-gavel fa-2xl"></i></a>
+			  <a class="nav-link p-2" href="#">Enchï¿½re</a>
+			  <a class="nav-link p-2" href="ServletAccesNouvelleVente">Vendre un article</a>
+			  <a class="nav-link p-2" href="ServletAffichageProfil?pseudo=${user.pseudo}">Mon profil</a>
+			  <a class="nav-link p-2" href="ServletDeconnection">Dï¿½connexion</a>
+		  </div>
+	</nav>
 </header>
  
 <h1>Mon Profil</h1>
- 
-<form>
-    
-    <div class="form-group">
-        <p> Pseudo : </p>
-        <p><%= request.getAttribute("pseudo") %></p>
+ <section style="background-color: #eee;">
+    <div class="row">
+      <div class="col-lg-4">
+        <div class="card mb-4">
+          <div class="card-body text-center">
+            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
+              class="rounded-circle img-fluid" style="width: 150px;">
+            <h5 class="my-3">${nom} ${prenom}</h5>
+            <div class="d-flex justify-content-center mb-2">
+                <a href="modificationProfil.jsp" target="_blank" class="btn btn-warning">Modifier</a>
+   				<a href="suppressionProfil.jsp" target="_blank" class="btn btn-danger">Supprimer</a>
+    			<a href="index.jsp" target="_blank" class="btn btn-dark">Annuler</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-8">
+        <div class="card mb-4">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Nom et prï¿½nom</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">${nom} ${prenom}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Pseudo</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">${pseudo}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Email</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">${email}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Tï¿½lï¿½phone</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">${telephone }</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Adresse </p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">${adresse.rue } ${adresse.ville } ${adresse.codePostal }</p>
+              </div>
+            </div>
+          </div>
+        </div>
     </div>
-    <div class="form-group">
-        <p> Nom : </p>
-        <p><%= request.getAttribute("nom") %></p>
-    </div>  <div class="form-group">
-        <p> Prénom: </p>
-        <p><%= request.getAttribute("prenom") %></p>
-    </div>  <div class="form-group">
-        <p> Email : </p>
-        <p><%= request.getAttribute("email") %></p>
-    </div>  <div class="form-group">
-        <p> Téléphone : </p>
-        <p><%= request.getAttribute("telephone") %></p>
-    </div>  <div class="form-group">
-        <p> Adresse : </p>
-        <p><%= request.getAttribute("adresse") %></p>
-    </div>
-    
-    <p> Le credit est de :  <%= request.getAttribute("credit") %>  </p>
-    
-</form>
- 
-<div class="boutton">
-    <a href="modificationProfil.jsp" target="_blank" class="bouton-lien">Modifier</a>
-    <a href="suppressionProfil.jsp" target="_blank" class="bouton-lien">Supprimer</a>
-    <a href="index.jsp" target="_blank" class="bouton-lien">Annuler</a>
-    
-</div>
- 
+  </div>
+</section>
  
  
 </body>

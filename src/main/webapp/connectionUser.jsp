@@ -21,6 +21,7 @@
    			<label class="form-check-label" for="exampleCheck1">Se souvenir de moi!</label>
   		</div>
 			<button type="submit" class="btn btn-primary">Connexion</button>
+			<p><a href="ServletPasswordReset" class="link-danger link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Mot de passe oublié</a></p>
 		</form>
 		<c:if test="${!empty erreur }">
 		

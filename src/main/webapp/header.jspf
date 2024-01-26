@@ -20,7 +20,7 @@
 			  <p class="nav-link p-2 me-5 flex-grow-1">Bienvenue ${user.pseudo} !</p>
 			  <a class="nav-link p-2" href="#">Enchère</a>
 			  <a class="nav-link p-2" href="ServletAccesNouvelleVente">Vendre un article</a>
-			  <a class="nav-link p-2" href="#">Mon profil</a>
+			  <a class="nav-link p-2" href="ServletAffichageProfil?pseudo=${user.pseudo}">Mon profil</a>
 			  <a class="nav-link p-2" href="ServletDeconnection">Déconnexion</a>
 		  </div>
 		</nav>

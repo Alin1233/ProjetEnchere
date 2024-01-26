@@ -1,4 +1,6 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -93,16 +95,13 @@
         
         
     </style>
+    
 </head>
  
 <body>
  
 <header>
-    <div class="container-fluid d-flex bg-warning p-2">
-        <a class="navbar-brand p-2 flex-grow-1" href="ServletAccesIndexJsp">
-            <i class="fa-solid fa-gavel fa-2xl"></i>
-        </a>
-    </div>
+	<%@ include file="header.jspf"%>
 </header>
  
 <h1>Mon Profil</h1>
