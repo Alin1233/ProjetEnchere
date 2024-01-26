@@ -100,10 +100,10 @@
     <nav >
 		  <div class="container-fluid  d-flex bg-warning p-2">
 			  <a class="navbar-brand p-2 flex-grow-1" href="ServletAccesIndexJsp"><i class="fa-solid fa-gavel fa-2xl"></i></a>
-			  <a class="nav-link p-2" href="#">Enchère</a>
+			  <a class="nav-link p-2" href="#">Enchï¿½re</a>
 			  <a class="nav-link p-2" href="ServletAccesNouvelleVente">Vendre un article</a>
 			  <a class="nav-link p-2" href="ServletAffichageProfil?pseudo=${user.pseudo}">Mon profil</a>
-			  <a class="nav-link p-2" href="ServletDeconnection">Déconnexion</a>
+			  <a class="nav-link p-2" href="ServletDeconnection">Dï¿½connexion</a>
 		  </div>
 	</nav>
 </header>
@@ -130,7 +130,7 @@
           <div class="card-body">
             <div class="row">
               <div class="col-sm-3">
-                <p class="mb-0">Nom et prénom</p>
+                <p class="mb-0">Nom et prï¿½nom</p>
               </div>
               <div class="col-sm-9">
                 <p class="text-muted mb-0">${nom} ${prenom}</p>
@@ -157,7 +157,7 @@
             <hr>
             <div class="row">
               <div class="col-sm-3">
-                <p class="mb-0">Téléphone</p>
+                <p class="mb-0">Tï¿½lï¿½phone</p>
               </div>
               <div class="col-sm-9">
                 <p class="text-muted mb-0">${telephone }</p>
