@@ -94,6 +94,7 @@
                                 <p class="card-text">Description : ${article.description}</p>
                                 <p class="card-text">Mise à prix : ${article.miseAPrix}</p>
                                 <p class="card-text">Enchère actuelle : ${article.prixVente}</p>
+                                <p class="card-text">Date de debut d'enchère : ${article.dateDebutEncheres}</p>
                                 <p class="card-text">Date de fin d'enchère : ${article.dateFinEncheres}</p>
                                 <!-- A tester -->
                                 <p class="card-text">Vendeur : <a href="ServletAffichageProfilAutre?pseudo=${article.vendeur.pseudo}">${article.vendeur.pseudo}</a></p>
