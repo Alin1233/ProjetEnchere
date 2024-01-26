@@ -48,7 +48,7 @@ public class ServletNouvelArticle extends HttpServlet {
 		//Récuperation des information de l'utilisateur connecté
 		
 		Utilisateur vendeur = (Utilisateur) session.getAttribute("user");	
-		HttpSession session = request.getSession();
+
 		
 		
 		
