@@ -92,6 +92,7 @@
                                     <h5 class="card-text"><a href="ServletDetailVente?nomArticle=${article.nomArticle}">${article.nomArticle}</a></h5>
 
                                 <p class="card-text">Description : ${article.description}</p>
+                                <p class="card-text">Categorie : ${article.categorie.libelle}</p>
                                 <p class="card-text">Mise à prix : ${article.miseAPrix}</p>
                                 <p class="card-text">Enchère actuelle : ${article.prixVente}</p>
                                 <p class="card-text">Date de debut d'enchère : ${article.dateDebutEncheres}</p>
