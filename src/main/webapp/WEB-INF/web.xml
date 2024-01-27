@@ -41,7 +41,6 @@
     <servlet-name>ServletAccesAdmin</servlet-name>
     <url-pattern>/ServletAccesAdmin</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <description></description>
     <display-name>ServletModificationVente</display-name>
@@ -80,5 +79,15 @@
   <servlet-mapping>
     <servlet-name>ServletPasswordReset</servlet-name>
     <url-pattern>/ServletPasswordReset</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ServletDetailArticle</display-name>
+    <servlet-name>ServletDetailArticle</servlet-name>
+    <servlet-class>fr.labo.servlets.ServletDetailArticle</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletDetailArticle</servlet-name>
+    <url-pattern>/ServletDetailArticle</url-pattern>
   </servlet-mapping>
 </web-app>

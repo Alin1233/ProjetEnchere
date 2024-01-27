@@ -89,7 +89,7 @@
                         <div class="col">
                             <div class="card-body">
                                 <a href="detailVente.jsp">
-                                    <h5 class="card-text"><a href="ServletDetailVente?nomArticle=${article.nomArticle}">${article.nomArticle}</a></h5>
+                                    <h5 class="card-text"><a href="ServletDetailArticle?noArticle=${article.noArticle}">${article.nomArticle}</a></h5>
 
                                 <p class="card-text">Description : ${article.description}</p>
                                 <p class="card-text">Categorie : ${article.categorie.libelle}</p>
