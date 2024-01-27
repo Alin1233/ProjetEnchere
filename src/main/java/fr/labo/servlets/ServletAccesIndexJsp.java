@@ -19,7 +19,7 @@ public class ServletAccesIndexJsp extends HttpServlet {
    }
 
    public void init() throws ServletException {
-	   
+
 	   //Initialisation de la page index avec tout les articles présents dans la bdd
 	   VenteManager venteManager = new VenteManager();
 	   List<String> categorieListe = venteManager.getCategorieByLibelles();

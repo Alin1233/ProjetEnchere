@@ -1,23 +1,37 @@
 package fr.labo.servlets;
 
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+
 import java.io.IOException;
+
+import fr.labo.bll.VenteManager;
+import fr.labo.bo.ArticleVendu;
 
 public class ServletModificationVente extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    public ServletModificationVente() {
-        super();
+
+	
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+    	HttpSession session = request.getSession();
+    	session.getAttribute("articleVendu");
+    	request.getRequestDispatcher("/modifierLaVente.jsp").forward(request, response);
+        
+    	
     }
+    
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
+	
 		
-		//Qd le user clique sur le boutton "modifier" depsui la JSP enchere
 		
 	}
+	
+	
 
 }

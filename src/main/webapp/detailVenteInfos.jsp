@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Détail vente</title>
+    <title>Dï¿½tail vente</title>
  
     <script src="https://kit.fontawesome.com/0bec6bfa71.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
@@ -91,7 +91,7 @@
         </div>
     </header>
  
-    <h1>Détail de la vente</h1>
+    <h1>Dï¿½tail de la vente</h1>
  
     <main>
  
@@ -113,7 +113,7 @@
                     <p class="text"><%= request.getAttribute("description") %></p>
                 </div>
                 <div class="form-group">
-                    <p class="p"> Catégorie : </p>
+                    <p class="p"> Catï¿½gorie : </p>
                     <p class="text"><%= request.getAttribute("categorie") %></p>
                 </div>
  
@@ -128,17 +128,17 @@
                 </div>
                 
                 <div class="form-group">
-                    <p class="p"> Début de l'enchère: </p>
+                    <p class="p"> Dï¿½but de l'enchï¿½re: </p>
                     <p class="text"><%= request.getAttribute("dateDebutEncheres") %></p>
                 </div>
  
                 <div class="form-group">
-                    <p class="p"> Fin de l'enchère: </p>
+                    <p class="p"> Fin de l'enchï¿½re: </p>
                     <p class="text"><%= request.getAttribute("dateFinEncheres") %></p>
                 </div>
  
                 <div class="form-group">
-                    <p class="p"> Mise à prix : </p>
+                    <p class="p"> Mise ï¿½ prix : </p>
                     <p class="text"><%= request.getAttribute("MiseAPrix") %></p>
                 </div>
  
@@ -146,6 +146,24 @@
                     <p class="p"> Prix actuel: </p>
                     <p class="text"><%= request.getAttribute("PrixVente") %></p>
                 </div>
+                <a  href="ServletModificationVente"> modifier la vente </a>
+
+ 
+<c:choose>
+    <c:when test="${utilisateurConnecte.pseudo eq request.getAttribute('vendeur')}">
+        <div class="button">
+            <a href="ServletModificationVente" target="_blank" class="bouton-lien">Modifier la vente</a>
+        </div>
+    </c:when>
+    <c:when test="${utilisateurConnecte.pseudo ne request.getAttribute('vendeur')}">
+        <div class="enchere">
+            <p class="p"> Ma proposition : </p>
+            <input class="number" type="text">
+            <button type="submit">EnchÃ©rir</button>
+        </div>
+    </c:when>
+</c:choose>
+             
  
             </form>
  

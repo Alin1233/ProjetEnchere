@@ -26,6 +26,7 @@ public class ServletNouvelArticle extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.getRequestDispatcher( "nouvelleVente.jsp" ).forward(request, response);
+
 		
 	}
 
@@ -34,13 +35,21 @@ public class ServletNouvelArticle extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		//Permet d'identifer l'endroit d'où est appelé la servlet (depuis modif article "urlOrigin=modifier" ou "urlOrigin=nouvelArticle"
+		String urlOrigin = request.getParameter("urlOrigin");
+		//Recuperation de l'article si l'origine est depuis "urlOrigin=modifier" la modif de l'article
+		HttpSession session = request.getSession();
+		ArticleVendu articleAModifier = (ArticleVendu) session.getAttribute("articleVendu");
+		//Création des objet pour la création/modif d'un article
 		VenteManager venteManager = new VenteManager();
 		Categorie categorieArticle =null;
 		
 		
 		//Récuperation des information de l'utilisateur connecté
-		HttpSession session = request.getSession();
-		Utilisateur vendeur = (Utilisateur) session.getAttribute("user");
+		
+		Utilisateur vendeur = (Utilisateur) session.getAttribute("user");	
+
+		
 		
 		
 		
@@ -75,7 +84,30 @@ public class ServletNouvelArticle extends HttpServlet {
 		ArticleVendu nouvelArticle = new ArticleVendu(nomArticle, description, dateDebutEnchere, dateFinEnchere, miseAPrix, 0, etatVente, categorieArticle, vendeur, adresseRetrait);
 		//Insertion dans la bdd
 		
-		venteManager.ajuterVente(nouvelArticle);
+		//Si Servlet appelé depuis la JSP creationNouvlleVente 
+		if(urlOrigin.equals("nouvelArticle")) {
+			
+			System.out.println("nouvelle article : "+nouvelArticle);
+			
+			venteManager.ajuterVente(nouvelArticle);
+			// Ajouter un attribut à la requête pour indiquer la réussite
+			request.setAttribute("confirmationMessage", "L'article a été ajouté avec succès.");
+			request.getRequestDispatcher("nouvelleVente.jsp").forward(request, response);
+		}
+		//Si Servlet appelé depuis la JSP modificationArticle 
+		else if(urlOrigin.equals("modifier"))
+		{
+			//Recuperation de l'id de l'article à modifier
+			int idArticleAModifier = articleAModifier.getNoArticle();
+			//Set de l'id sur le nouvelle article creé
+			nouvelArticle.setNoArticle(idArticleAModifier);
+			System.out.println("Article Modifier : " + nouvelArticle);
+			venteManager.updateArticle(nouvelArticle);
+			// Ajouter un attribut à la requête pour indiquer la réussite
+			request.setAttribute("confirmationMessage", "L'article a été modifié avec succès.");
+			request.getRequestDispatcher("modifierLaVente.jsp").forward(request, response);
+		}
+		
 		
 		//remplacer le nom de l'image téléchargée par le nom de l'article + le nom du seler
 		String oldImage = (String) session.getAttribute("imagePath");

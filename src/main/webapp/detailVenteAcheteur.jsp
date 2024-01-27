@@ -82,13 +82,7 @@
  
 <body>
     
-    <header>
-        <div class="container-fluid d-flex bg-warning p-2">
-            <a class="navbar-brand p-2 flex-grow-1" href="#">
-                <i class="fa-solid fa-gavel fa-2xl"></i>
-            </a>
-        </div>
-    </header>
+<%@include file="header.jspf"%>
  
     <h1>Détail de la vente</h1>
  
