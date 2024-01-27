@@ -78,7 +78,8 @@ background: linear-gradient(to right bottom, rgba(246, 211, 101, 1), rgba(253, 1
                   <div class="col-6 mb-3">
                   <form  method="post" action="ServletDetailArticle">
                     <h6>Ma proposition : </h6>
-                    <input class="number" type="text">
+                    <input class="number" type="text" name="montant" value="">
+                    <input class="number" type="hidden" name="idArticle" value="${article.noArticle }">
                   </div>
                   <div class="col-6 mb-3">
                     <h6>Enchérir</h6>

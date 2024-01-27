@@ -71,6 +71,8 @@ public class VenteManager {
 	public void updateCategorie(Categorie categorie) {
 		venteDAO.updateCategorie(categorie);
 	}
-	
+	public List<Enchere> getEncheresByArticle(int no_article) {
+		return venteDAO.selectEnchereByArticle(no_article);
+	}
 	
 }

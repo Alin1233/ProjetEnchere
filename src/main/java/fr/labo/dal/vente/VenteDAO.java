@@ -38,4 +38,6 @@ public interface VenteDAO {
 	public void deleteCategorie(int id);
 	
 	public void updateCategorie(Categorie categorie);
+	
+	public List<Enchere> selectEnchereByArticle(int no_article);
 }
