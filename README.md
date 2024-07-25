@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/a525fcf8-a49b-413e-963a-2d08ce9a0d1f)# Project Enchère
+# Project Enchère
 
 This is a bidding web application similar to eBay, developed as part of a team project during my training. It leverages Java SE and JSPs with HTML, CSS, Bootstrap, Apache Tomcat, and SQL Server as the database.
 
@@ -83,8 +83,8 @@ Project Enchère is structured with a front-end and a back-end to manage differe
 
 ### Diagrams
 
-![Flowchart]([link-to-flowchart.png](https://github.com/Alin1233/ProjetEnchere/blob/main/screenshots/image.png?raw=true))
-![Flowchart](https://github.com/Alin1233/ProjetEnchere/blob/main/screenshots/Bidding%20Diagram.png?raw=true)
+![Screenshot](https://github.com/Alin1233/ProjetEnchere/blob/main/screenshots/image.png?raw=true)
+![Screenshot](https://github.com/Alin1233/ProjetEnchere/blob/main/screenshots/Bidding%20Diagram.png?raw=true)
 
 ## Technologies Used
 
