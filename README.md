@@ -46,7 +46,7 @@ Project Enchère is designed to replicate the core functionalities of a bidding 
 
 1. Clone the repository:
     ```bash
-    git clone https://github.com/yourusername/project-enchere.git
+    git clone https://github.com/Alin1233/project-enchere.git
     ```
 2. Navigate to the project directory:
     ```bash
