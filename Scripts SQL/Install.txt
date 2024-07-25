@@ -1,0 +1,11 @@
+-> Creer la base de donné avec le même nom de bdd présent dans le context.xml
+-> Creer les tables de la base de donnée (Creation_bdd_tables)
+
+Ouvrir les fichier d'insertion via SSMS pour la gestion des charactère spéciaux
+
+-> Inserer les categories (categories_insert)
+-> Inserer les utilisateurs (User_inset)
+-> Inserer les adresses de retrait (Retrait_insert)
+-> Inserer les articles (Articles_insert)
+
+Done !
