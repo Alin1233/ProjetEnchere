@@ -116,4 +116,4 @@ This project is licensed under the MIT License.
 
 ## Contact Information
 
-For any inquiries, please contact [Your Name](mailto:herciualin10@gmail.com) or connect with me on [LinkedIn](https://linkedin.com/in/alin-herciu-22a550284/).
+For any inquiries, please contact [herciualin10@gmail.com](mailto:herciualin10@gmail.com) or connect with me on [LinkedIn](https://linkedin.com/in/alin-herciu-22a550284/).
