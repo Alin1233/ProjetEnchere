@@ -27,7 +27,7 @@ Project Enchère is designed to replicate the core functionalities of a bidding 
 
 ## Demonstration
 
-![Screenshot](link-to-screenshot.png)
+![Screenshot]([link-to-screenshot.png](https://github.com/Alin1233/ProjetEnchere/blob/main/screenshots/Home%20Page.jpg))
 ![GIF](link-to-gif.gif)
 [Video Demo](link-to-video.com)
 
